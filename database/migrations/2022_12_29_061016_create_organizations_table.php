@@ -17,10 +17,13 @@ class CreateOrganizationsTable extends Migration
             $table->id();
             $table->bigInteger('management_id')->unsigned()->index()->nullable();
             $table->bigInteger('railway_id')->unsigned()->index()->nullable();
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
             $table->string('name')->nullable();
+            $table->integer('inn')->nullable();
             $table->boolean('status')->default(true);
             $table->foreign('management_id')->references('id')->on('managements');
             $table->foreign('railway_id')->references('id')->on('railways');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

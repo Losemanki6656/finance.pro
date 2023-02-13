@@ -33,6 +33,23 @@ class Organization extends Model
     {
         return $this->belongsTo(Railway::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function send_orgs()
+    {
+        return $this->hasMany(Consolidated::class, 'send_id', 'user_id');
+    }
+
+    public function rec_orgs()
+    {
+        return $this->hasMany(Consolidated::class, 'rec_inn', 'inn');
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

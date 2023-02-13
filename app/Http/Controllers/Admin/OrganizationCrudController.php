@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Management;
 use App\Models\Railway;
+use App\Models\User;
 
 use App\Http\Requests\OrganizationRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -26,21 +27,33 @@ class OrganizationCrudController extends CrudController
     {
         $this->crud->setModel('App\Models\Organization');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/organization');
-        $this->crud->setEntityNameStrings('organization', 'organizations');
+        $this->crud->setEntityNameStrings('организация', 'Организацие');
 
           $this->crud->addFilter([
             'name'  => 'railway_id',
             'type'  => 'select2',
             'label' => 'Railway'
           ], function() {
-              return \App\Models\Railway::all()->pluck('name', 'id')->toArray();
+              return Railway::all()->pluck('name', 'id')->toArray();
           }, function($value) { // if the filter is active
               $this->crud->addClause('where', 'railway_id', $value);
           });
+
+          $this->crud->addFilter([
+            'name'  => 'user_id',
+            'type'  => 'select2',
+            'label' => 'User'
+          ], function() {
+              return User::all()->pluck('name', 'id')->toArray();
+          }, function($value) { // if the filter is active
+              $this->crud->addClause('where', 'user_id', $value);
+          });
+
     }
 
     protected function setupListOperation()
     {
+        
         $this->crud->addColumn([
             'name' => 'id',
             'label' => '№'
@@ -56,6 +69,16 @@ class OrganizationCrudController extends CrudController
             'name' => 'name',
             'label' => 'Name'
         ]);
+
+        $this->crud->addColumn([
+            'name' => 'inn',
+            'label' => 'INN'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'user_id',
+            'label' => 'User'
+        ]);
     }
 
     protected function setupShowOperation()
@@ -65,6 +88,18 @@ class OrganizationCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'name',
             'label' => 'Name',
+            'type' => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'inn',
+            'label' => 'INN',
+            'type' => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'user_id',
+            'label' => 'User',
             'type' => 'text'
         ]);
         
@@ -95,6 +130,16 @@ class OrganizationCrudController extends CrudController
                     'attribute' => 'name',
                     'default'   => 1
                 ]);
+                $this->crud->addField(
+                    [
+                        'label' => 'User',
+                        'type' => 'select2',
+                        'name' => 'user_id',
+                        'entity' => 'user',
+                        'model' => User::class,
+                        'attribute' => 'name',
+                        'default'   => 1
+                    ]);
 
         $this->crud->addField(
             [
@@ -102,6 +147,13 @@ class OrganizationCrudController extends CrudController
                 'type' => 'text',
                 'name' => 'name'
             ]);
+
+            $this->crud->addField(
+                [
+                    'label' => 'INN',
+                    'type' => 'text',
+                    'name' => 'inn'
+                ]);
     }
 
     protected function setupUpdateOperation()
