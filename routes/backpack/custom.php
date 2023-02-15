@@ -36,6 +36,7 @@ Route::group([
 
     
     Route::get('update-balance', 'ExportController@update_balance')->name('update_balance');
+    Route::get('control', 'ExportController@control')->name('control');
 
     Route::crud('management', 'ManagementCrudController');
     Route::crud('railway', 'RailwayCrudController');

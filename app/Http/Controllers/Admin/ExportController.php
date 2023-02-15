@@ -97,4 +97,23 @@ class ExportController
 
         return back();
     }
+
+    public function control()
+    {
+       $organizations = Organization::get();
+
+       foreach($organizations as $item) 
+       {
+            $user = new User();
+            $user->name = $item->name;
+            $user->email = 'user'.$item->inn.'@gmail.com';
+            $user->password = bcrypt('123');
+            $user->save();
+
+            $item->user_id = $user->id;
+            $item->save();
+       }
+
+        return back();
+    }
 }
