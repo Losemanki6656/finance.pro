@@ -28,7 +28,8 @@ class CreateConsolidateOborotiTable extends Migration
             $table->string('postup_zatrat')->nullable();
             $table->string('pered_os_v_lizing')->nullable();
             $table->string('pered_os_cher_shet')->nullable();
-            $table->string('postup_os_cher_shet')->nullable();
+            $table->string('poluch_os_cher_shet')->nullable();
+            $table->string('poluch_ustav_kap')->nullable();
             $table->string('bez_pered')->nullable();
             $table->string('bez_pol')->nullable();
             $table->string('pered_tms')->nullable();
@@ -61,12 +62,14 @@ class CreateConsolidateOborotiTable extends Migration
             
             $table->string('nds_oplate')->nullable();
             $table->string('nds_zashet')->nullable();
+            $table->string('aksiz_uplate')->nullable();
             $table->string('poluch_deneg')->nullable();
             $table->string('uplach_deneg')->nullable();
             $table->string('vzaimozashet')->nullable();
             $table->string('rashet_tret_litsam')->nullable();
             $table->string('prochie')->nullable();
             $table->string('saldo')->nullable();
+            $table->integer('ex_year')->nullable();
 
             $table->foreign('send_id')->references('id')->on('users');
             $table->foreign('rec_id')->references('id')->on('users');

@@ -28,7 +28,15 @@ class ConsolidateOboroti extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function rec()
+    {
+        return $this->belongsTo(User::class,'rec_id');
+    }
 
+    public function send()
+    {
+        return $this->belongsTo(User::class,'send_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

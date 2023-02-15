@@ -60,21 +60,6 @@ class ConsolidatedCrudController extends CrudController
             $this->crud->query = $this->crud->query->where('send_id', backpack_user()->id);
         }
             
-        // $this->crud->addColumn([
-        //     'name' => 'id',
-        //     'label' => '#',
-        // ]);
-        // $this->crud->addColumn([
-        //     'name' => 'send_id',
-        //     'label' => 'Отправитель',
-        //     'entity' => 'send'
-        // ]);
-
-        // $this->crud->addColumn([
-        //     'name' => 'rec_id',
-        //     'label' => 'Получатель',
-        //     'entity' => 'rec'
-        // ]);
 
         $this->crud->addColumn([
             'name' => 'send_name',
