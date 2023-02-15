@@ -33,6 +33,7 @@ class CreateConsolidatedTable extends Migration
             $table->string('ex_61')->nullable();
             $table->string('ex_63')->nullable();
             $table->string('ex_66')->nullable();
+            $table->string('ex_68')->nullable();
             $table->string('ex_69')->nullable();
             $table->string('ex_78')->nullable();
             $table->string('ex_79')->nullable();
