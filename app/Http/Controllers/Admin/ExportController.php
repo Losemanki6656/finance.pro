@@ -8,6 +8,7 @@ use App\Exports\ConsolidatedExport;
 use Illuminate\Http\Request;
 
 use App\Models\Organization;
+use App\Models\User;
 
 use App\Models\Consolidated;
 
