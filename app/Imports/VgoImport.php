@@ -40,7 +40,7 @@ class VgoImport implements ToCollection
 
             if($item[1] != '' && $itog != 0) {
 
-                $org = Organization::where('inn', $item[4])->where('rec_name', $item[3])->first();
+                $org = Organization::where('inn', $item[4])->where('name', $item[3])->first();
                 // $send_org = Organization::where('inn', $item[2])->first();
 
                 $con = new Consolidated();
@@ -84,9 +84,10 @@ class VgoImport implements ToCollection
                 $con->ex_61 = $this->convert($item[14]);
                 $con->ex_63 = $this->convert($item[15]);
                 $con->ex_66 = $this->convert($item[16]);
-                $con->ex_69 = $this->convert($item[17]);
-                $con->ex_78 = $this->convert($item[18]);
-                $con->ex_79 = $this->convert($item[19]);
+                $con->ex_68 = $this->convert($item[17]);
+                $con->ex_69 = $this->convert($item[18]);
+                $con->ex_78 = $this->convert($item[19]);
+                $con->ex_79 = $this->convert($item[20]);
 
                 $con->result = $itog;
                 $con->ex_year = $this->date_import;

@@ -69,7 +69,7 @@ class ExportController
         foreach($cons as $item) 
         { 
             if(!$item->rec_id) {
-                $org = Organization::where('inn', $item->rec_inn)->where('rec_name', $item->rec_name)->first();
+                $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
                 if($org) {
                     if($org->user_id) {
                         $item->rec_id = $org->user_id;
