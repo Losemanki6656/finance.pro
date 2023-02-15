@@ -221,28 +221,81 @@ class ConsolidatedCrudController extends CrudController
 
         $this->crud->addField(
             [
-                'label' => 'Отправитель',
+                'label' => 'Ползователь',
                 'type' => 'text',
-                'name' => 'send_name',
+                'name' => 'send_id',
                 'value' => backpack_user()->name,
+                'attributes' => [
+                    'readonly'    => 'readonly',
+                    'disabled'    => 'disabled',
+                  ],
                 'wrapper' => [
                     'class' => 'form-group col-lg-6'
                 ]
             ]);
 
-        $this->crud->addField(
+            $this->crud->addField(
                 [
-                    'label' => 'Получатель',
-                    'type' => 'select2',
-                    'name' => 'rec_id',
-                    'entity' => 'rec',
-                    'model' => User::class,
-                    'attribute' => 'name',
-                    'default'   => 1,
+                    'label' => 'Отправитель',
+                    'type' => 'text',
+                    'name' => 'send_name',
+                    'attributes' => [
+                        'readonly'    => 'readonly',
+                        'disabled'    => 'disabled',
+                      ],
                     'wrapper' => [
                         'class' => 'form-group col-lg-6'
                     ]
                 ]);
+
+                $this->crud->addField(
+                    [
+                        'label' => 'Отправитель ИНН',
+                        'type' => 'text',
+                        'name' => 'send_inn',
+                        'attributes' => [
+                            'readonly'    => 'readonly',
+                            'disabled'    => 'disabled',
+                          ],
+                        'wrapper' => [
+                            'class' => 'form-group col-lg-6'
+                        ]
+                    ]);
+
+                    $this->crud->addField(
+                        [
+                            'label' => 'Ползователь (Получатель)',
+                            'type' => 'select2',
+                            'name' => 'rec_id',
+                            'entity' => 'rec',
+                            'model' => User::class,
+                            'attribute' => 'name',
+                            'default'   => 1,
+                            'wrapper' => [
+                                'class' => 'form-group col-lg-6'
+                            ]
+                        ]);
+
+                    $this->crud->addField(
+                        [
+                            'label' => 'Имя Получателя',
+                            'type' => 'text',
+                            'name' => 'rec_name',
+                            'wrapper' => [
+                                'class' => 'form-group col-lg-6'
+                            ]
+                        ]);
+
+                        $this->crud->addField(
+                            [
+                                'label' => 'ИНН Получателя',
+                                'type' => 'text',
+                                'name' => 'rec_inn',
+                                'wrapper' => [
+                                    'class' => 'form-group col-lg-6'
+                                ]
+                            ]);
+       
         
                 $this->crud->addField([
                     'name' => 'ex_06',
@@ -346,13 +399,14 @@ class ConsolidatedCrudController extends CrudController
                 $this->crud->addField([
                     'name' => 'ex_year',
                     'label' => 'Год',
+                    'attributes' => [
+                        'readonly'    => 'readonly',
+                        'disabled'    => 'disabled',
+                      ],
                     'wrapper' => [
                         'class' => 'form-group col-lg-2'
                     ]
-                ]);
-        
-
-                
+                ]);              
         
 
     }
