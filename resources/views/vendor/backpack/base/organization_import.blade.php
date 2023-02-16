@@ -119,12 +119,12 @@
             }
 
             $('#excel-form').submit(function (e) {
-
                 $("#loader").fadeIn(300);
                 setTimeout(function () {
                     $("#loader").fadeOut(300);
                 }, 5000)
             });
+            
         })
     </script>
 @endsection
