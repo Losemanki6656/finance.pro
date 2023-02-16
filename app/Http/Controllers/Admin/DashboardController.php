@@ -42,7 +42,7 @@ class DashboardController
                     (int)$conback->ex_60 + (int)$conback->ex_61 + (int)$conback->ex_63 + (int)$conback->ex_66 + (int)$conback->ex_68 + (int)$conback->ex_69 + (int)$conback->ex_69 + (int)$conback->ex_79;
                 } else $z = false;
 
-                if($t == true && $z = true)
+                if($t == true && $z == true)
                 {
                     if($x + $y == 0)  {
                         $trueCount ++;
