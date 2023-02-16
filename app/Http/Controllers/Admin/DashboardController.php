@@ -50,7 +50,7 @@ class DashboardController
                         $falseCount ++;
                         $summ = $x + $y;
                         if($summ > 0)
-                        $summCount = $summCount + $summ; else $summCount = $summCount + (-1) * $summ; 
+                            $summCount = $summCount + $summ; else $summCount = $summCount + (-1) * $summ; 
                     }
                 }
                     
@@ -61,7 +61,7 @@ class DashboardController
             'organizations' => $organizations,
             'trueCount' => $trueCount,
             'falseCount' => $falseCount,
-            'summCount' => number_format((int)$summCount,2,'.',' ')
+            'summCount' => number_format((int)$summCount, 2 , '.',' ')
         ]);
     }
 }
