@@ -45,7 +45,7 @@ class ExportController
                     $conback = $conback->first();
                     $y = (int)$conback->ex_06 + (int)$conback->ex_09 + (int)$conback->ex_40 + (int)$conback->ex_41 + 
                     (int)$conback->ex_43 + (int)$conback->ex_46 + (int)$conback->ex_48 + (int)$conback->ex_58 + 
-                    (int)$conback->ex_60 + (int)$conback->ex_61 + (int)$conback->ex_63 + (int)$conback->ex_66 + (int)$con->ex_68 + (int)$conback->ex_69 + (int)$conback->ex_69 + (int)$conback->ex_79;
+                    (int)$conback->ex_60 + (int)$conback->ex_61 + (int)$conback->ex_63 + (int)$conback->ex_66 + (int)$conback->ex_68 + (int)$conback->ex_69 + (int)$conback->ex_69 + (int)$conback->ex_79;
                 } else $z = false;
 
                 if($t == true && $z = true)
