@@ -13,7 +13,7 @@
 @section('header')
     <div class="container-fluid">
         <h2>
-            <span class="text-capitalize"> пользователи которые не ввели никакой информации </span>
+            <span class="text-capitalize"> пользователи которые ввели неправильные информации </span>
             {{-- <small id="datatable_info_stack"> {{ __('select your excel file') }} </small> --}}
         </h2>
     </div>
