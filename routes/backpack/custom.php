@@ -31,6 +31,10 @@ Route::group([
     Route::get('delete-task/{id}', 'ImportController@delete_task')->name('delete_task');
 
     
+    Route::get('not-info-users', 'DashboardController@not_info_users')->name('not_info_users');
+    Route::get('error-info-users', 'DashboardController@error_info_users')->name('error_info_users');
+
+    
     Route::get('export-shaxmatka', 'ExportController@export_shaxmatka')->name('export_shaxmatka');
     Route::get('export-shaxmatka-view', 'ExportController@export_shaxmatka_view')->name('export_shaxmatka_view');
 
