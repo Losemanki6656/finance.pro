@@ -76,7 +76,6 @@ class ExportController
                         $rec_con = Consolidated::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
                         if($rec_con)
                             {
-                                dd(1);
                                 if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
                                 else $item->status = 4;
                             } else $item->status = 4;
