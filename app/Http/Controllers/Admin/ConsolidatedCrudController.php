@@ -181,6 +181,11 @@ class ConsolidatedCrudController extends CrudController
             'label' => '66**'
         ]);
         $this->crud->addColumn([
+            'name' => 'ex_68*',
+            'label' => '68**'
+        ]);
+
+        $this->crud->addColumn([
             'name' => 'ex_69',
             'label' => '69**'
         ]);
@@ -354,7 +359,21 @@ class ConsolidatedCrudController extends CrudController
                 ]);
                 $this->crud->addField([
                     'name' => 'ex_63',
+                    'label' => '63**',
+                    'wrapper' => [
+                        'class' => 'form-group col-lg-2'
+                    ]
+                ]);
+                $this->crud->addField([
+                    'name' => 'ex_66',
                     'label' => '66**',
+                    'wrapper' => [
+                        'class' => 'form-group col-lg-2'
+                    ]
+                ]);
+                $this->crud->addField([
+                    'name' => 'ex_68',
+                    'label' => '68**',
                     'wrapper' => [
                         'class' => 'form-group col-lg-2'
                     ]
@@ -368,7 +387,7 @@ class ConsolidatedCrudController extends CrudController
                 ]);
                 $this->crud->addField([
                     'name' => 'ex_78',
-                    'label' => '09**',
+                    'label' => '78**',
                     'wrapper' => [
                         'class' => 'form-group col-lg-2'
                     ]

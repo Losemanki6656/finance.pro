@@ -27,9 +27,9 @@ class DashboardController
         {  
             foreach($allorganizations as $org) 
             {
-               $con = $item->send_orgs->where('rec_id','!=',null)->where('rec_id', $org->user_id);
+               $con = $item->send_orgs->whereNotNull('rec_id')->where('rec_id', $org->user_id);
                
-               $conback = $org->send_orgs->where('rec_id','!=',null)->where('rec_id', $item->user_id);
+               $conback = $org->send_orgs->whereNotNull('rec_id')->where('rec_id', $item->user_id);
 
                $t = true; $z = true; $x = 0; $y = 0;
                if($con->count() >= 1)  {
@@ -64,19 +64,21 @@ class DashboardController
 
 
         // $users = DB::table('consolidated as con1')
-        //     ->select( DB::raw( 'con1.*' ) )
         //     ->join('consolidated as con2', function ($join) {
-        //         $join->on('con1.send_id', '=', 'con2.rec_id');
+        //         $join->on('con1.send_id', '=', 'con2.rec_id')
+        //              ->on('con1.rec_id', '=', 'con2.send_id')
+        //              ->where('con1.ex_06', '=', 'con2.ex_06');
         //     })
+        //     ->select(['con1.*', 'con2.*'])
         //     ->get();
+
 
         // dd($users);
 
 
 
-        // $cons = Consolidated::select(DB::raw('sum(ex_06 + ex_09 + ex_40 + ex_41 + ex_43 + ex_46 + ex_48 + ex_58 + ex_60 + ex_61 + ex_63 + ex_66 + ex_68 + ex_69 + ex_79) as total'))->first()->total;
-    
-
+        // $cons = Consolidated::select(DB::raw('sum(ex_06 + ex_09 + ex_40 + ex_41 + ex_43 + ex_46 + ex_48 + ex_58 + ex_60 + ex_61 + ex_63 + ex_66 + ex_68 + ex_69 + ex_79) as total'))->get();
+        
         return view('backpack::dashboard', [
             'organizations' => $organizations,
              'trueCount' => $trueCount,
@@ -114,7 +116,7 @@ class DashboardController
                     $con = $con->first();
                     $x = (int)$con->ex_06 + (int)$con->ex_09 + (int)$con->ex_40 + (int)$con->ex_41 + 
                     (int)$con->ex_43 + (int)$con->ex_46 + (int)$con->ex_48 + (int)$con->ex_58 + 
-                    (int)$con->ex_60 + (int)$con->ex_61 + (int)$con->ex_63 + (int)$con->ex_66 + (int)$con->ex_68 + (int)$con->ex_69 + (int)$con->ex_79;
+                    (int)$con->ex_60 + (int)$con->ex_61 + (int)$con->ex_6 + (int)$con->ex_66 + (int)$con->ex_68 + (int)$con->ex_69 + (int)$con->ex_79;
                } else $t = false;
                
                if($conback->count() >= 1)  {

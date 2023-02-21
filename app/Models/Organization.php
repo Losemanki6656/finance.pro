@@ -44,6 +44,11 @@ class Organization extends Model
         return $this->hasMany(Consolidated::class, 'send_id', 'user_id');
     }
 
+    public function recs()
+    {
+        return $this->hasMany(Consolidated::class, 'rec_id', 'user_id');
+    }
+
     public function rec_orgs()
     {
         return $this->hasMany(Consolidated::class, 'rec_inn', 'inn');
