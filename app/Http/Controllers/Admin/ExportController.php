@@ -38,14 +38,14 @@ class ExportController
                     $con = $con->first();
                     $x = (int)$con->ex_06 + (int)$con->ex_09 + (int)$con->ex_40 + (int)$con->ex_41 + 
                     (int)$con->ex_43 + (int)$con->ex_46 + (int)$con->ex_48 + (int)$con->ex_58 + 
-                    (int)$con->ex_60 + (int)$con->ex_61 + (int)$con->ex_63 + (int)$con->ex_66 +  + (int)$con->ex_68 + (int)$con->ex_69 + (int)$con->ex_79 + (int)$con->ex_83;
+                    (int)$con->ex_60 + (int)$con->ex_61 + (int)$con->ex_63 + (int)$con->ex_66 +  + (int)$con->ex_68 + (int)$con->ex_69 + (int)$con->ex_78 + (int)$con->ex_79 + (int)$con->ex_83;
                } else $t = false;
                
                if($conback->count() >= 1)  {
                     $conback = $conback->first();
                     $y = (int)$conback->ex_06 + (int)$conback->ex_09 + (int)$conback->ex_40 + (int)$conback->ex_41 + 
                     (int)$conback->ex_43 + (int)$conback->ex_46 + (int)$conback->ex_48 + (int)$conback->ex_58 + 
-                    (int)$conback->ex_60 + (int)$conback->ex_61 + (int)$conback->ex_63 + (int)$conback->ex_66 + (int)$conback->ex_68 + (int)$conback->ex_69 + (int)$conback->ex_79 + + (int)$conback->ex_83;
+                    (int)$conback->ex_60 + (int)$conback->ex_61 + (int)$conback->ex_63 + (int)$conback->ex_66 + (int)$conback->ex_68 + (int)$conback->ex_69 + (int)$conback->ex_78 + (int)$conback->ex_79 + (int)$conback->ex_83;
                 } else $z = false;
 
                 if($t == true && $z = true)

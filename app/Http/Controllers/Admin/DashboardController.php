@@ -165,9 +165,9 @@ class DashboardController
                 DB::raw('(con2.ex_06 + con2.ex_09 + con2.ex_40 + con2.ex_41 + con2.ex_43 + con2.ex_46 
                 + con2.ex_48 + con2.ex_58 + con2.ex_60 + con2.ex_61 + con2.ex_63 + con2.ex_66 + con2.ex_68 + con2.ex_69 + con2.ex_78 + con2.ex_79 + ifnull(con2.ex_83, 0)) as result1'),
                 DB::raw('(con1.ex_06 + con1.ex_09 + con1.ex_40 + con1.ex_41 + con1.ex_43 + con1.ex_46 
-                + con1.ex_48 + con1.ex_58 + con1.ex_60 + con1.ex_61 + con1.ex_63 + con1.ex_66 + con1.ex_68 + con1.ex_69 + con1.ex_78 +con1.ex_79 + ifnull(con1.ex_83, 0)
+                + con1.ex_48 + con1.ex_58 + con1.ex_60 + con1.ex_61 + con1.ex_63 + con1.ex_66 + con1.ex_68 + con1.ex_69 + con1.ex_78 + con1.ex_79 + ifnull(con1.ex_83, 0)
                 + con2.ex_06 + con2.ex_09 + con2.ex_40 + con2.ex_41 + con2.ex_43 + con2.ex_46 
-                + con2.ex_48 + con2.ex_58 + con2.ex_60 + con2.ex_61 + con2.ex_63 + con2.ex_66 + con2.ex_68 + con2.ex_69 + con2.ex_78 +con2.ex_79 + ifnull(con2.ex_83, 0)) as result3')
+                + con2.ex_48 + con2.ex_58 + con2.ex_60 + con2.ex_61 + con2.ex_63 + con2.ex_66 + con2.ex_68 + con2.ex_69 + con2.ex_78 + con2.ex_79 + ifnull(con2.ex_83, 0)) as result3')
             ])
             ->get();
 

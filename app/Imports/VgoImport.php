@@ -36,7 +36,7 @@ class VgoImport implements ToCollection
         {
               $itog =  (int)$this->convert($item[5]) +  (int)$this->convert($item[6]) + (int)$this->convert($item[7]) + (int)$this->convert($item[8]) + (int)$this->convert($item[9]) + (int)$this->convert($item[10])
                + (int)$this->convert($item[11]) +  (int)$this->convert($item[12]) + (int)$this->convert($item[13]) + (int)$this->convert($item[14]) + (int)$this->convert($item[15])
-               + (int)$this->convert($item[16]) + (int)$this->convert($item[17]) + (int)$this->convert($item[18]) + (int)$this->convert($item[19]) + (int)$this->convert($item[20]);
+               + (int)$this->convert($item[16]) + (int)$this->convert($item[17]) + (int)$this->convert($item[18]) + (int)$this->convert($item[19]) + (int)$this->convert($item[20]) + (int)$this->convert($item[21]);
 
             if($item[1] != '' && $itog != 0) {
 
@@ -88,6 +88,7 @@ class VgoImport implements ToCollection
                 $con->ex_69 = $this->convert($item[18]);
                 $con->ex_78 = $this->convert($item[19]);
                 $con->ex_79 = $this->convert($item[20]);
+                $con->ex_83 = $this->convert($item[21]);
 
                 $con->result = $itog;
                 $con->ex_year = $this->date_import;
