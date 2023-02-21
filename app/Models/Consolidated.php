@@ -35,21 +35,21 @@ class Consolidated extends Model
     // }
 
     protected $casts = [
-        'ex_06' => 'integer',
-        'ex_09' => 'integer',
-        'ex_40' => 'integer',
-        'ex_41' => 'integer',
-        'ex_43' => 'integer',
-        'ex_46' => 'integer',
-        'ex_48' => 'integer',
-        'ex_58' => 'integer',
-        'ex_60' => 'integer',
-        'ex_61' => 'integer',
-        'ex_63' => 'integer',
-        'ex_66' => 'integer',
-        'ex_68' => 'integer',
-        'ex_69' => 'integer',
-        'ex_79' => 'integer'
+        'ex_06' => 'double',
+        'ex_09' => 'double',
+        'ex_40' => 'double',
+        'ex_41' => 'double',
+        'ex_43' => 'double',
+        'ex_46' => 'double',
+        'ex_48' => 'double',
+        'ex_58' => 'double',
+        'ex_60' => 'double',
+        'ex_61' => 'double',
+        'ex_63' => 'double',
+        'ex_66' => 'double',
+        'ex_68' => 'double',
+        'ex_69' => 'double',
+        'ex_79' => 'double'
     ];
     
 
