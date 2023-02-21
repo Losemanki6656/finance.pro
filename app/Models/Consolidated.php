@@ -34,11 +34,24 @@ class Consolidated extends Model
     //     });
     // }
 
-    /*
-    |--------------------------------------------------------------------------
-    | FUNCTIONS
-    |--------------------------------------------------------------------------
-    */
+    protected $casts = [
+        'ex_06' => 'integer',
+        'ex_09' => 'integer',
+        'ex_40' => 'integer',
+        'ex_41' => 'integer',
+        'ex_43' => 'integer',
+        'ex_46' => 'integer',
+        'ex_48' => 'integer',
+        'ex_58' => 'integer',
+        'ex_60' => 'integer',
+        'ex_61' => 'integer',
+        'ex_63' => 'integer',
+        'ex_66' => 'integer',
+        'ex_68' => 'integer',
+        'ex_69' => 'integer',
+        'ex_79' => 'integer'
+    ];
+    
 
     public function rec()
     {
@@ -55,7 +68,7 @@ class Consolidated extends Model
     {
         $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 
         (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 + 
-        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_69 + (int)$this->ex_79;
+        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_79;
         return number_format($summ , 0, ' ', ' ');
     }
 
@@ -63,7 +76,7 @@ class Consolidated extends Model
     {
         $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 
         (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 + 
-        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_69 + (int)$this->ex_79;
+        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_79;
         return $summ;
     }
 
