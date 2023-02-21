@@ -75,9 +75,6 @@
                                         <a href="{{route('not_info_users')}}" class="btn btn-outline-danger btn-sm"> <i class="la la-eye"></i> Просмотр </a>
                                     </span>
                                 </div>
-                                <div> <span class="text-success" style="font-size: 17pt">{{ $trueCount }} - </span>
-                                    <span>пользователи ввели правильные информации.</span>
-                                </div>
                                 <div> <span class="text-warning" style="font-size: 17pt">{{ $falseCount }} - </span>
                                     <span>пользователи ввели неправильные информации.</span>
                                     <span>
@@ -141,9 +138,6 @@
                             <div class="mb-4">
                                 <div> <span class="text-danger" style="font-size: 17pt">{{ $organizations }} - </span>
                                     <span>пользователи не ввели никакой информации.</span>
-                                </div>
-                                <div> <span class="text-success" style="font-size: 17pt">{{ $trueCount }} - </span>
-                                    <span>пользователи ввели правильные информации.</span>
                                 </div>
                                 <div> <span class="text-warning" style="font-size: 17pt">{{ $falseCount }} - </span>
                                     <span>пользователи ввели неправильные информации.</span>

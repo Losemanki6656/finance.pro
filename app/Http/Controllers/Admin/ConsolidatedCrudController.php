@@ -199,6 +199,11 @@ class ConsolidatedCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
+            'name' => 'ex_83',
+            'label' => '83**'
+        ]);
+
+        $this->crud->addColumn([
             'name' => 'result',
             'label' => 'Итого'
         ]);
@@ -392,9 +397,18 @@ class ConsolidatedCrudController extends CrudController
                         'class' => 'form-group col-lg-2'
                     ]
                 ]);
+
                 $this->crud->addField([
                     'name' => 'ex_79',
                     'label' => '79**',
+                    'wrapper' => [
+                        'class' => 'form-group col-lg-2'
+                    ]
+                ]);
+
+                $this->crud->addField([
+                    'name' => 'ex_83',
+                    'label' => '83**',
                     'wrapper' => [
                         'class' => 'form-group col-lg-2'
                     ]

@@ -35,18 +35,20 @@
                 <th>2-Организация</th>
                 <th>1-итог</th>
                 <th>2-итог</th>
-                <th>Ошибка</th>
+                <th class="text-center">Ошибка</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($d as $item)
+            @foreach ($users as $item)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $item['send'] }}</td>
-                    <td>{{ $item['rec'] }}</td>
-                    <td style="font-weight: bold">{{ $item['x'] }}</td>
-                    <td style="font-weight: bold">{{ $item['y']}}</td>
-                    <td style="font-weight: bold" class="text-danger">{{ $item['result']}}</td>
+                    <td>{{ $item->send_name }}</td>
+                    <td>{{ $item->rec_name }}</td>
+                    <td style="font-weight: bold">{{ $item->result1 }}</td>
+                    <td style="font-weight: bold">{{ $item->result2}}</td>
+                    <td style="font-weight: bold" class="text-danger text-center">
+                        {{ number_format($item->result3, 4 , '.',' ') }}
+                        </td>
                 </tr>
             @endforeach
         </tbody>
