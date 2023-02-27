@@ -8,7 +8,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 
 use App\Models\User;
-use App\Models\ConsolidatedOboroti;
+use App\Models\ConsolidateOboroti;
 
 /**
  * Class ConsolidateOborotiCrudController
@@ -28,6 +28,30 @@ class ConsolidateOborotiCrudController extends CrudController
         $this->crud->setModel('App\Models\ConsolidateOboroti');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/consolidateoboroti');
         $this->crud->setEntityNameStrings('обороты', 'Обороты');
+
+        $this->crud->enableExportButtons();
+
+        $this->crud->addFilter([
+            'type' => 'dropdown',
+            'name' => 'status',
+            'label' => 'Фильтр по статусам'
+        ],
+            [
+                3 => "Успешные",
+                2 => "100",
+                5 => "101",
+                4 => "102",
+            ],
+            function ($value) {
+                if ($value == 3)
+                    $this->crud->query = ConsolidateOboroti::where('status', 3);
+                if ($value == 2)
+                    $this->crud->query = ConsolidateOboroti::where('status', 2);
+                if ($value == 5)
+                    $this->crud->query = ConsolidateOboroti::where('status', 5);
+                if ($value == 4)
+                    $this->crud->query = ConsolidateOboroti::where('status', 4);
+            });
     }
 
     protected function setupListOperation()

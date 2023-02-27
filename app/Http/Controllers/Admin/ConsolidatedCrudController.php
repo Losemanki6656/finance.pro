@@ -28,7 +28,7 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->setModel('App\Models\Consolidated');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/consolidated');
         $this->crud->setEntityNameStrings('баланс', 'Балансы');
-        $this->crud->enableDetailsRow();
+        // $this->crud->enableDetailsRow();
         $this->crud->enableExportButtons();
 
         $this->crud->addFilter([
