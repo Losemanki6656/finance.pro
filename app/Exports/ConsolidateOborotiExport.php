@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use App\Models\Organization;
 use App\Models\ConsolidateOboroti;
 
-class ConsolidateOborotidExport implements FromView
+class ConsolidateOborotiExport implements FromView
 {
 
     public function view(): View

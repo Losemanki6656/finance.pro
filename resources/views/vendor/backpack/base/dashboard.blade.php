@@ -100,7 +100,7 @@
 
             <div class="col-sm-6 col-lg-6">
                 <div class="card border-0">
-                    <form id="shaxmatka" action="{{ route('export_shaxmatka') }}" method="get">
+                    <form id="shaxmatka_oboroti" action="{{ route('export_oboroti_shaxmatka') }}" method="get">
                         @csrf
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -141,14 +141,15 @@
                                 <div> <span class="text-danger" style="font-size: 17pt">{{ $organizationsOborot }} - </span>
                                     <span>пользователи не ввели никакой информации.</span>
                                     <span>
-                                        <a href="{{ route('not_info_oborot_users') }}" class="btn btn-outline-danger btn-sm"> <i
-                                                class="la la-eye"></i> Просмотр </a>
+                                        <a href="{{ route('not_info_oborot_users') }}"
+                                            class="btn btn-outline-danger btn-sm"> <i class="la la-eye"></i> Просмотр </a>
                                     </span>
                                 </div>
                                 <div> <span class="text-warning" style="font-size: 17pt">{{ $falseCountOborot }} - </span>
                                     <span>пользователи ввели неправильные информации.</span>
                                     <span>
-                                        <a href="{{ route('error_info_oborot_users') }}" class="btn btn-outline-warning btn-sm">
+                                        <a href="{{ route('error_info_oborot_users') }}"
+                                            class="btn btn-outline-warning btn-sm">
                                             <i class="la la-eye"></i> Просмотр </a>
                                     </span>
                                 </div>
@@ -245,7 +246,22 @@
                         'title': '{{ __('Success') }}',
                         'text': message
                     });
-                }, 10000)
+                }, 20000)
+
+
+            });
+
+            $('#shaxmatka_oboroti').submit(function(e) {
+
+                $("#loader").fadeIn(300);
+                setTimeout(function() {
+                    $("#loader").fadeOut(300);
+                    swal({
+                        'icon': 'success',
+                        'title': '{{ __('Success') }}',
+                        'text': message
+                    });
+                }, 20000)
 
 
             });
