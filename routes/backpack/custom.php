@@ -44,6 +44,8 @@ Route::group([
 
     
     Route::get('export-shaxmatka', 'ExportController@export_shaxmatka')->name('export_shaxmatka');
+    Route::get('export-oboroti-shaxmatka', 'ExportController@export_oboroti_shaxmatka')->name('export_oboroti_shaxmatka');
+
     Route::get('export-shaxmatka-view', 'ExportController@export_shaxmatka_view')->name('export_shaxmatka_view');
     Route::get('export-shaxmatka-oboroti-view', 'ExportController@export_shaxmatka_oborot_view')->name('export_shaxmatka_oborot_view');
 

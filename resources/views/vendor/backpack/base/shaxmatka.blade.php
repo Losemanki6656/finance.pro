@@ -8,11 +8,11 @@
             <tr>
                 <th
                     style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
-                    sdafsdf
+                    
                 </th>
                 <th
                     style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
-                    asdasd
+                    
                 </th>
                 @foreach ($organizations as $org)
                     <th

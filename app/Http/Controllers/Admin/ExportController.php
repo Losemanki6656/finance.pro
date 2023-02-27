@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ConsolidatedExport;
+use App\Exports\ConsolidatedOborotiExport;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +18,12 @@ class ExportController
 {
     public function export_shaxmatka()
     {
-        return Excel::download(new ConsolidatedExport, 'shaxmatka.xlsx');
+        return Excel::download(new ConsolidatedExport, 'shaxmatka_balance.xlsx');
+    }
+
+    public function export_oboroti_shaxmatka()
+    {
+        return Excel::download(new ConsolidateOborotidExport, 'shaxmatka_oboroti.xlsx');
     }
 
     public function export_shaxmatka_view()
