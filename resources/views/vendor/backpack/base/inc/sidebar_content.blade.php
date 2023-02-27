@@ -12,8 +12,9 @@
 
 <li class="nav-title"> Админ</li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-chart-pie nav-icon"></i> Статистика</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consolyear') }}'><i class='nav-icon la la-calendar-check'></i> Год ВГО</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consolidateoboroti') }}'><i class='nav-icon la la-archive'></i> Архив</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consolyear') }}'><i class='nav-icon la la-calendar-check'></i> Год Баланс ВГО</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consoloborotyear') }}'><i class='nav-icon la la-calendar-check'></i> Год Оборот ВГО</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('') }}'><i class='nav-icon la la-archive'></i> Архив</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('organization') }}'><i class='nav-icon la la-sitemap'></i> Организацие</a></li>
 
 <li class="nav-title">Супер - Админ</li>

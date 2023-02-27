@@ -41,22 +41,8 @@ class VgoImport implements ToCollection
             if($item[1] != '' && $itog != 0) {
 
                 $org = Organization::where('inn', $item[4])->where('name', $item[3])->first();
-                // $send_org = Organization::where('inn', $item[2])->first();
 
                 $con = new Consolidated();
-
-                // if($send_org) {
-                //     if($send_org->inn == $item[2]) {
-                //     } else {
-                //         $con->status = 2;
-                //     }
-                // } else {
-                //     $con->send_id = $this->user_id;
-                //     $con->send_inn = $item[2];
-                //     $con->send_name = $item[1];
-                //     $con->status = 2;
-                // }
-               
                 $con->send_id = $this->user_id;
                 $con->send_inn = $item[2];
                 $con->send_name = backpack_user()->name;
@@ -98,10 +84,6 @@ class VgoImport implements ToCollection
         }
     }
 
-    // public function chunkSize(): int
-    // {
-    //     return 1000;
-    // }
 
     public function convert($text)
     {
@@ -109,22 +91,4 @@ class VgoImport implements ToCollection
         return $res;
     }
 
-    // public function registerEvents(): array
-    // {
-    //     return [
-    //         AfterImport::class => function(AfterImport $event) {
-    //             $totalRows = $event->getReader()->getTotalRows();
-                
-    //             $newTask = Task::find($this->task_id);
-
-    //             if (!empty($totalRows)) {
-    //                 $newTask->row_count = $totalRows['Worksheet'];
-    //             }
-
-    //             $newTask->status = true;
-    //             $newTask->save();
-    //         },
-			                       
-    //     ];
-    // }
 }

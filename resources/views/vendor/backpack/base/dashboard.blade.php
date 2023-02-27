@@ -29,7 +29,7 @@
         </div>
         <div class="row align-items-center">
 
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-6">
                 <div class="card border-0">
                     <form id="shaxmatka" action="{{ route('export_shaxmatka') }}" method="get">
                         @csrf
@@ -70,15 +70,17 @@
 
                             <div class="mb-4">
                                 <div> <span class="text-danger" style="font-size: 17pt">{{ $organizations }} - </span>
-                                    <span>пользователи не ввели никакой информации.</span> 
+                                    <span>пользователи не ввели никакой информации.</span>
                                     <span>
-                                        <a href="{{route('not_info_users')}}" class="btn btn-outline-danger btn-sm"> <i class="la la-eye"></i> Просмотр </a>
+                                        <a href="{{ route('not_info_users') }}" class="btn btn-outline-danger btn-sm"> <i
+                                                class="la la-eye"></i> Просмотр </a>
                                     </span>
                                 </div>
                                 <div> <span class="text-warning" style="font-size: 17pt">{{ $falseCount }} - </span>
                                     <span>пользователи ввели неправильные информации.</span>
                                     <span>
-                                        <a href="{{ route('error_info_users') }}" class="btn btn-outline-warning btn-sm"> <i class="la la-eye"></i> Просмотр </a>
+                                        <a href="{{ route('error_info_users') }}" class="btn btn-outline-warning btn-sm"> <i
+                                                class="la la-eye"></i> Просмотр </a>
                                     </span>
                                 </div>
                                 <div> <span class="text-dark" style="font-size: 17pt">{{ $summCount }} - </span>
@@ -96,7 +98,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-6">
                 <div class="card border-0">
                     <form id="shaxmatka" action="{{ route('export_shaxmatka') }}" method="get">
                         @csrf
@@ -136,13 +138,21 @@
                             </div>
 
                             <div class="mb-4">
-                                <div> <span class="text-danger" style="font-size: 17pt">{{ $organizations }} - </span>
+                                <div> <span class="text-danger" style="font-size: 17pt">{{ $organizationsOborot }} - </span>
                                     <span>пользователи не ввели никакой информации.</span>
+                                    <span>
+                                        <a href="{{ route('not_info_oborot_users') }}" class="btn btn-outline-danger btn-sm"> <i
+                                                class="la la-eye"></i> Просмотр </a>
+                                    </span>
                                 </div>
-                                <div> <span class="text-warning" style="font-size: 17pt">{{ $falseCount }} - </span>
+                                <div> <span class="text-warning" style="font-size: 17pt">{{ $falseCountOborot }} - </span>
                                     <span>пользователи ввели неправильные информации.</span>
+                                    <span>
+                                        <a href="{{ route('error_info_oborot_users') }}" class="btn btn-outline-warning btn-sm">
+                                            <i class="la la-eye"></i> Просмотр </a>
+                                    </span>
                                 </div>
-                                <div> <span class="text-dark" style="font-size: 17pt">{{ $summCount }} - </span>
+                                <div> <span class="text-dark" style="font-size: 17pt">{{ $summCountOborot }} - </span>
                                     <span> Итог Шахматка.</span>
                                 </div>
                             </div>
@@ -151,7 +161,7 @@
 
                             <button type="submit" class="btn btn-sm btn-danger"><i class="la la-download"></i>
                                 Скачать</button>
-                            <a href="{{ route('export_shaxmatka_view') }}" class="btn btn-sm btn-info"><i
+                            <a href="{{ route('export_shaxmatka_oborot_view') }}" class="btn btn-sm btn-info"><i
                                     class="la la-eye"></i> Просмотр</a>
                         </div>
                     </form>

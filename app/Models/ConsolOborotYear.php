@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Organization extends Model
+class ConsolOborotYear extends Model
 {
     use CrudTrait;
 
@@ -15,50 +15,13 @@ class Organization extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'organizations';
+    protected $table = 'consol_oborot_years';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
-
-
-    public function management()
-    {
-        return $this->belongsTo(Management::class);
-    }
-
-    public function railway()
-    {
-        return $this->belongsTo(Railway::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function send_orgs()
-    {
-        return $this->hasMany(Consolidated::class, 'send_id', 'user_id');
-    }
-
-    public function send_oborot_orgs()
-    {
-        return $this->hasMany(ConsolidateOboroti::class, 'send_id', 'user_id');
-    }
-
-    public function recs()
-    {
-        return $this->hasMany(Consolidated::class, 'rec_id', 'user_id');
-    }
-
-    public function rec_orgs()
-    {
-        return $this->hasMany(Consolidated::class, 'rec_inn', 'inn');
-    }
-
 
     /*
     |--------------------------------------------------------------------------

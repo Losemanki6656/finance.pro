@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ConsolYearRequest;
+use App\Http\Requests\ConsolOborotYearRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ConsolYearCrudController
+ * Class ConsolOborotYearCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ConsolYearCrudController extends CrudController
+class ConsolOborotYearCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -21,9 +21,9 @@ class ConsolYearCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->setModel('App\Models\ConsolYear');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/consolyear');
-        $this->crud->setEntityNameStrings('год', 'Год Баланс ВГО');
+        $this->crud->setModel('App\Models\ConsolOborotYear');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/consoloborotyear');
+        $this->crud->setEntityNameStrings('год', 'Год Оборот ВГО');
     }
 
     protected function setupListOperation()
@@ -49,7 +49,7 @@ class ConsolYearCrudController extends CrudController
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(ConsolYearRequest::class);
+        $this->crud->setValidation(ConsolOborotYearRequest::class);
 
         $this->crud->addField([
             'name' => 'year_consol',
