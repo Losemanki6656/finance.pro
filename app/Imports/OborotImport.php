@@ -42,7 +42,7 @@ class OborotImport implements ToCollection
                + (double)$this->convert($item[41]) + (double)$this->convert($item[42]) + (double)$this->convert($item[43]) + (double)$this->convert($item[44]) + (double)$this->convert($item[45]) + (double)$this->convert($item[46])
                + (double)$this->convert($item[47]) + (double)$this->convert($item[48]);
 
-            if($item[1] != '' && $itog != 0) {
+            if($item[1] != '') {
 
                 $org = Organization::where('inn', $item[4])->where('name', $item[3])->first();
 
