@@ -82,6 +82,18 @@ class Consolidated extends Model
         return number_format($summ , 2, '.', ' ');
     }
 
+    public function result_double_pr()
+    {
+        $summ = (double)$this->ex_06 + (double)$this->ex_09 + (double)$this->ex_40 + (double)$this->ex_41 + 
+        (double)$this->ex_43 + (double)$this->ex_46 + (double)$this->ex_48 + (double)$this->ex_58 + 
+        (double)$this->ex_60 + (double)$this->ex_61 + (double)$this->ex_63 + (double)$this->ex_66 + (double)$this->ex_68 + (double)$this->ex_69 + (double)$this->ex_78 +  (double)$this->ex_79 + (double)$this->ex_83;
+        
+        if($summ == 0) 
+            return 0; 
+        else
+            return $summ;
+    }
+
     public function result_all_int()
     {
         $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 

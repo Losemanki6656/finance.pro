@@ -98,7 +98,24 @@ class ConsolidateOboroti extends Model
         + (double)$this->nds_oplate + (double)$this->nds_zashet + (double)$this->aksiz_uplate + (double)$this->poluch_deneg + (double)$this->uplach_deneg + (double)$this->vzaimozashet
         + (double)$this->rashet_tret_litsam + (double)$this->prochie;
 
+        if($summ == 0) return 0; else
         return number_format($summ , 2, '.', ' ');
+    }
+
+    public function result_double_pr()
+    {
+        $summ = (double)$this->postup_os +  (double)$this->postup_os_ot_lizing + (double)$this->postup_tms + (double)$this->postup_zatrat + (double)$this->pered_os_v_lizing + (double)$this->pered_os_cher_shet
+        + (double)$this->poluch_os_cher_shet +  (double)$this->pered_tms + (double)$this->poluch_tms + (double)$this->pered_saldo_nalog + (double)$this->pol_saldo_nalog
+        + (double)$this->pered_prochix + (double)$this->postup_prochix + (double)$this->viruchka_ot_real + (double)$this->doxod_ot_vib_os + (double)$this->doxod_ot_vib_prochix + (double)$this->proch_oper_doxod
+        + (double)$this->rasxodi_perioda + (double)$this->doxodi_vide_divid + (double)$this->divid_obyav + (double)$this->doxodi_vide_prosent + (double)$this->rasxodi_vide_prosent
+        + (double)$this->doxodi_ot_finar + (double)$this->rasxodi_vide_prosent_po_finar + (double)$this->doxodi_po_kurs + (double)$this->rasxodi_po_kurs + (double)$this->prochi_daxodi_ot_fin + (double)$this->prochi_rasxodi_ot_fin
+        + (double)$this->nds_oplate + (double)$this->nds_zashet + (double)$this->aksiz_uplate + (double)$this->poluch_deneg + (double)$this->uplach_deneg + (double)$this->vzaimozashet
+        + (double)$this->rashet_tret_litsam + (double)$this->prochie;
+
+        if($summ == 0) 
+            return 0; 
+        else
+            return $summ;
     }
 
     public function saldo_balans()

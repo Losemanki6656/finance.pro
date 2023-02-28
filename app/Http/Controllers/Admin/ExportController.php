@@ -165,27 +165,44 @@ class ExportController
             if(!$item->rec_id) {
                 $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
                 if($org) {
+
                     if($org->user_id) {
                         $item->rec_id = $org->user_id;
-                        $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
-                        if($rec_con)
-                            {
-                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
-                                else $item->status = 4;
-                            } else $item->status = 4;
-                         } else $item->status = 2;
+                        
+                        $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
+                        if($saldo) $sal = $saldo->result_double_pr(); else $sal = 0;
+
+                            if($sal == $item->result_double_pr()) {
+                                $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
+
+                                if($rec_con)
+                                    {
+                                        if($item->result_double_pr() == (-1)*$rec_con->result_double_pr()) $item->status = 3; 
+                                        
+                                        else $item->status = 4;
+                                    } else $item->status = 4;
+        
+                            } else $item->status = 6;
+                    } else $item->status = 2;
                    
                 } else
                     $item->status = 2;
             } else {
-                $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
-                if($rec_con) {
-                    if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
-                    else $item->status = 4;
-                } else $item->status = 5;
-                
-            }
+                        $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
+                        if($saldo) $sal = $saldo->result_double_pr(); else $sal = 0;
 
+                        if($sal == $item->result_double_pr()) {
+                            
+                            $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
+                            if($rec_con) {
+                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
+                                else $item->status = 4;
+                            } else $item->status = 5;
+
+                        } else $item->status = 6;
+
+                    }
+                
             $item->save();
         }
 
