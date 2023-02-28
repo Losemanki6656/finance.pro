@@ -66,11 +66,13 @@ class ConsolidateOborotiCrudController extends CrudController
             'label' => 'Отправитель'
         ]);
 
-        $this->crud->addColumn([
-            'name' => 'send_inn',
-            'label' => 'ИНН отправителя',
-            'visibleInTable'  => false,
-        ]);
+        $this->crud->addColumn(
+            [
+                'name' => 'send_inn',
+                'label' => 'ИНН отправителя',
+                'visibleInTable'  => false
+            ]
+        );
 
         $this->crud->addColumn([
             'name' => 'rec_name',
@@ -81,7 +83,7 @@ class ConsolidateOborotiCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'rec_inn',
             'label' => 'ИНН получателя',
-            'visibleInTable'  => false,
+            'visibleInTable'  => false
         ]);
 
         $this->crud->addColumn([
