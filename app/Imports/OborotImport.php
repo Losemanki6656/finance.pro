@@ -34,7 +34,7 @@ class OborotImport implements ToCollection
     {
         foreach( $collection as $item)
         {
-              $itog =  (double)$this->convert($item[7]) +  (double)$this->convert($item[8]) + (double)$this->convert($item[9]) + (double)$this->convert($item[10]) + (double)$this->convert($item[11]) + (double)$this->convert($item[12])
+            $itog =  (double)$this->convert($item[7]) +  (double)$this->convert($item[8]) + (double)$this->convert($item[9]) + (double)$this->convert($item[10]) + (double)$this->convert($item[11]) + (double)$this->convert($item[12])
                + (double)$this->convert($item[13]) +  (double)$this->convert($item[17]) + (double)$this->convert($item[18]) + (double)$this->convert($item[19]) + (double)$this->convert($item[20])
                + (double)$this->convert($item[21]) + (double)$this->convert($item[22]) + (double)$this->convert($item[23]) + (double)$this->convert($item[25]) + (double)$this->convert($item[27]) + (double)$this->convert($item[29])
                + (double)$this->convert($item[29]) + (double)$this->convert($item[30]) + (double)$this->convert($item[31]) + (double)$this->convert($item[32]) + (double)$this->convert($item[33]) + (double)$this->convert($item[34])
@@ -42,7 +42,15 @@ class OborotImport implements ToCollection
                + (double)$this->convert($item[41]) + (double)$this->convert($item[42]) + (double)$this->convert($item[43]) + (double)$this->convert($item[44]) + (double)$this->convert($item[45]) + (double)$this->convert($item[46])
                + (double)$this->convert($item[47]) + (double)$this->convert($item[48]);
 
-            if($item[1] != '') {
+            $status = false;
+            for($i = 7; $i <= 48; $i ++) {
+                if($this->convert($item[13]) != '') {
+                    $status = true;
+                    break;
+                }
+            }
+
+            if($item[1] != '' && $status == true) {
 
                 $org = Organization::where('inn', $item[4])->where('name', $item[3])->first();
 
