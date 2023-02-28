@@ -44,7 +44,7 @@ class OborotImport implements ToCollection
 
             $status = false;
             for($i = 7; $i <= 48; $i ++) {
-                if($this->convert($item[13]) != '') {
+                if($this->convert($item[$i]) != '') {
                     $status = true;
                     break;
                 }
