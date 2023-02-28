@@ -80,7 +80,8 @@ class ConsolidateOborotiCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'rec_inn',
-            'label' => 'ИНН получателя'
+            'label' => 'ИНН получателя',
+            'visibleInTable'  => false,
         ]);
 
         $this->crud->addColumn([
@@ -90,14 +91,14 @@ class ConsolidateOborotiCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'saldo',
-            'label' => 'Салдо Баланс',
+            'label' => 'Салдо Балансы',
             'type'  =>  'model_function',
             'function_name' =>  'saldo_balans'
         ]);
 
         $this->crud->addColumn([
             'name'  =>  'result',
-            'label' =>  'Итого',
+            'label' =>  'Итого Обороты',
             'type'  =>  'model_function',
             'function_name' =>  'result_all'
         ]);
