@@ -23,8 +23,8 @@
     <span class="badge badge-warning text-white" data-toggle="tooltip" data-placement="top"
         title="Пользователь не ввел никакой информации"><i class='nav-icon la la-ban'></i>101</span>
 @elseif($value == 6)
-    <span class="badge badge-warning text-white" data-toggle="tooltip" data-placement="top"
-        title="Пользователь не ввел никакой информации"><i class='nav-icon la la-ban'></i>103</span>
+    <span class="badge badge-dark text-white" data-toggle="tooltip" data-placement="top"
+        title="Неправильное сальдо"><i class='nav-icon la la-ban'></i>103</span>
 @else
     <span class="badge badge-danger text-white" data-toggle="tooltip" data-placement="top"
         title="Пользователь не найден"><i class='nav-icon la la-ban'></i>100</span>
