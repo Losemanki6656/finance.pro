@@ -83,10 +83,8 @@ class DashboardController
                 + con4.nds_oplate + con4.nds_zashet + con4.aksiz_uplate + con4.poluch_deneg + con4.uplach_deneg + con4.vzaimozashet
                 + con4.rashet_tret_litsam + con4.prochie) as result2')
             ])
-            ->get();
+        ->get();
 
-            
-            
 
         $falseCount = $users->count();
         $x = $users->where('result1','>',0)->sum('result1');

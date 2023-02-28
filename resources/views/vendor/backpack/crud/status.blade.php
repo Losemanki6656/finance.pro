@@ -13,14 +13,18 @@
     </div>
 @elseif($value == 1)
     <div class="circle bg-danger" style="float: left">
-        <span class="circle__content" data-bs-toggle="tooltip" data-bs-placement="top" title="Данные не были сформированы"><i class='nav-icon la la-ban'></i></span>
+        <span class="circle__content" data-toggle="tooltip" data-placement="top" title="Данные не были сформированы">
+            <i class='nav-icon la la-ban'></i></span>
     </div>
 @elseif($value == 4)
-    <span class="badge badge-secondary text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Произошла ошибка расчета"><i class='nav-icon la la-ban'></i>102</span>
+    <span class="badge badge-secondary text-dark" data-toggle="tooltip" data-placement="top"
+        title="Произошла ошибка расчета"><i class='nav-icon la la-ban'></i>102</span>
 @elseif($value == 5)
-    <span class="badge badge-warning text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Пользователь не ввел никакой информации"><i class='nav-icon la la-ban'></i>101</span>
+    <span class="badge badge-warning text-white" data-toggle="tooltip" data-placement="top"
+        title="Пользователь не ввел никакой информации"><i class='nav-icon la la-ban'></i>101</span>
 @else
-    <span class="badge badge-danger text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Пользователь не найден"><i class='nav-icon la la-ban'></i>100</span>
+    <span class="badge badge-danger text-white" data-toggle="tooltip" data-placement="top"
+        title="Пользователь не найден"><i class='nav-icon la la-ban'></i>100</span>
 @endif
 
 <style>
@@ -38,3 +42,9 @@
         text-align: center;
     }
 </style>
+
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

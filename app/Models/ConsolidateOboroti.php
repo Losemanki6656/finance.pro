@@ -101,6 +101,17 @@ class ConsolidateOboroti extends Model
         return number_format($summ , 2, '.', ' ');
     }
 
+    public function saldo_balans()
+    {
+        $con = Consolidated::where('send_id', $this->send_id)->where('rec_id', $this->rec_id)->first();
+
+        if($con)
+             return $con->result_double();
+        else 
+             return 0;
+    }
+
+
     public function result_all_int()
     {
         $summ =  (double)$this->postup_os +  (double)$this->postup_os_ot_lizing + (double)$this->postup_tms + (double)$this->postup_zatrat + (double)$this->pered_os_v_lizing + (double)$this->pered_os_cher_shet
