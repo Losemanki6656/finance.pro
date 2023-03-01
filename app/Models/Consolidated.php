@@ -80,7 +80,7 @@ class Consolidated extends Model
         (double)$this->ex_60 + (double)$this->ex_61 + (double)$this->ex_63 + (double)$this->ex_66 + (double)$this->ex_68 + (double)$this->ex_69 + (double)$this->ex_78 +  (double)$this->ex_79 + (double)$this->ex_83;
         
         // return number_format($summ , 2, '.', ' ');
-        return $sum;
+        return $summ;
     }
 
     public function result_double_pr()
