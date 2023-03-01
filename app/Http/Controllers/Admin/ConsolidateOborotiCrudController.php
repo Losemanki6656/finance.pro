@@ -112,7 +112,7 @@ class ConsolidateOborotiCrudController extends CrudController
             'name'  =>  'result',
             'label' =>  'Итого Обороты',
             'type'  =>  'model_function',
-            'function_name' =>  'result_double_pr'
+            'function_name' =>  'result_all'
         ]);
 
         $this->crud->addColumn([
