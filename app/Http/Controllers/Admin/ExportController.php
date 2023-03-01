@@ -172,7 +172,7 @@ class ExportController
                         $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
                         if($saldo) $sal = $saldo->result_double_pr(); else $sal = 0;
 
-                            if($sal == $item->saldo_start) {
+                            if((double)$sal == (double)$item->saldo_start) {
                                 $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
 
                                 if($rec_con)
@@ -191,7 +191,7 @@ class ExportController
                         $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
                         if($saldo) $sal = $saldo->result_double_pr(); else $sal = 0;
 
-                        if($sal == $item->saldo_start) {
+                        if((double)$sal == (double)$item->saldo_start) {
                             
                             $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
                             if($rec_con) {
