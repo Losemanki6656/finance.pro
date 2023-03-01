@@ -92,10 +92,20 @@ class ConsolidateOborotiCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name' => 'saldo',
+            'name' => 'saldo_b',
             'label' => 'Салдо Балансы',
             'type'  =>  'model_function',
             'function_name' =>  'saldo_balans'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'saldo_start',
+            'label' => 'Салдо.Об (Начало)'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'saldo',
+            'label' => 'Салдо.Об (Конец)'
         ]);
 
         $this->crud->addColumn([

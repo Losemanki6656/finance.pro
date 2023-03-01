@@ -22,6 +22,7 @@ class CreateConsolidateOborotiTable extends Migration
             $table->string('send_inn')->nullable();
             $table->string('rec_inn')->nullable();
 
+            $table->string('saldo_start')->default(0);
             $table->string('postup_os')->default(0);
             $table->string('postup_os_ot_lizing')->default(0);
             $table->string('postup_tms')->default(0);
@@ -43,23 +44,19 @@ class CreateConsolidateOborotiTable extends Migration
             $table->string('doxod_ot_vib_os')->default(0);
             $table->string('vtch_ost_stoim')->default(0);
             $table->string('doxod_ot_vib_prochix')->default(0);
-
             $table->string('vtch_sob_proch')->default(0);
             $table->string('proch_oper_doxod')->default(0);
             $table->string('rasxodi_perioda')->default(0);
-            
             $table->string('doxodi_vide_divid')->default(0);
             $table->string('divid_obyav')->default(0);
             $table->string('doxodi_vide_prosent')->default(0);
             $table->string('rasxodi_vide_prosent')->default(0);
-            
             $table->string('doxodi_ot_finar')->default(0);
             $table->string('rasxodi_vide_prosent_po_finar')->default(0);
             $table->string('doxodi_po_kurs')->default(0);
             $table->string('rasxodi_po_kurs')->default(0);
             $table->string('prochi_daxodi_ot_fin')->default(0);
             $table->string('prochi_rasxodi_ot_fin')->default(0);
-            
             $table->string('nds_oplate')->default(0);
             $table->string('nds_zashet')->default(0);
             $table->string('aksiz_uplate')->default(0);

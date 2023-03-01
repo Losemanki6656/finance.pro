@@ -16,7 +16,8 @@ class ConsolidateOboroti extends Model
     */
 
     protected $casts = [
-        'postup_os' => 'double',
+            'saldo_start' => 'double',
+            'postup_os' => 'double',
             'postup_os_ot_lizing' => 'double',
             'postup_tms' => 'double',
             'postup_zatrat' => 'double',
@@ -37,23 +38,19 @@ class ConsolidateOboroti extends Model
             'doxod_ot_vib_os' => 'double',
             'vtch_ost_stoim' => 'double',
             'doxod_ot_vib_prochix' => 'double',
-
             'vtch_sob_proch' => 'double',
             'proch_oper_doxod' => 'double',
-            'rasxodi_perioda' => 'double',
-            
+            'rasxodi_perioda' => 'double',         
             'doxodi_vide_divid' => 'double',
             'divid_obyav' => 'double',
             'doxodi_vide_prosent' => 'double',
-            'rasxodi_vide_prosent' => 'double',
-            
+            'rasxodi_vide_prosent' => 'double',       
             'doxodi_ot_finar' => 'double',
             'rasxodi_vide_prosent_po_finar' => 'double',
             'doxodi_po_kurs' => 'double',
             'rasxodi_po_kurs' => 'double',
             'prochi_daxodi_ot_fin' => 'double',
-            'prochi_rasxodi_ot_fin' => 'double',
-            
+            'prochi_rasxodi_ot_fin' => 'double',   
             'nds_oplate' => 'double',
             'nds_zashet' => 'double',
             'aksiz_uplate' => 'double',

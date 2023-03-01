@@ -70,6 +70,7 @@ class OborotImport implements ToCollection
                     $con->rec_id = null;
                 }
                
+                $con->saldo_start = $this->convert($item[5]);
                 $con->postup_os = $this->convert($item[7]);
                 $con->postup_os_ot_lizing = $this->convert($item[8]);
                 $con->postup_tms = $this->convert($item[9]);
@@ -112,6 +113,7 @@ class OborotImport implements ToCollection
                 $con->vzaimozashet = $this->convert($item[46]);
                 $con->rashet_tret_litsam = $this->convert($item[47]);
                 $con->prochie = $this->convert($item[48]);
+                $con->saldo = $this->convert($item[50]);
 
                 $con->result = $itog;
                 $con->ex_year = $this->date_import;
