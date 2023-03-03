@@ -44,8 +44,8 @@
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->send_name }}</td>
                     <td>{{ $item->rec_name }}</td>
-                    <td style="font-weight: bold">{{ $item->result1 }}</td>
-                    <td style="font-weight: bold">{{ $item->result2}}</td>
+                    <td style="font-weight: bold">{{ $item->result2 }}</td>
+                    <td style="font-weight: bold">{{ $item->result1}}</td>
                     <td style="font-weight: bold" class="text-danger text-center">
                         {{ number_format($item->result3, 4 , '.',' ') }}
                         </td>
