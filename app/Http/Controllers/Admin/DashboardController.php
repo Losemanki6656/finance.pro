@@ -184,6 +184,20 @@ class DashboardController
                 + con3.rasxodi_perioda + con3.doxodi_vide_divid + con3.divid_obyav + con3.doxodi_vide_prosent + con3.rasxodi_vide_prosent
                 + con3.doxodi_ot_finar + con3.rasxodi_vide_prosent_po_finar + con3.doxodi_po_kurs + con3.rasxodi_po_kurs + con3.prochi_daxodi_ot_fin + con3.prochi_rasxodi_ot_fin
                 + con3.nds_oplate + con3.nds_zashet + con3.aksiz_uplate + con3.poluch_deneg + con3.uplach_deneg + con3.vzaimozashet
+                + con3.rashet_tret_litsam + con3.prochie) as result2'),
+                DB::raw('(con4.postup_os + con4.postup_os_ot_lizing + con4.postup_tms + con4.postup_zatrat + con4.pered_os_v_lizing + con4.pered_os_cher_shet
+                + con4.poluch_os_cher_shet + con4.pered_tms + con4.poluch_tms + con4.pered_saldo_nalog + con4.pol_saldo_nalog
+                + con4.pered_prochix + con4.postup_prochix + con4.viruchka_ot_real + con4.doxod_ot_vib_os + con4.doxod_ot_vib_prochix + con4.proch_oper_doxod
+                + con4.rasxodi_perioda + con4.doxodi_vide_divid + con4.divid_obyav + con4.doxodi_vide_prosent + con4.rasxodi_vide_prosent
+                + con4.doxodi_ot_finar + con4.rasxodi_vide_prosent_po_finar + con4.doxodi_po_kurs + con4.rasxodi_po_kurs + con4.prochi_daxodi_ot_fin + con4.prochi_rasxodi_ot_fin
+                + con4.nds_oplate + con4.nds_zashet + con4.aksiz_uplate + con4.poluch_deneg + con4.uplach_deneg + con4.vzaimozashet
+                + con4.rashet_tret_litsam + con4.prochie) as result1'),
+                DB::raw('(con3.postup_os + con3.postup_os_ot_lizing + con3.postup_tms + con3.postup_zatrat + con3.pered_os_v_lizing + con3.pered_os_cher_shet
+                + con3.poluch_os_cher_shet + con3.pered_tms + con3.poluch_tms + con3.pered_saldo_nalog + con3.pol_saldo_nalog
+                + con3.pered_prochix + con3.postup_prochix + con3.viruchka_ot_real + con3.doxod_ot_vib_os + con3.doxod_ot_vib_prochix + con3.proch_oper_doxod
+                + con3.rasxodi_perioda + con3.doxodi_vide_divid + con3.divid_obyav + con3.doxodi_vide_prosent + con3.rasxodi_vide_prosent
+                + con3.doxodi_ot_finar + con3.rasxodi_vide_prosent_po_finar + con3.doxodi_po_kurs + con3.rasxodi_po_kurs + con3.prochi_daxodi_ot_fin + con3.prochi_rasxodi_ot_fin
+                + con3.nds_oplate + con3.nds_zashet + con3.aksiz_uplate + con3.poluch_deneg + con3.uplach_deneg + con3.vzaimozashet
                 + con3.rashet_tret_litsam + con3.prochie
                 + con4.postup_os + con4.postup_os_ot_lizing + con4.postup_tms + con4.postup_zatrat + con4.pered_os_v_lizing + con4.pered_os_cher_shet
                 + con4.poluch_os_cher_shet + con4.pered_tms + con4.poluch_tms + con4.pered_saldo_nalog + con4.pol_saldo_nalog
