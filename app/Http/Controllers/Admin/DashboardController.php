@@ -205,7 +205,7 @@ class DashboardController
                 + con4.rasxodi_perioda + con4.doxodi_vide_divid + con4.divid_obyav + con4.doxodi_vide_prosent + con4.rasxodi_vide_prosent
                 + con4.doxodi_ot_finar + con4.rasxodi_vide_prosent_po_finar + con4.doxodi_po_kurs + con4.rasxodi_po_kurs + con4.prochi_daxodi_ot_fin + con4.prochi_rasxodi_ot_fin
                 + con4.nds_oplate + con4.nds_zashet + con4.aksiz_uplate + con4.poluch_deneg + con4.uplach_deneg + con4.vzaimozashet
-                + con4.rashet_tret_litsam + con4.prochie) as result2')
+                + con4.rashet_tret_litsam + con4.prochie) as result3')
             ])
             ->get();
 
