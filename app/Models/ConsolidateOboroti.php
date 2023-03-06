@@ -16,50 +16,50 @@ class ConsolidateOboroti extends Model
     */
 
     protected $casts = [
-            'saldo_start' => 'double',
-            'postup_os' => 'double',
-            'postup_os_ot_lizing' => 'double',
-            'postup_tms' => 'double',
-            'postup_zatrat' => 'double',
-            'pered_os_v_lizing' => 'double',
-            'pered_os_cher_shet' => 'double',
-            'poluch_os_cher_shet' => 'double',
-            'poluch_ustav_kap' => 'double',
-            'bez_pered' => 'double',
-            'bez_pol' => 'double',
-            'pered_tms' => 'double',
-            'poluch_tms' => 'double',
-            'pered_saldo_nalog' => 'double',
-            'pol_saldo_nalog' => 'double',
-            'pered_prochix' => 'double',
-            'postup_prochix' => 'double',
-            'viruchka_ot_real' => 'double',
-            'vtch_sob_real' => 'double',
-            'doxod_ot_vib_os' => 'double',
-            'vtch_ost_stoim' => 'double',
-            'doxod_ot_vib_prochix' => 'double',
-            'vtch_sob_proch' => 'double',
-            'proch_oper_doxod' => 'double',
-            'rasxodi_perioda' => 'double',         
-            'doxodi_vide_divid' => 'double',
-            'divid_obyav' => 'double',
-            'doxodi_vide_prosent' => 'double',
-            'rasxodi_vide_prosent' => 'double',       
-            'doxodi_ot_finar' => 'double',
-            'rasxodi_vide_prosent_po_finar' => 'double',
-            'doxodi_po_kurs' => 'double',
-            'rasxodi_po_kurs' => 'double',
-            'prochi_daxodi_ot_fin' => 'double',
-            'prochi_rasxodi_ot_fin' => 'double',   
-            'nds_oplate' => 'double',
-            'nds_zashet' => 'double',
-            'aksiz_uplate' => 'double',
-            'poluch_deneg' => 'double',
-            'uplach_deneg' => 'double',
-            'vzaimozashet' => 'double',
-            'rashet_tret_litsam' => 'double',
-            'prochie' => 'double',
-            'saldo' => 'double'
+            'saldo_start' => 'integer',
+            'postup_os' => 'integer',
+            'postup_os_ot_lizing' => 'integer',
+            'postup_tms' => 'integer',
+            'postup_zatrat' => 'integer',
+            'pered_os_v_lizing' => 'integer',
+            'pered_os_cher_shet' => 'integer',
+            'poluch_os_cher_shet' => 'integer',
+            'poluch_ustav_kap' => 'integer',
+            'bez_pered' => 'integer',
+            'bez_pol' => 'integer',
+            'pered_tms' => 'integer',
+            'poluch_tms' => 'integer',
+            'pered_saldo_nalog' => 'integer',
+            'pol_saldo_nalog' => 'integer',
+            'pered_prochix' => 'integer',
+            'postup_prochix' => 'integer',
+            'viruchka_ot_real' => 'integer',
+            'vtch_sob_real' => 'integer',
+            'doxod_ot_vib_os' => 'integer',
+            'vtch_ost_stoim' => 'integer',
+            'doxod_ot_vib_prochix' => 'integer',
+            'vtch_sob_proch' => 'integer',
+            'proch_oper_doxod' => 'integer',
+            'rasxodi_perioda' => 'integer',         
+            'doxodi_vide_divid' => 'integer',
+            'divid_obyav' => 'integer',
+            'doxodi_vide_prosent' => 'integer',
+            'rasxodi_vide_prosent' => 'integer',       
+            'doxodi_ot_finar' => 'integer',
+            'rasxodi_vide_prosent_po_finar' => 'integer',
+            'doxodi_po_kurs' => 'integer',
+            'rasxodi_po_kurs' => 'integer',
+            'prochi_daxodi_ot_fin' => 'integer',
+            'prochi_rasxodi_ot_fin' => 'integer',   
+            'nds_oplate' => 'integer',
+            'nds_zashet' => 'integer',
+            'aksiz_uplate' => 'integer',
+            'poluch_deneg' => 'integer',
+            'uplach_deneg' => 'integer',
+            'vzaimozashet' => 'integer',
+            'rashet_tret_litsam' => 'integer',
+            'prochie' => 'integer',
+            'saldo' => 'integer'
     ];
 
     protected $table = 'consolidate_oboroti';
@@ -87,27 +87,29 @@ class ConsolidateOboroti extends Model
 
     public function result_all()
     {
-        $summ = (double)$this->postup_os +  (double)$this->postup_os_ot_lizing + (double)$this->postup_tms + (double)$this->postup_zatrat + (double)$this->pered_os_v_lizing + (double)$this->pered_os_cher_shet
-        + (double)$this->poluch_os_cher_shet +  (double)$this->pered_tms + (double)$this->poluch_tms + (double)$this->pered_saldo_nalog + (double)$this->pol_saldo_nalog
-        + (double)$this->pered_prochix + (double)$this->postup_prochix + (double)$this->viruchka_ot_real + (double)$this->doxod_ot_vib_os + (double)$this->doxod_ot_vib_prochix + (double)$this->proch_oper_doxod
-        + (double)$this->rasxodi_perioda + (double)$this->doxodi_vide_divid + (double)$this->divid_obyav + (double)$this->doxodi_vide_prosent + (double)$this->rasxodi_vide_prosent
-        + (double)$this->doxodi_ot_finar + (double)$this->rasxodi_vide_prosent_po_finar + (double)$this->doxodi_po_kurs + (double)$this->rasxodi_po_kurs + (double)$this->prochi_daxodi_ot_fin + (double)$this->prochi_rasxodi_ot_fin
-        + (double)$this->nds_oplate + (double)$this->nds_zashet + (double)$this->aksiz_uplate + (double)$this->poluch_deneg + (double)$this->uplach_deneg + (double)$this->vzaimozashet
-        + (double)$this->rashet_tret_litsam + (double)$this->prochie;
+        $summ = (int)$this->postup_os +  (int)$this->postup_os_ot_lizing + (int)$this->postup_tms + (int)$this->postup_zatrat + (int)$this->pered_os_v_lizing + (int)$this->pered_os_cher_shet
+            + (int)$this->poluch_os_cher_shet +  (int)$this->pered_tms + (int)$this->poluch_tms + (int)$this->pered_saldo_nalog + (int)$this->pol_saldo_nalog
+            + (int)$this->pered_prochix + (int)$this->postup_prochix + (int)$this->viruchka_ot_real + (int)$this->doxod_ot_vib_os + (int)$this->doxod_ot_vib_prochix + (int)$this->proch_oper_doxod
+            + (int)$this->rasxodi_perioda + (int)$this->doxodi_vide_divid + (int)$this->divid_obyav + (int)$this->doxodi_vide_prosent + (int)$this->rasxodi_vide_prosent
+            + (int)$this->doxodi_ot_finar + (int)$this->rasxodi_vide_prosent_po_finar + (int)$this->doxodi_po_kurs + (int)$this->rasxodi_po_kurs + (int)$this->prochi_daxodi_ot_fin + (int)$this->prochi_rasxodi_ot_fin
+            + (int)$this->nds_oplate + (int)$this->nds_zashet + (int)$this->aksiz_uplate + (int)$this->poluch_deneg + (int)$this->uplach_deneg + (int)$this->vzaimozashet
+            + (int)$this->rashet_tret_litsam + (int)$this->prochie;
 
-        if($summ == 0) return 0; else
-        return number_format($summ , 2, '.', ' ');
+        if($summ == 0) 
+            return 0; 
+        else
+            return number_format($summ , 0, '.', ' ');
     }
 
-    public function result_double_pr()
+    public function result_integer_pr()
     {
-        $summ = (double)$this->postup_os +  (double)$this->postup_os_ot_lizing + (double)$this->postup_tms + (double)$this->postup_zatrat + (double)$this->pered_os_v_lizing + (double)$this->pered_os_cher_shet
-        + (double)$this->poluch_os_cher_shet +  (double)$this->pered_tms + (double)$this->poluch_tms + (double)$this->pered_saldo_nalog + (double)$this->pol_saldo_nalog
-        + (double)$this->pered_prochix + (double)$this->postup_prochix + (double)$this->viruchka_ot_real + (double)$this->doxod_ot_vib_os + (double)$this->doxod_ot_vib_prochix + (double)$this->proch_oper_doxod
-        + (double)$this->rasxodi_perioda + (double)$this->doxodi_vide_divid + (double)$this->divid_obyav + (double)$this->doxodi_vide_prosent + (double)$this->rasxodi_vide_prosent
-        + (double)$this->doxodi_ot_finar + (double)$this->rasxodi_vide_prosent_po_finar + (double)$this->doxodi_po_kurs + (double)$this->rasxodi_po_kurs + (double)$this->prochi_daxodi_ot_fin + (double)$this->prochi_rasxodi_ot_fin
-        + (double)$this->nds_oplate + (double)$this->nds_zashet + (double)$this->aksiz_uplate + (double)$this->poluch_deneg + (double)$this->uplach_deneg + (double)$this->vzaimozashet
-        + (double)$this->rashet_tret_litsam + (double)$this->prochie;
+        $summ = (int)$this->postup_os +  (int)$this->postup_os_ot_lizing + (int)$this->postup_tms + (int)$this->postup_zatrat + (int)$this->pered_os_v_lizing + (int)$this->pered_os_cher_shet
+            + (int)$this->poluch_os_cher_shet +  (int)$this->pered_tms + (int)$this->poluch_tms + (int)$this->pered_saldo_nalog + (int)$this->pol_saldo_nalog
+            + (int)$this->pered_prochix + (int)$this->postup_prochix + (int)$this->viruchka_ot_real + (int)$this->doxod_ot_vib_os + (int)$this->doxod_ot_vib_prochix + (int)$this->proch_oper_doxod
+            + (int)$this->rasxodi_perioda + (int)$this->doxodi_vide_divid + (int)$this->divid_obyav + (int)$this->doxodi_vide_prosent + (int)$this->rasxodi_vide_prosent
+            + (int)$this->doxodi_ot_finar + (int)$this->rasxodi_vide_prosent_po_finar + (int)$this->doxodi_po_kurs + (int)$this->rasxodi_po_kurs + (int)$this->prochi_daxodi_ot_fin + (int)$this->prochi_rasxodi_ot_fin
+            + (int)$this->nds_oplate + (int)$this->nds_zashet + (int)$this->aksiz_uplate + (int)$this->poluch_deneg + (int)$this->uplach_deneg + (int)$this->vzaimozashet
+            + (int)$this->rashet_tret_litsam + (int)$this->prochie;
 
         if($summ == 0) 
             return 0; 
@@ -120,21 +122,31 @@ class ConsolidateOboroti extends Model
         $con = Consolidated::where('send_id', $this->send_id)->where('rec_id', $this->rec_id)->first();
 
         if($con)
-             return $con->result_double();
+            return number_format($con->result_integer() , 0, '.', ' ');
         else 
              return 0;
+    }
+
+    public function saldo_start()
+    {
+        return number_format($this->saldo_start , 0, '.', ' ');
+    }
+
+    public function saldo_kones()
+    {
+        return number_format($this->saldo , 0, '.', ' ');
     }
 
 
     public function result_all_int()
     {
-        $summ =  (double)$this->postup_os +  (double)$this->postup_os_ot_lizing + (double)$this->postup_tms + (double)$this->postup_zatrat + (double)$this->pered_os_v_lizing + (double)$this->pered_os_cher_shet
-        + (double)$this->poluch_os_cher_shet +  (double)$this->pered_tms + (double)$this->poluch_tms + (double)$this->pered_saldo_nalog + (double)$this->pol_saldo_nalog
-        + (double)$this->pered_prochix + (double)$this->postup_prochix + (double)$this->viruchka_ot_real + (double)$this->doxod_ot_vib_os + (double)$this->doxod_ot_vib_prochix + (double)$this->proch_oper_doxod
-        + (double)$this->rasxodi_perioda + (double)$this->doxodi_vide_divid + (double)$this->divid_obyav + (double)$this->doxodi_vide_prosent + (double)$this->rasxodi_vide_prosent
-        + (double)$this->doxodi_ot_finar + (double)$this->rasxodi_vide_prosent_po_finar + (double)$this->doxodi_po_kurs + (double)$this->rasxodi_po_kurs + (double)$this->prochi_daxodi_ot_fin + (double)$this->prochi_rasxodi_ot_fin
-        + (double)$this->nds_oplate + (double)$this->nds_zashet + (double)$this->aksiz_uplate + (double)$this->poluch_deneg + (double)$this->uplach_deneg + (double)$this->vzaimozashet
-        + (double)$this->rashet_tret_litsam + (double)$this->prochie;
+        $summ =  (int)$this->postup_os +  (int)$this->postup_os_ot_lizing + (int)$this->postup_tms + (int)$this->postup_zatrat + (int)$this->pered_os_v_lizing + (int)$this->pered_os_cher_shet
+            + (int)$this->poluch_os_cher_shet +  (int)$this->pered_tms + (int)$this->poluch_tms + (int)$this->pered_saldo_nalog + (int)$this->pol_saldo_nalog
+            + (int)$this->pered_prochix + (int)$this->postup_prochix + (int)$this->viruchka_ot_real + (int)$this->doxod_ot_vib_os + (int)$this->doxod_ot_vib_prochix + (int)$this->proch_oper_doxod
+            + (int)$this->rasxodi_perioda + (int)$this->doxodi_vide_divid + (int)$this->divid_obyav + (int)$this->doxodi_vide_prosent + (int)$this->rasxodi_vide_prosent
+            + (int)$this->doxodi_ot_finar + (int)$this->rasxodi_vide_prosent_po_finar + (int)$this->doxodi_po_kurs + (int)$this->rasxodi_po_kurs + (int)$this->prochi_daxodi_ot_fin + (int)$this->prochi_rasxodi_ot_fin
+            + (int)$this->nds_oplate + (int)$this->nds_zashet + (int)$this->aksiz_uplate + (int)$this->poluch_deneg + (int)$this->uplach_deneg + (int)$this->vzaimozashet
+            + (int)$this->rashet_tret_litsam + (int)$this->prochie;
 
         return (int)$summ;
     }
