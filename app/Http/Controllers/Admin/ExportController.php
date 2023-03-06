@@ -170,14 +170,14 @@ class ExportController
                         $item->rec_id = $org->user_id;
                         
                         $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
-                        if($saldo) $sal = $saldo->result_int_pr(); else $sal = 0;
+                        if($saldo) $sal = $saldo->result_integer_pr(); else $sal = 0;
 
                             if((int)$sal == (int)$item->saldo_start) {
                                 $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
 
                                 if($rec_con)
                                     {
-                                        if($item->result_int_pr() == (-1)*$rec_con->result_int_pr()) $item->status = 3; 
+                                        if($item->result_integer_pr() == (-1)*$rec_con->result_integer_pr()) $item->status = 3; 
                                         
                                         else $item->status = 4;
                                     } else $item->status = 4;
@@ -189,7 +189,7 @@ class ExportController
                     $item->status = 2;
             } else {
                         $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
-                        if($saldo) $sal = $saldo->result_int_pr(); else $sal = 0;
+                        if($saldo) $sal = $saldo->result_integer_pr(); else $sal = 0;
 
                         if((int)$sal == (int)$item->saldo_start) {
                             
