@@ -14,6 +14,8 @@ class ConsolidateOborotiExport implements FromView
 
     public function view(): View
     {
+        set_time_limit(1000);
+
         $organizations = Organization::with('send_oborot_orgs')->get();
         $allorganizations = Organization::with('send_oborot_orgs')->get();
 
