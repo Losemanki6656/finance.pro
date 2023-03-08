@@ -57,49 +57,66 @@ class DashboardController
 
         //  dd($users);
 
-        $oborots = DB::table('consolidate_oboroti as con3')
-            ->join('consolidate_oboroti as con4', function ($join) {
-                $join->on('con3.send_id', '=', 'con4.rec_id')
-                     ->on('con3.rec_id', '=', 'con4.send_id')
-                     ->whereRaw('(cast(con3.postup_os as signed) + cast(con3.postup_os_ot_lizing as signed) + cast(con3.postup_tms as signed) + cast(con3.postup_zatrat as signed) + cast(con3.pered_os_v_lizing as signed) + cast(con3.pered_os_cher_shet as signed)
-                     + cast(con3.poluch_os_cher_shet as signed) + cast(con3.pered_tms as signed) + cast(con3.poluch_tms as signed) + cast(con3.pered_saldo_nalog as signed) + cast(con3.pol_saldo_nalog as signed)
-                     + cast(con3.pered_prochix as signed) + cast(con3.postup_prochix as signed) + cast(con3.viruchka_ot_real as signed) + cast(con3.doxod_ot_vib_os as signed) + cast(con3.doxod_ot_vib_prochix as signed) + cast(con3.proch_oper_doxod as signed)
-                     + cast(con3.rasxodi_perioda as signed) + cast(con3.doxodi_vide_divid as signed) + cast(con3.divid_obyav as signed) + cast(con3.doxodi_vide_prosent as signed) + cast(con3.rasxodi_vide_prosent as signed)
-                     + cast(con3.doxodi_ot_finar as signed) + cast(con3.rasxodi_vide_prosent_po_finar as signed) + cast(con3.doxodi_po_kurs as signed) + cast(con3.rasxodi_po_kurs as signed) + cast(con3.prochi_daxodi_ot_fin as signed) + cast(con3.prochi_rasxodi_ot_fin as signed)
-                     + cast(con3.nds_oplate as signed) + cast(con3.nds_zashet as signed) + cast(con3.aksiz_uplate as signed) + cast(con3.poluch_deneg as signed) + cast(con3.uplach_deneg as signed) + cast(con3.vzaimozashet as signed)
-                     + cast(con3.rashet_tret_litsam as signed) + cast(con3.prochie as signed)) <> -1*(cast(con4.postup_os as signed) + cast(con4.postup_os_ot_lizing as signed) + cast(con4.postup_tms as signed) + cast(con4.postup_zatrat as signed) + cast(con4.pered_os_v_lizing as signed) + cast(con4.pered_os_cher_shet as signed)
-                     + cast(con4.poluch_os_cher_shet as signed) + cast(con4.pered_tms as signed) + cast(con4.poluch_tms as signed) + cast(con4.pered_saldo_nalog as signed) + cast(con4.pol_saldo_nalog as signed)
-                     + cast(con4.pered_prochix as signed) + cast(con4.postup_prochix as signed) + cast(con4.viruchka_ot_real as signed) + cast(con4.doxod_ot_vib_os as signed) + cast(con4.doxod_ot_vib_prochix as signed) + cast(con4.proch_oper_doxod as signed)
-                     + cast(con4.rasxodi_perioda as signed) + cast(con4.doxodi_vide_divid as signed) + cast(con4.divid_obyav as signed) + cast(con4.doxodi_vide_prosent as signed) + cast(con4.rasxodi_vide_prosent as signed)
-                     + cast(con4.doxodi_ot_finar as signed) + cast(con4.rasxodi_vide_prosent_po_finar as signed) + cast(con4.doxodi_po_kurs as signed) + cast(con4.rasxodi_po_kurs as signed) + cast(con4.prochi_daxodi_ot_fin as signed) + cast(con4.prochi_rasxodi_ot_fin as signed)
-                     + cast(con4.nds_oplate as signed) + cast(con4.nds_zashet as signed) + cast(con4.aksiz_uplate as signed) + cast(con4.poluch_deneg as signed) + cast(con4.uplach_deneg as signed) + cast(con4.vzaimozashet as signed)
-                     + cast(con4.rashet_tret_litsam as signed) + cast(con4.prochie as signed))');
-            })
-            ->select([
-                'con3.*',
-                DB::raw('(cast(con3.postup_os as signed) + cast(con3.postup_os_ot_lizing as signed) + cast(con3.postup_tms as signed) + cast(con3.postup_zatrat as signed) + cast(con3.pered_os_v_lizing as signed) + cast(con3.pered_os_cher_shet as signed)
-                + cast(con3.poluch_os_cher_shet as signed) + cast(con3.pered_tms as signed) + cast(con3.poluch_tms as signed) + cast(con3.pered_saldo_nalog as signed) + cast(con3.pol_saldo_nalog as signed)
-                + cast(con3.pered_prochix as signed) + cast(con3.postup_prochix as signed) + cast(con3.viruchka_ot_real as signed) + cast(con3.doxod_ot_vib_os as signed) + cast(con3.doxod_ot_vib_prochix as signed) + cast(con3.proch_oper_doxod as signed)
-                + cast(con3.rasxodi_perioda as signed) + cast(con3.doxodi_vide_divid as signed) + cast(con3.divid_obyav as signed) + cast(con3.doxodi_vide_prosent as signed) + cast(con3.rasxodi_vide_prosent as signed)
-                + cast(con3.doxodi_ot_finar as signed) + cast(con3.rasxodi_vide_prosent_po_finar as signed) + cast(con3.doxodi_po_kurs as signed) + cast(con3.rasxodi_po_kurs as signed) + cast(con3.prochi_daxodi_ot_fin as signed) + cast(con3.prochi_rasxodi_ot_fin as signed)
-                + cast(con3.nds_oplate as signed) + cast(con3.nds_zashet as signed) + cast(con3.aksiz_uplate as signed) + cast(con3.poluch_deneg as signed) + cast(con3.uplach_deneg as signed) + cast(con3.vzaimozashet as signed)
-                + cast(con3.rashet_tret_litsam as signed) + cast(con3.prochie as signed)
-                + cast(con4.postup_os as signed) + cast(con4.postup_os_ot_lizing as signed) + cast(con4.postup_tms as signed) + cast(con4.postup_zatrat as signed) + cast(con4.pered_os_v_lizing as signed) + cast(con4.pered_os_cher_shet as signed)
-                + cast(con4.poluch_os_cher_shet as signed) + cast(con4.pered_tms as signed) + cast(con4.poluch_tms as signed) + cast(con4.pered_saldo_nalog as signed) + cast(con4.pol_saldo_nalog as signed)
-                + cast(con4.pered_prochix as signed) + cast(con4.postup_prochix as signed) + cast(con4.viruchka_ot_real as signed) + cast(con4.doxod_ot_vib_os as signed) + cast(con4.doxod_ot_vib_prochix as signed) + cast(con4.proch_oper_doxod as signed)
-                + cast(con4.rasxodi_perioda as signed) + cast(con4.doxodi_vide_divid as signed) + cast(con4.divid_obyav as signed) + cast(con4.doxodi_vide_prosent as signed) + cast(con4.rasxodi_vide_prosent as signed)
-                + cast(con4.doxodi_ot_finar as signed) + cast(con4.rasxodi_vide_prosent_po_finar as signed) + cast(con4.doxodi_po_kurs as signed) + cast(con4.rasxodi_po_kurs as signed) + cast(con4.prochi_daxodi_ot_fin as signed) + cast(con4.prochi_rasxodi_ot_fin as signed)
-                + cast(con4.nds_oplate as signed) + cast(con4.nds_zashet as signed) + cast(con4.aksiz_uplate as signed) + cast(con4.poluch_deneg as signed) + cast(con4.uplach_deneg as signed) + cast(con4.vzaimozashet as signed)
-                + cast(con4.rashet_tret_litsam as signed) + cast(con4.prochie as signed)) as result2')
-            ])
-        ->get();
+        // $oborots = DB::table('consolidate_oboroti as con3')
+        //     ->join('consolidate_oboroti as con4', function ($join) {
+        //         $join->on('con3.send_id', '=', 'con4.rec_id')
+        //              ->on('con3.rec_id', '=', 'con4.send_id')
+        //              ->whereRaw('(cast(con3.postup_os as signed) + cast(con3.postup_os_ot_lizing as signed) + cast(con3.postup_tms as signed) + cast(con3.postup_zatrat as signed) + cast(con3.pered_os_v_lizing as signed) + cast(con3.pered_os_cher_shet as signed)
+        //              + cast(con3.poluch_os_cher_shet as signed) + cast(con3.pered_tms as signed) + cast(con3.poluch_tms as signed) + cast(con3.pered_saldo_nalog as signed) + cast(con3.pol_saldo_nalog as signed)
+        //              + cast(con3.pered_prochix as signed) + cast(con3.postup_prochix as signed) + cast(con3.viruchka_ot_real as signed) + cast(con3.doxod_ot_vib_os as signed) + cast(con3.doxod_ot_vib_prochix as signed) + cast(con3.proch_oper_doxod as signed)
+        //              + cast(con3.rasxodi_perioda as signed) + cast(con3.doxodi_vide_divid as signed) + cast(con3.divid_obyav as signed) + cast(con3.doxodi_vide_prosent as signed) + cast(con3.rasxodi_vide_prosent as signed)
+        //              + cast(con3.doxodi_ot_finar as signed) + cast(con3.rasxodi_vide_prosent_po_finar as signed) + cast(con3.doxodi_po_kurs as signed) + cast(con3.rasxodi_po_kurs as signed) + cast(con3.prochi_daxodi_ot_fin as signed) + cast(con3.prochi_rasxodi_ot_fin as signed)
+        //              + cast(con3.nds_oplate as signed) + cast(con3.nds_zashet as signed) + cast(con3.aksiz_uplate as signed) + cast(con3.poluch_deneg as signed) + cast(con3.uplach_deneg as signed) + cast(con3.vzaimozashet as signed)
+        //              + cast(con3.rashet_tret_litsam as signed) + cast(con3.prochie as signed)) <> -1*(cast(con4.postup_os as signed) + cast(con4.postup_os_ot_lizing as signed) + cast(con4.postup_tms as signed) + cast(con4.postup_zatrat as signed) + cast(con4.pered_os_v_lizing as signed) + cast(con4.pered_os_cher_shet as signed)
+        //              + cast(con4.poluch_os_cher_shet as signed) + cast(con4.pered_tms as signed) + cast(con4.poluch_tms as signed) + cast(con4.pered_saldo_nalog as signed) + cast(con4.pol_saldo_nalog as signed)
+        //              + cast(con4.pered_prochix as signed) + cast(con4.postup_prochix as signed) + cast(con4.viruchka_ot_real as signed) + cast(con4.doxod_ot_vib_os as signed) + cast(con4.doxod_ot_vib_prochix as signed) + cast(con4.proch_oper_doxod as signed)
+        //              + cast(con4.rasxodi_perioda as signed) + cast(con4.doxodi_vide_divid as signed) + cast(con4.divid_obyav as signed) + cast(con4.doxodi_vide_prosent as signed) + cast(con4.rasxodi_vide_prosent as signed)
+        //              + cast(con4.doxodi_ot_finar as signed) + cast(con4.rasxodi_vide_prosent_po_finar as signed) + cast(con4.doxodi_po_kurs as signed) + cast(con4.rasxodi_po_kurs as signed) + cast(con4.prochi_daxodi_ot_fin as signed) + cast(con4.prochi_rasxodi_ot_fin as signed)
+        //              + cast(con4.nds_oplate as signed) + cast(con4.nds_zashet as signed) + cast(con4.aksiz_uplate as signed) + cast(con4.poluch_deneg as signed) + cast(con4.uplach_deneg as signed) + cast(con4.vzaimozashet as signed)
+        //              + cast(con4.rashet_tret_litsam as signed) + cast(con4.prochie as signed))');
+        //     })
+        //     ->select([
+        //         'con3.*',
+        //         DB::raw('(cast(con3.postup_os as signed) + cast(con3.postup_os_ot_lizing as signed) + cast(con3.postup_tms as signed) + cast(con3.postup_zatrat as signed) + cast(con3.pered_os_v_lizing as signed) + cast(con3.pered_os_cher_shet as signed)
+        //         + cast(con3.poluch_os_cher_shet as signed) + cast(con3.pered_tms as signed) + cast(con3.poluch_tms as signed) + cast(con3.pered_saldo_nalog as signed) + cast(con3.pol_saldo_nalog as signed)
+        //         + cast(con3.pered_prochix as signed) + cast(con3.postup_prochix as signed) + cast(con3.viruchka_ot_real as signed) + cast(con3.doxod_ot_vib_os as signed) + cast(con3.doxod_ot_vib_prochix as signed) + cast(con3.proch_oper_doxod as signed)
+        //         + cast(con3.rasxodi_perioda as signed) + cast(con3.doxodi_vide_divid as signed) + cast(con3.divid_obyav as signed) + cast(con3.doxodi_vide_prosent as signed) + cast(con3.rasxodi_vide_prosent as signed)
+        //         + cast(con3.doxodi_ot_finar as signed) + cast(con3.rasxodi_vide_prosent_po_finar as signed) + cast(con3.doxodi_po_kurs as signed) + cast(con3.rasxodi_po_kurs as signed) + cast(con3.prochi_daxodi_ot_fin as signed) + cast(con3.prochi_rasxodi_ot_fin as signed)
+        //         + cast(con3.nds_oplate as signed) + cast(con3.nds_zashet as signed) + cast(con3.aksiz_uplate as signed) + cast(con3.poluch_deneg as signed) + cast(con3.uplach_deneg as signed) + cast(con3.vzaimozashet as signed)
+        //         + cast(con3.rashet_tret_litsam as signed) + cast(con3.prochie as signed)
+        //         + cast(con4.postup_os as signed) + cast(con4.postup_os_ot_lizing as signed) + cast(con4.postup_tms as signed) + cast(con4.postup_zatrat as signed) + cast(con4.pered_os_v_lizing as signed) + cast(con4.pered_os_cher_shet as signed)
+        //         + cast(con4.poluch_os_cher_shet as signed) + cast(con4.pered_tms as signed) + cast(con4.poluch_tms as signed) + cast(con4.pered_saldo_nalog as signed) + cast(con4.pol_saldo_nalog as signed)
+        //         + cast(con4.pered_prochix as signed) + cast(con4.postup_prochix as signed) + cast(con4.viruchka_ot_real as signed) + cast(con4.doxod_ot_vib_os as signed) + cast(con4.doxod_ot_vib_prochix as signed) + cast(con4.proch_oper_doxod as signed)
+        //         + cast(con4.rasxodi_perioda as signed) + cast(con4.doxodi_vide_divid as signed) + cast(con4.divid_obyav as signed) + cast(con4.doxodi_vide_prosent as signed) + cast(con4.rasxodi_vide_prosent as signed)
+        //         + cast(con4.doxodi_ot_finar as signed) + cast(con4.rasxodi_vide_prosent_po_finar as signed) + cast(con4.doxodi_po_kurs as signed) + cast(con4.rasxodi_po_kurs as signed) + cast(con4.prochi_daxodi_ot_fin as signed) + cast(con4.prochi_rasxodi_ot_fin as signed)
+        //         + cast(con4.nds_oplate as signed) + cast(con4.nds_zashet as signed) + cast(con4.aksiz_uplate as signed) + cast(con4.poluch_deneg as signed) + cast(con4.uplach_deneg as signed) + cast(con4.vzaimozashet as signed)
+        //         + cast(con4.rashet_tret_litsam as signed) + cast(con4.prochie as signed)) as result2')
+        //     ])
+        // ->get();
+
+        $oborots = DB::table('consolidate_oboroti as con3')->whereNotNull('con3.rec_id')->select( DB::raw('SUM(
+        cast(con3.postup_os as signed) + cast(con3.postup_os_ot_lizing as signed) + 
+        cast(con3.postup_tms as signed) +
+         cast(con3.postup_zatrat as signed) + cast(con3.pered_os_v_lizing as signed) + cast(con3.pered_os_cher_shet as signed)
+        + cast(con3.poluch_os_cher_shet as signed) + cast(con3.pered_tms as signed) + cast(con3.poluch_tms as signed) + cast(con3.pered_saldo_nalog as signed) + 
+        cast(con3.pol_saldo_nalog as signed)
+        + cast(con3.pered_prochix as signed) + cast(con3.postup_prochix as signed) + cast(con3.viruchka_ot_real as signed) + 
+        cast(con3.doxod_ot_vib_os as signed) + cast(con3.doxod_ot_vib_prochix as signed) + cast(con3.proch_oper_doxod as signed)
+        + cast(con3.rasxodi_perioda as signed) + cast(con3.doxodi_vide_divid as signed) + cast(con3.divid_obyav as signed) + 
+        cast(con3.doxodi_vide_prosent as signed) + cast(con3.rasxodi_vide_prosent as signed)
+        + cast(con3.doxodi_ot_finar as signed) + cast(con3.rasxodi_vide_prosent_po_finar as signed) + cast(con3.doxodi_po_kurs as signed) + 
+        cast(con3.rasxodi_po_kurs as signed) + cast(con3.prochi_daxodi_ot_fin as signed) + cast(con3.prochi_rasxodi_ot_fin as signed)
+        + cast(con3.nds_oplate as signed) + cast(con3.nds_zashet as signed) + cast(con3.aksiz_uplate as signed) + cast(con3.poluch_deneg as signed) + 
+        cast(con3.uplach_deneg as signed) + cast(con3.vzaimozashet as signed)
+        + cast(con3.rashet_tret_litsam as signed) + cast(con3.prochie as signed)
+        ) as result2'))->get();
 
 
         $falseCount = $users->count();
         $summCount = 2 * $users->where('result1')->sum('result1');
 
         $falseCountOborot = $oborots->count();
-        $summCountOborot = $oborots->where('result2')->sum('result2');
+        $summCountOborot = 2 * $oborots->where('result2')->sum('result2');
 
         return view('backpack::dashboard', [
             'organizations' => $organizations,
