@@ -21,6 +21,8 @@ class DashboardController
         $organizations = Organization::whereNotIn('inn', $users)->count();
         $organizationsOborot = Organization::whereNotIn('inn', $oborots)->count();
 
+        // dd(Consolidated::whereNotIn('send_id', Organization::pluck('user_id')->toArray())->get());
+
         $trueCount = 0; 
         $falseCount = 0; 
         $summCount = 0;
@@ -29,24 +31,31 @@ class DashboardController
         $falseCountOborot = 0; 
         $summCountOborot = 0;
         
+        // $users = DB::table('consolidated as con1')
+        //     ->join('consolidated as con2', function ($join) {
+        //         $join->on('con1.send_id', '=', 'con2.rec_id')
+        //              ->on('con1.rec_id', '=', 'con2.send_id')
+        //              ->whereRaw('cast(con1.ex_06 as signed) + cast(con1.ex_09 as signed) + cast(con1.ex_40 as signed) + cast(con1.ex_41 as signed) + cast(con1.ex_43 as signed) + cast(con1.ex_46 as signed) + 
+        //                         cast(con1.ex_48 as signed) + cast(con1.ex_58 as signed) + cast(con1.ex_60 as signed) + cast(con1.ex_61 as signed) + cast(con1.ex_63 as signed) + cast(con1.ex_66 as signed) + cast(con1.ex_68 as signed) + cast(con1.ex_69 as signed) + cast(con1.ex_78 as signed)
+        //                         + cast(con1.ex_79 as signed) + ifnull(cast(con1.ex_83 as signed), 0) <> -1*(cast(con2.ex_06 as signed) + cast(con2.ex_09 as signed) + cast(con2.ex_40 as signed) + cast(con2.ex_41 as signed) + cast(con2.ex_43 as signed) + cast(con2.ex_46 as signed) 
+        //                         + cast(con2.ex_48 as signed) + cast(con2.ex_58 as signed) + cast(con2.ex_60 as signed) + cast(con2.ex_61 as signed) + cast(con2.ex_63 as signed) + cast(con2.ex_66 as signed) + cast(con2.ex_68 as signed) + cast(con2.ex_69 as signed)  + cast(con2.ex_78 as signed) + cast(con2.ex_79 as signed) + ifnull(cast(con2.ex_83 as signed), 0))');
+        //         })
+        //     ->select([
+        //         'con1.*',
+        //         DB::raw('(cast(con1.ex_06 as signed) + cast(con1.ex_09 as signed) + cast(con1.ex_40 as signed) + cast(con1.ex_41 as signed) + cast(con1.ex_43 as signed) + cast(con1.ex_46 as signed) 
+        //         + cast(con1.ex_48 as signed) + cast(con1.ex_58 as signed) + cast(con1.ex_60 as signed) + cast(con1.ex_61 as signed) + cast(con1.ex_63 as signed) + cast(con1.ex_66 as signed) + cast(con1.ex_68 as signed) + cast(con1.ex_69 as signed) + cast(con1.ex_78 as signed) + cast(con1.ex_79 as signed) + ifnull(cast(con1.ex_83 as signed), 0)
+        //         + cast(con2.ex_06 as signed) + cast(con2.ex_09 as signed) + cast(con2.ex_40 as signed) + cast(con2.ex_41 as signed) + cast(con2.ex_43 as signed) + cast(con2.ex_46 as signed) 
+        //         + cast(con2.ex_48 as signed) + cast(con2.ex_58 as signed) + cast(con2.ex_60 as signed) + cast(con2.ex_61 as signed) + cast(con2.ex_63 as signed) + cast(con2.ex_66 as signed) + cast(con2.ex_68 as signed) + cast(con2.ex_69 as signed) + cast(con2.ex_78 as signed) + cast(con2.ex_79 as signed) + ifnull(cast(con2.ex_83 as signed), 0)) as result1')
+        //     ])
+        //     ->get();
 
-        $users = DB::table('consolidated as con1')
-            ->join('consolidated as con2', function ($join) {
-                $join->on('con1.send_id', '=', 'con2.rec_id')
-                     ->on('con1.rec_id', '=', 'con2.send_id')
-                     ->whereRaw('cast(con1.ex_06 as signed) + cast(con1.ex_09 as signed) + cast(con1.ex_40 as signed) + cast(con1.ex_41 as signed) + cast(con1.ex_43 as signed) + cast(con1.ex_46 as signed) + 
-                                cast(con1.ex_48 as signed) + cast(con1.ex_58 as signed) + cast(con1.ex_60 as signed) + cast(con1.ex_61 as signed) + cast(con1.ex_63 as signed) + cast(con1.ex_66 as signed) + cast(con1.ex_68 as signed) + cast(con1.ex_69 as signed) + cast(con1.ex_78 as signed)
-                                + cast(con1.ex_79 as signed) + ifnull(cast(con1.ex_83 as signed), 0) <> -1*(cast(con2.ex_06 as signed) + cast(con2.ex_09 as signed) + cast(con2.ex_40 as signed) + cast(con2.ex_41 as signed) + cast(con2.ex_43 as signed) + cast(con2.ex_46 as signed) 
-                                + cast(con2.ex_48 as signed) + cast(con2.ex_58 as signed) + cast(con2.ex_60 as signed) + cast(con2.ex_61 as signed) + cast(con2.ex_63 as signed) + cast(con2.ex_66 as signed) + cast(con2.ex_68 as signed) + cast(con2.ex_69 as signed)  + cast(con2.ex_78 as signed) + cast(con2.ex_79 as signed) + ifnull(cast(con2.ex_83 as signed), 0))');
-            })
-            ->select([
-                'con1.*',
-                DB::raw('(cast(con1.ex_06 as signed) + cast(con1.ex_09 as signed) + cast(con1.ex_40 as signed) + cast(con1.ex_41 as signed) + cast(con1.ex_43 as signed) + cast(con1.ex_46 as signed) 
-                + cast(con1.ex_48 as signed) + cast(con1.ex_58 as signed) + cast(con1.ex_60 as signed) + cast(con1.ex_61 as signed) + cast(con1.ex_63 as signed) + cast(con1.ex_66 as signed) + cast(con1.ex_68 as signed) + cast(con1.ex_69 as signed) + cast(con1.ex_78 as signed) + cast(con1.ex_79 as signed) + ifnull(cast(con1.ex_83 as signed), 0)
-                + cast(con2.ex_06 as signed) + cast(con2.ex_09 as signed) + cast(con2.ex_40 as signed) + cast(con2.ex_41 as signed) + cast(con2.ex_43 as signed) + cast(con2.ex_46 as signed) 
-                + cast(con2.ex_48 as signed) + cast(con2.ex_58 as signed) + cast(con2.ex_60 as signed) + cast(con2.ex_61 as signed) + cast(con2.ex_63 as signed) + cast(con2.ex_66 as signed) + cast(con2.ex_68 as signed) + cast(con2.ex_69 as signed) + cast(con2.ex_78 as signed) + cast(con2.ex_79 as signed) + ifnull(cast(con2.ex_83 as signed), 0)) as result1')
-            ])
-            ->get();
+        $users = DB::table('consolidated as con1')->whereNotNull('con1.rec_id')->select( DB::raw('SUM(cast(ifnull(con1.ex_06,0) as signed) + cast(ifnull(con1.ex_09,0) as signed) + cast(ifnull(con1.ex_40,0) as signed) + 
+            cast(ifnull(con1.ex_41,0) as signed) + cast(ifnull(con1.ex_43,0) as signed) + cast(ifnull(con1.ex_46,0) as signed) 
+            + cast(ifnull(con1.ex_48,0) as signed) + cast(ifnull(con1.ex_58,0) as signed) + cast(ifnull(con1.ex_60,0) as signed) + 
+            cast(ifnull(con1.ex_61,0) as signed) + cast(ifnull(con1.ex_63,0) as signed) + cast(ifnull(con1.ex_66,0) as signed) + cast(ifnull(con1.ex_68,0) as signed) + cast(ifnull(con1.ex_69,0) as signed) + 
+            cast(ifnull(con1.ex_78,0) as signed) + cast(ifnull(con1.ex_79,0) as signed) + cast(ifnull(con1.ex_83,0) as signed) ) as result1'))->get();
+
+        //  dd($users);
 
         $oborots = DB::table('consolidate_oboroti as con3')
             ->join('consolidate_oboroti as con4', function ($join) {
@@ -87,14 +96,10 @@ class DashboardController
 
 
         $falseCount = $users->count();
-        $x = $users->where('result1','>',0)->sum('result1');
-        $y = $users->where('result1','<',0)->sum('result1');
-        $summCount = $x - $y;
+        $summCount = 2 * $users->where('result1')->sum('result1');
 
         $falseCountOborot = $oborots->count();
-        $x1 = $oborots->where('result2','>',0)->sum('result2');
-        $y1 = $oborots->where('result2','<',0)->sum('result2');
-        $summCountOborot = $x1 - $y1;
+        $summCountOborot = $oborots->where('result2')->sum('result2');
 
         return view('backpack::dashboard', [
             'organizations' => $organizations,

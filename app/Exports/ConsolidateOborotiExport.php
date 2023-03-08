@@ -26,7 +26,8 @@ class ConsolidateOborotiExport implements FromView
                $con = $item->send_oborot_orgs->whereNotNull('rec_id')->where('rec_id', $org->user_id);
                $conback = $org->send_oborot_orgs->whereNotNull('rec_id')->where('rec_id', $item->user_id);
 
-               $t = true; $z = true; $x = 0; $y = 0;
+               $t = true; $z = true; 
+               $x = 0; $y = 0;
 
                if($con->count() >= 1)  {
                     $con = $con->first();
@@ -53,10 +54,10 @@ class ConsolidateOborotiExport implements FromView
                         + (int)$conback->rashet_tret_litsam + (int)$conback->prochie;
                 } else $z = false;
 
-                if($t == true && $z = true)
+                if($t == false && $z == false)
                 {
-                    if($x + $y == 0)  $a[$item->id][$org->id] = '0'; else $a[$item->id][$org->id] = $x + $y;
-                } else $a[$item->id][$org->id] = '-';
+                    $a[$item->id][$org->id] = '-'; 
+                } else $a[$item->id][$org->id] = $x + $y;
                     
             }
         }
