@@ -51,7 +51,9 @@ Route::group([
 
     
     Route::get('update-balance', 'ExportController@update_balance')->name('update_balance');
+    Route::get('all-update-balance', 'ExportController@all_update_balance')->name('all_update_balance');
     Route::get('update-oboroti', 'ExportController@update_oboroti')->name('update_oboroti');
+    Route::get('ass-update-oboroti', 'ExportController@all_update_oboroti')->name('all_update_oboroti');
     
     Route::get('control', 'ExportController@control')->name('control');
     Route::get('control-org', 'ExportController@control_org')->name('control_org');

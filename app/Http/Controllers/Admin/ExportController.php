@@ -139,20 +139,107 @@ class ExportController
                         $rec_con = Consolidated::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
                         if($rec_con)
                             {
-                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
-                                else $item->status = 4;
-                            } else $item->status = 4;
-                         } else $item->status = 2;
+                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) 
+                                    $item->status = 3; 
+                                else 
+                                {
+                                    $item->status = 4;
+                                    $item->result_a = $item->result_integer_pr();
+                                    $item->result_b = $rec_con->result_integer_pr();
+                                } 
+                            } 
+                            else 
+                            {
+                                $item->status = 5;
+                                $item->result_a = $item->result_integer_pr();
+                                $item->result_b = null;
+                            } 
+                         } 
+                         else 
+                            $item->status = 2;
                    
                 } else
                     $item->status = 2;
             } else {
                 $rec_con = Consolidated::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
                 if($rec_con) {
-                    if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
-                    else $item->status = 4;
-                } else $item->status = 5;
+                    if($item->result_all_int() == (-1)*$rec_con->result_all_int()) 
+                        $item->status = 3; 
+                    else 
+                    {
+                        $item->status = 4;
+                        $item->result_a = $item->result_integer_pr();
+                        $item->result_b = $rec_con->result_integer_pr();
+                    } 
+                } 
+                else 
+                {
+                    $item->status = 5;
+                    $item->result_a = $item->result_integer_pr();
+                    $item->result_b = null;
+                } 
                 
+            }
+
+            $item->save();
+        }
+
+        return back();
+    }
+
+    public function all_update_balance()
+    {
+        $cons = Consolidated::get();
+
+        foreach($cons as $item) 
+        { 
+            if(!$item->rec_id) {
+                $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
+                if($org) {
+                    if($org->user_id) {
+                        $item->rec_id = $org->user_id;
+                        $rec_con = Consolidated::where('send_id', $item->rec_id)->where('rec_id', $item->send_id)->first();
+                        if($rec_con)
+                            {
+                                if($item->result_integer_pr() == (-1)*$rec_con->result_integer_pr()) 
+                                    $item->status = 3; 
+                                else
+                                {
+                                    $item->status = 4;
+                                    $item->result_a = $item->result_integer_pr();
+                                    $item->result_b = $rec_con->result_integer_pr();
+                                } 
+                            } 
+                            else 
+                            {
+                                $item->status = 5;
+                                $item->result_a = $item->result_integer_pr();
+                                $item->result_b = null;
+                            }
+                         } 
+                         else 
+                         $item->status = 2;
+                   
+                } else
+                    $item->status = 2;
+            } else {
+                $rec_con = Consolidated::where('send_id', $item->rec_id)->where('rec_id', $item->send_id)->first();
+                if($rec_con) {
+                    if($item->result_integer_pr() == (-1)*$rec_con->result_integer_pr()) 
+                        $item->status = 3; 
+                    else 
+                    {
+                        $item->status = 4;
+                        $item->result_a = $item->result_integer_pr();
+                        $item->result_b = $rec_con->result_integer_pr();
+                    }
+                } 
+                else 
+                {
+                    $item->status = 5;
+                    $item->result_a = $item->result_integer_pr();
+                    $item->result_b = null;
+                }
             }
 
             $item->save();
@@ -182,13 +269,28 @@ class ExportController
 
                                 if($rec_con)
                                     {
-                                        if($item->result_integer_pr() == (-1)*$rec_con->result_integer_pr()) $item->status = 3; 
-                                        
-                                        else $item->status = 4;
-                                    } else $item->status = 4;
+                                        if($item->result_integer_pr() == (-1)*$rec_con->result_integer_pr()) 
+                                            $item->status = 3; 
+                                        else
+                                        {
+                                            $item->status = 4;
+                                            $item->result_a = $item->result_all_int();
+                                            $item->result_b = $rec_con->result_all_int();
+                                        }
+                                    } 
+                                    else 
+                                    {
+                                        $item->status = 5;
+                                        $item->result_a = $item->result_all_int();
+                                        $item->result_b = null;
+                                    }
         
-                            } else $item->status = 6;
-                    } else $item->status = 2;
+                            } 
+                            else 
+                                $item->status = 6;
+                    } 
+                    else 
+                        $item->status = 2;
                    
                 } else
                     $item->status = 2;
@@ -200,9 +302,101 @@ class ExportController
                             
                             $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
                             if($rec_con) {
-                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) $item->status = 3; 
-                                else $item->status = 4;
-                            } else $item->status = 5;
+                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) 
+                                    $item->status = 3; 
+                                else 
+                                {
+                                    $item->status = 4;
+                                    $item->result_a = $item->result_all_int();
+                                    $item->result_b = $rec_con->result_all_int();
+                                }
+                            } 
+                            else 
+                            {
+                                $item->status = 5;
+                                $item->result_a = $item->result_all_int();
+                                $item->result_b = null;
+                            }
+
+                        } 
+                        else 
+                            $item->status = 6;
+
+                    }
+                
+            $item->save();
+        }
+
+        return back();
+    }
+
+    public function all_update_oboroti()
+    {
+        $cons = ConsolidateOboroti::get();
+
+        foreach($cons as $item) 
+        { 
+            if(!$item->rec_id) {
+                $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
+                if($org) {
+
+                    if($org->user_id) {
+                        $item->rec_id = $org->user_id;
+                        
+                        $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
+                        if($saldo) $sal = $saldo->result_integer_pr(); else $sal = 0;
+
+                            if((int)$sal == (int)$item->saldo_start) {
+                                $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', $item->send_id)->first();
+
+                                if($rec_con)
+                                    {
+                                        if($item->result_integer_pr() == (-1)*$rec_con->result_integer_pr()) 
+                                            $item->status = 3; 
+                                        else 
+                                            {
+                                                $item->status = 4;
+                                                $item->result_a = $item->result_integer_pr();
+                                                $item->result_b = $rec_con->result_integer_pr();
+                                            }
+                                    } 
+                                    else 
+                                    {
+                                        $item->status = 4;
+                                        $item->result_a = $item->result_integer_pr();
+                                        $item->result_b = null;
+                                    }
+        
+                            } else $item->status = 6;
+                    } else 
+                        $item->status = 2;
+                   
+                } else
+                    $item->status = 2;
+            } else {
+                        $saldo = Consolidated::where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
+                        if($saldo) $sal = $saldo->result_integer_pr(); else $sal = 0;
+
+                        if((int)$sal == (int)$item->saldo_start) {
+                            
+                            $rec_con = ConsolidateOboroti::where('send_id', $item->rec_id)->where('rec_id', $item->send_id)->first();
+
+                            if($rec_con) {
+                                if($item->result_all_int() == (-1)*$rec_con->result_all_int()) 
+                                    $item->status = 3; 
+                                else 
+                                    {
+                                        $item->status = 4;
+                                        $item->result_a = $item->result_all_int();
+                                        $item->result_b = $rec_con->result_all_int();
+                                    }
+                            }
+                            else 
+                                {
+                                    $item->status = 5;
+                                    $item->result_a = $item->result_all_int();
+                                    $item->result_b = null;
+                                }
 
                         } else $item->status = 6;
 

@@ -88,12 +88,12 @@ class ConsolidateOboroti extends Model
     public function result_all()
     {
         $summ = (int)$this->postup_os +  (int)$this->postup_os_ot_lizing + (int)$this->postup_tms + (int)$this->postup_zatrat + (int)$this->pered_os_v_lizing + (int)$this->pered_os_cher_shet
-            + (int)$this->poluch_os_cher_shet +  (int)$this->pered_tms + (int)$this->poluch_tms + (int)$this->pered_saldo_nalog + (int)$this->pol_saldo_nalog
-            + (int)$this->pered_prochix + (int)$this->postup_prochix + (int)$this->viruchka_ot_real + (int)$this->doxod_ot_vib_os + (int)$this->doxod_ot_vib_prochix + (int)$this->proch_oper_doxod
-            + (int)$this->rasxodi_perioda + (int)$this->doxodi_vide_divid + (int)$this->divid_obyav + (int)$this->doxodi_vide_prosent + (int)$this->rasxodi_vide_prosent
-            + (int)$this->doxodi_ot_finar + (int)$this->rasxodi_vide_prosent_po_finar + (int)$this->doxodi_po_kurs + (int)$this->rasxodi_po_kurs + (int)$this->prochi_daxodi_ot_fin + (int)$this->prochi_rasxodi_ot_fin
-            + (int)$this->nds_oplate + (int)$this->nds_zashet + (int)$this->aksiz_uplate + (int)$this->poluch_deneg + (int)$this->uplach_deneg + (int)$this->vzaimozashet
-            + (int)$this->rashet_tret_litsam + (int)$this->prochie;
+        + (int)$this->poluch_os_cher_shet +  (int)$this->pered_tms + (int)$this->poluch_tms + (int)$this->pered_saldo_nalog + (int)$this->pol_saldo_nalog
+        + (int)$this->pered_prochix + (int)$this->postup_prochix + (int)$this->viruchka_ot_real + (int)$this->doxod_ot_vib_os + (int)$this->doxod_ot_vib_prochix + (int)$this->proch_oper_doxod
+        + (int)$this->rasxodi_perioda + (int)$this->doxodi_vide_divid + (int)$this->divid_obyav + (int)$this->doxodi_vide_prosent + (int)$this->rasxodi_vide_prosent
+        + (int)$this->doxodi_ot_finar + (int)$this->rasxodi_vide_prosent_po_finar + (int)$this->doxodi_po_kurs + (int)$this->rasxodi_po_kurs + (int)$this->prochi_daxodi_ot_fin + (int)$this->prochi_rasxodi_ot_fin
+        + (int)$this->nds_oplate + (int)$this->nds_zashet + (int)$this->aksiz_uplate + (int)$this->poluch_deneg + (int)$this->uplach_deneg + (int)$this->vzaimozashet
+        + (int)$this->rashet_tret_litsam + (int)$this->prochie;
 
         if($summ == 0) 
             return 0; 

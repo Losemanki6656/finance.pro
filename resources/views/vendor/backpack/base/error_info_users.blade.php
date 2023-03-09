@@ -44,11 +44,17 @@
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->send_name }}</td>
                     <td>{{ $item->rec_name }}</td>
-                    <td style="font-weight: bold">{{ $item->result1 }}</td>
-                    <td style="font-weight: bold">{{ $item->result2}}</td>
+                    <td style="font-weight: bold">{{ $item->result_a }}</td>
+                    <td style="font-weight: bold">
+                        @if (!$item->result_b)
+                            <span class="badge badge-primary">not found</span>
+                        @else
+                            {{ $item->result_b }}
+                        @endif
+                    </td>
                     <td style="font-weight: bold" class="text-danger text-center">
-                        {{ $item->result3 }}
-                        </td>
+                        {{ $item->result_a + $item->result_b }}
+                    </td>
                 </tr>
             @endforeach
         </tbody>

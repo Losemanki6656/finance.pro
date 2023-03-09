@@ -89,6 +89,8 @@
                             </div>
 
                             <div> Выбирайте год и нажмите Скачать</div>
+                            <a type="button" href="{{ route('all_update_balance') }}" class="btn btn-sm btn-danger"><i class="la la-clone"></i>
+                                Сформировать</a>
                             <button type="submit" class="btn btn-sm btn-success"><i class="la la-download"></i>
                                 Скачать</button>
                             <a href="{{ route('export_shaxmatka_view') }}" class="btn btn-sm btn-primary"><i
@@ -160,9 +162,11 @@
 
                             <div> Выбирайте год и нажмите Скачать</div>
 
-                            <button type="submit" class="btn btn-sm btn-danger"><i class="la la-download"></i>
+                            <a type="button" href="{{ route('all_update_oboroti') }}" class="btn btn-sm btn-danger"><i class="la la-clone"></i>
+                                Сформировать</a>
+                            <button type="submit" class="btn btn-sm btn-success"><i class="la la-download"></i>
                                 Скачать</button>
-                            <a href="{{ route('export_shaxmatka_oborot_view') }}" class="btn btn-sm btn-info"><i
+                            <a href="{{ route('export_shaxmatka_oborot_view') }}" class="btn btn-sm btn-primary"><i
                                     class="la la-eye"></i> Просмотр</a>
                         </div>
                     </form>

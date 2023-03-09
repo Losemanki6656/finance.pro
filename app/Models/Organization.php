@@ -46,7 +46,7 @@ class Organization extends Model
 
     public function send_oborot_orgs()
     {
-        return $this->hasMany(ConsolidateOboroti::class, 'send_id', 'user_id');
+        return $this->hasMany(ConsolidateOboroti::class, 'send_id', 'user_id')->whereNotNull('rec_id');
     }
 
     public function recs()
