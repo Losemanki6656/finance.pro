@@ -44,16 +44,16 @@
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->send_name }}</td>
                     <td>{{ $item->rec_name }}</td>
-                    <td style="font-weight: bold">{{ $item->result_a }}</td>
+                    <td style="font-weight: bold">{{ number_format($item->result_a, '0',' ', ' ') }}</td>
                     <td style="font-weight: bold">
                         @if (!$item->result_b)
-                             <span class="badge badge-primary">not found</span>
+                            <span class="badge badge-primary">not found</span>
                         @else
-                            {{ $item->result_b }}
+                            {{  number_format($item->result_b,'0',' ',' ') }}
                         @endif
                     </td>
                     <td style="font-weight: bold" class="text-danger text-center">
-                        {{ $item->result_a + $item->result_b }}
+                        {{ number_format($item->result_a + $item->result_b,'0',' ',' ') }}
                     </td>
                 </tr>
             @endforeach
