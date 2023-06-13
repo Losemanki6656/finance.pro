@@ -9,6 +9,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 use App\Models\User;
 use App\Models\ConsolidateOboroti;
+use App\Models\ConsolOborotYear;
 
 /**
  * Class ConsolidateOborotiCrudController
@@ -29,7 +30,7 @@ class ConsolidateOborotiCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/consolidateoboroti');
         $this->crud->setEntityNameStrings('обороты', 'Обороты');
 
-        $this->crud->enableExportButtons();
+        // $this->crud->enableExportButtons();
 
         $this->crud->addFilter([
             'type' => 'dropdown',
@@ -57,7 +58,8 @@ class ConsolidateOborotiCrudController extends CrudController
     protected function setupListOperation()
     {
         if (backpack_auth()->check()) {
-            $this->crud->query = $this->crud->query->where('send_id', backpack_user()->id);
+            $year = ConsolOborotYear::where('status', false)->first();
+            $this->crud->query = $this->crud->query->where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol);
         }
             
 

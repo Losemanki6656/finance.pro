@@ -34,15 +34,46 @@ class OborotImport implements ToCollection
     {
         foreach( $collection as $item)
         {
-            $itog =  (double)$this->convert($item[7]) +  (double)$this->convert($item[8]) + (double)$this->convert($item[9]) + (double)$this->convert($item[10]) + (double)$this->convert($item[11]) + (double)$this->convert($item[12])
-               + (double)$this->convert($item[13]) +  (double)$this->convert($item[17]) + (double)$this->convert($item[18]) + (double)$this->convert($item[19]) + (double)$this->convert($item[20])
-               + (double)$this->convert($item[21]) + (double)$this->convert($item[22]) + (double)$this->convert($item[23]) + (double)$this->convert($item[25]) + (double)$this->convert($item[27]) + (double)$this->convert($item[29])
-               + (double)$this->convert($item[29]) + (double)$this->convert($item[30]) + (double)$this->convert($item[31]) + (double)$this->convert($item[32]) + (double)$this->convert($item[33]) + (double)$this->convert($item[34])
-               + (double)$this->convert($item[35]) + (double)$this->convert($item[36]) + (double)$this->convert($item[37]) + (double)$this->convert($item[38]) + (double)$this->convert($item[39]) + (double)$this->convert($item[40])
-               + (double)$this->convert($item[41]) + (double)$this->convert($item[42]) + (double)$this->convert($item[43]) + (double)$this->convert($item[44]) + (double)$this->convert($item[45]) + (double)$this->convert($item[46])
-               + (double)$this->convert($item[47]) + (double)$this->convert($item[48]);
+            $itog = (int)$this->convert($item[7]) +  
+                    (int)$this->convert($item[8]) + 
+                    (int)$this->convert($item[9]) + 
+                    (int)$this->convert($item[10]) + 
+                    (int)$this->convert($item[11]) + 
+                    (int)$this->convert($item[12]) + 
+                    (int)$this->convert($item[13]) +  
+                    (int)$this->convert($item[17]) + 
+                    (int)$this->convert($item[18]) + 
+                    (int)$this->convert($item[19]) + 
+                    (int)$this->convert($item[20]) + 
+                    (int)$this->convert($item[21]) + 
+                    (int)$this->convert($item[22]) + 
+                    (int)$this->convert($item[23]) + 
+                    (int)$this->convert($item[25]) + 
+                    (int)$this->convert($item[27]) + 
+                    (int)$this->convert($item[29]) + 
+                    (int)$this->convert($item[29]) + 
+                    (int)$this->convert($item[30]) + 
+                    (int)$this->convert($item[31]) + 
+                    (int)$this->convert($item[32]) + 
+                    (int)$this->convert($item[33]) + 
+                    (int)$this->convert($item[34]) + 
+                    (int)$this->convert($item[35]) + 
+                    (int)$this->convert($item[36]) + 
+                    (int)$this->convert($item[37]) + 
+                    (int)$this->convert($item[38]) + 
+                    (int)$this->convert($item[39]) + 
+                    (int)$this->convert($item[40]) + 
+                    (int)$this->convert($item[41]) + 
+                    (int)$this->convert($item[42]) + 
+                    (int)$this->convert($item[43]) + 
+                    (int)$this->convert($item[44]) + 
+                    (int)$this->convert($item[45]) + 
+                    (int)$this->convert($item[46]) + 
+                    (int)$this->convert($item[47]) + 
+                    (int)$this->convert($item[48]);
 
             $status = false;
+            
             for($i = 7; $i <= 48; $i ++) {
                 if($this->convert($item[$i]) != '') {
                     $status = true;

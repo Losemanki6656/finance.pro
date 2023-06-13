@@ -114,10 +114,6 @@
                                         <div class="col">
                                             <select class="form-control form-control-sm" id="year_exam"
                                                 onchange="myFilter()">
-
-                                                <option value="2020" @if (request('year_exam') == 2020) selected @endif>
-                                                    2020
-                                                </option>
                                                 <option value="2021" @if (request('year_exam') == 2021) selected @endif>
                                                     2021
                                                 </option>

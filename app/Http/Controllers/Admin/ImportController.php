@@ -20,6 +20,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Auth;
+use Alert;
+
 
 class ImportController extends Controller
 {
@@ -103,12 +105,22 @@ class ImportController extends Controller
         }
         
         $fileName = $request->file->getClientOriginalName();
-
-        Consolidated::where('send_id', backpack_user()->id)->delete();
-
         $year = ConsolYear::where('status', false)->first();
 
-        Excel::Import(new VgoImport(backpack_user()->id, $year->year_consol), $request->file('file'));
+        Consolidated::where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
+
+        try {
+
+            Excel::Import(new VgoImport(backpack_user()->id, $year->year_consol), $request->file('file'));
+        }
+        catch (\Exception $e){
+
+            Alert::error($e->getMessage())->flash();
+            return redirect()->back();
+       
+        }
+
+       
 
         return view('backpack::vgo_import', [
             'status' => 'success',
@@ -145,7 +157,16 @@ class ImportController extends Controller
 
         $year = ConsolOborotYear::where('status', false)->first();
 
-        Excel::Import(new OborotImport(backpack_user()->id, $year->year_consol), $request->file('file'));
+        try {
+
+            Excel::Import(new OborotImport(backpack_user()->id, $year->year_consol), $request->file('file'));
+        }
+        catch (\Exception $e){
+
+            Alert::error($e->getMessage())->flash();
+            return redirect()->back();
+       
+        }
 
         return view('backpack::oborot_import', [
             'status' => 'success',

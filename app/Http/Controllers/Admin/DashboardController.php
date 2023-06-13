@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Consolidated;
 use App\Models\ConsolidateOboroti;
 use App\Models\Organization;
+use App\Models\ConsolOborotYear;
+use App\Models\ConsolYear;
 use DB;
 
 class DashboardController
@@ -31,6 +33,10 @@ class DashboardController
         $falseCountOborot = 0; 
         $summCountOborot = 0;
         
+            
+        $year_oboroti = ConsolOborotYear::where('status', false)->first()->year_consol;
+        $year_balance = ConsolOborotYear::where('status', false)->first()->year_consol;
+
         // $users = DB::table('consolidated as con1')
         //     ->join('consolidated as con2', function ($join) {
         //         $join->on('con1.send_id', '=', 'con2.rec_id')
@@ -65,11 +71,14 @@ class DashboardController
         // dd($users);
 
         $users = DB::table('consolidated as con1')
-        ->whereNotNull('con1.rec_id')
-        ->whereIn('con1.status', [ 4, 5 ]);
+            ->whereNotNull('con1.rec_id')
+            ->where('con1.ex_year', $year_balance)
+            ->whereIn('con1.status', [ 4, 5 ]);
+
         $falseCount = $users->count();
             $users = $users->select( DB::raw('SUM(con1.result_a + ifnull(con1.result_b,0) ) as result1'))
             ->get();
+
 
         //  dd($users);
 
@@ -109,8 +118,9 @@ class DashboardController
         //         + cast(con4.rashet_tret_litsam as signed) + cast(con4.prochie as signed)) as result2')
         //     ])
         // ->get();
-
+            
         $oborots = DB::table('consolidate_oboroti as con3')
+            ->where('con3.ex_year', $year_oboroti)
             ->whereNotNull('con3.rec_id')
             ->whereIn('con3.status', [ 4, 5 ]);
 
