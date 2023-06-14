@@ -52,54 +52,33 @@ class Consolidated extends Model
         'ex_79' => 'integer',
         'ex_83' => 'integer'
     ];
-    
+
 
     public function rec()
     {
-        return $this->belongsTo(User::class,'rec_id');
+        return $this->belongsTo(User::class, 'rec_id');
     }
 
     public function send()
     {
-        return $this->belongsTo(User::class,'send_id');
+        return $this->belongsTo(User::class, 'send_id');
     }
 
 
     public function result_all()
     {
-        $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 
-        (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 + 
-        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_78 +  (int)$this->ex_79 + (int)$this->ex_83;
-        return number_format($summ , 0, ' ', ' ');
+        $summ = (int) $this->ex_06 + (int) $this->ex_09 + (int) $this->ex_40 + (int) $this->ex_41 +
+            (int) $this->ex_43 + (int) $this->ex_46 + (int) $this->ex_48 + (int) $this->ex_58 +
+            (int) $this->ex_60 + (int) $this->ex_61 + (int) $this->ex_63 + (int) $this->ex_66 + (int) $this->ex_68 + (int) $this->ex_69 + (int) $this->ex_78 + (int) $this->ex_79 + (int) $this->ex_83;
+
+        return number_format($summ, 0, ' ', ' ');
     }
 
-    public function result_integer()
+    public function allResult()
     {
-        $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 
-        (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 + 
-        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_78 +  (int)$this->ex_79 + (int)$this->ex_83;
-        
-        // return number_format($summ , 2, '.', ' ');
-        return $summ;
-    }
-
-    public function result_integer_pr()
-    {
-        $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 
-        (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 + 
-        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_78 +  (int)$this->ex_79 + (int)$this->ex_83;
-        
-        if($summ == 0) 
-            return 0; 
-        else
-            return $summ;
-    }
-
-    public function result_all_int()
-    {
-        $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 + 
-        (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 + 
-        (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_78 + (int)$this->ex_79 + (int)$this->ex_83;
+        $summ = (int) $this->ex_06 + (int) $this->ex_09 + (int) $this->ex_40 + (int) $this->ex_41 +
+            (int) $this->ex_43 + (int) $this->ex_46 + (int) $this->ex_48 + (int) $this->ex_58 +
+            (int) $this->ex_60 + (int) $this->ex_61 + (int) $this->ex_63 + (int) $this->ex_66 + (int) $this->ex_68 + (int) $this->ex_69 + (int) $this->ex_78 + (int) $this->ex_79 + (int) $this->ex_83;
         return $summ;
     }
 

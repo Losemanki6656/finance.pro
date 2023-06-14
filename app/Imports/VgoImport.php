@@ -18,7 +18,7 @@ class VgoImport implements ToCollection
 {
     /**
     * @param Collection $collection
-        
+
     */
 
     protected $user_id;
@@ -32,28 +32,27 @@ class VgoImport implements ToCollection
 
     public function collection(Collection $collection)
     {
-        
-        foreach( $collection as $item)
-        {
-              $itog = (int)$this->convert($item[5]) + 
-                      (int)$this->convert($item[6]) + 
-                      (int)$this->convert($item[7]) + 
-                      (int)$this->convert($item[8]) + 
-                      (int)$this->convert($item[9]) + 
-                      (int)$this->convert($item[10]) + 
-                      (int)$this->convert($item[11]) +  
-                      (int)$this->convert($item[12]) + 
-                      (int)$this->convert($item[13]) + 
-                      (int)$this->convert($item[14]) + 
-                      (int)$this->convert($item[15]) + 
-                      (int)$this->convert($item[16]) + 
-                      (int)$this->convert($item[17]) + 
-                      (int)$this->convert($item[18]) + 
-                      (int)$this->convert($item[19]) + 
-                      (int)$this->convert($item[20]) + 
-                      (int)$this->convert($item[21]);
 
-            if($item[1] != '' && $itog != 0) {
+        foreach ($collection as $item) {
+            $itog = (int) $this->convert($item[5]) +
+                (int) $this->convert($item[6]) +
+                (int) $this->convert($item[7]) +
+                (int) $this->convert($item[8]) +
+                (int) $this->convert($item[9]) +
+                (int) $this->convert($item[10]) +
+                (int) $this->convert($item[11]) +
+                (int) $this->convert($item[12]) +
+                (int) $this->convert($item[13]) +
+                (int) $this->convert($item[14]) +
+                (int) $this->convert($item[15]) +
+                (int) $this->convert($item[16]) +
+                (int) $this->convert($item[17]) +
+                (int) $this->convert($item[18]) +
+                (int) $this->convert($item[19]) +
+                (int) $this->convert($item[20]) +
+                (int) $this->convert($item[21]);
+
+            if ($item[1] != '' && $itog != 0) {
 
                 $org = Organization::where('inn', $item[4])->where('name', $item[3])->first();
 
@@ -62,8 +61,8 @@ class VgoImport implements ToCollection
                 $con->send_inn = $item[2];
                 $con->send_name = backpack_user()->name;
 
-                if($org) {
-                    
+                if ($org) {
+
                     $con->rec_inn = $item[4];
                     $con->rec_name = $org->name;
                     $con->rec_id = $org->user_id;
@@ -74,7 +73,7 @@ class VgoImport implements ToCollection
                     $con->rec_name = $item[3];
                     $con->rec_id = null;
                 }
-               
+
                 $con->ex_06 = $this->convert($item[5]);
                 $con->ex_09 = $this->convert($item[6]);
                 $con->ex_40 = $this->convert($item[7]);
@@ -104,7 +103,7 @@ class VgoImport implements ToCollection
 
     public function convert($text)
     {
-        $res = str_replace([' ',','], ['',''], $text);
+        $res = str_replace([' ', ','], ['', ''], $text);
         return $res;
     }
 

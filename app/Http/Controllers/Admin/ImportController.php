@@ -45,7 +45,7 @@ class ImportController extends Controller
 
         $tasks = Task::where('user_id', backpack_user()->id)->get();
 
-        return view('backpack::tasks',[
+        return view('backpack::tasks', [
             'tasks' => $tasks
         ]);
     }
@@ -54,12 +54,12 @@ class ImportController extends Controller
     {
         $validator = Validator::make(
             [
-                'file'      => $request->file,
-                'error'     => strtolower($request->file->getClientOriginalExtension()),
+                'file' => $request->file,
+                'error' => strtolower($request->file->getClientOriginalExtension()),
             ],
             [
-                'file'          => 'required',
-                'error'          => 'required|in:xlsx,xls',
+                'file' => 'required',
+                'error' => 'required|in:xlsx,xls',
             ]
         );
 
@@ -85,12 +85,12 @@ class ImportController extends Controller
     {
         $validator = Validator::make(
             [
-                'file'      => $request->file,
-                'error'     => strtolower($request->file->getClientOriginalExtension()),
+                'file' => $request->file,
+                'error' => strtolower($request->file->getClientOriginalExtension()),
             ],
             [
-                'file'      => 'required',
-                'error'     => 'required|in:xlsx,xls,csv',
+                'file' => 'required',
+                'error' => 'required|in:xlsx,xls,csv',
             ]
         );
 
@@ -103,24 +103,23 @@ class ImportController extends Controller
                 'message' => $error
             ]);
         }
-        
+
         $fileName = $request->file->getClientOriginalName();
         $year = ConsolYear::where('status', false)->first();
 
-        Consolidated::where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
+        Consolidated::where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol)->delete();
 
         try {
 
             Excel::Import(new VgoImport(backpack_user()->id, $year->year_consol), $request->file('file'));
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
 
             Alert::error($e->getMessage())->flash();
             return redirect()->back();
-       
+
         }
 
-       
+
 
         return view('backpack::vgo_import', [
             'status' => 'success',
@@ -132,12 +131,12 @@ class ImportController extends Controller
     {
         $validator = Validator::make(
             [
-                'file'      => $request->file,
-                'error'     => strtolower($request->file->getClientOriginalExtension()),
+                'file' => $request->file,
+                'error' => strtolower($request->file->getClientOriginalExtension()),
             ],
             [
-                'file'      => 'required',
-                'error'     => 'required|in:xlsx,xls,csv',
+                'file' => 'required',
+                'error' => 'required|in:xlsx,xls,csv',
             ]
         );
 
@@ -150,22 +149,20 @@ class ImportController extends Controller
                 'message' => $error
             ]);
         }
-        
+
         $fileName = $request->file->getClientOriginalName();
-
-        ConsolidateOboroti::where('send_id', backpack_user()->id)->delete();
-
         $year = ConsolOborotYear::where('status', false)->first();
+
+        ConsolidateOboroti::where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol)->delete();
 
         try {
 
             Excel::Import(new OborotImport(backpack_user()->id, $year->year_consol), $request->file('file'));
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
 
             Alert::error($e->getMessage())->flash();
             return redirect()->back();
-       
+
         }
 
         return view('backpack::oborot_import', [
@@ -178,6 +175,19 @@ class ImportController extends Controller
     {
         $id->delete();
 
-        return redirect()->back()->with('msg' , 1);
+        return redirect()->back()->with('msg', 1);
+    }
+
+    public function control()
+    {
+        Consolidated::query()->update([
+            'ex_year' => 2019
+        ]);
+
+        ConsolidateOboroti::query()->update([
+            'ex_year' => 2020
+        ]);
+
+        return 'success';
     }
 }
