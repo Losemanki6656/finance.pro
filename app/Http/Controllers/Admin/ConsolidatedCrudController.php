@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ConsolidatedRequest;
+use App\Models\ConsolOborotYear;
+use App\Models\Organization;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-
 
 use App\Models\User;
 use App\Models\Consolidated;
@@ -32,11 +33,12 @@ class ConsolidatedCrudController extends CrudController
         // $this->crud->enableDetailsRow();
         // $this->crud->enableExportButtons();
 
-        $this->crud->addFilter([
-            'type' => 'dropdown',
-            'name' => 'status',
-            'label' => 'Фильтр по статусам'
-        ],
+        $this->crud->addFilter(
+            [
+                'type' => 'dropdown',
+                'name' => 'status',
+                'label' => 'Фильтр по статусам'
+            ],
             [
                 3 => "Успешные",
                 2 => "100",
@@ -52,7 +54,8 @@ class ConsolidatedCrudController extends CrudController
                     $this->crud->query = Consolidated::where('status', 5);
                 if ($value == 4)
                     $this->crud->query = Consolidated::where('status', 4);
-            });
+            }
+        );
     }
 
     protected function setupListOperation()
@@ -61,7 +64,7 @@ class ConsolidatedCrudController extends CrudController
             $year = ConsolYear::where('status', false)->first();
             $this->crud->query = $this->crud->query->where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol);
         }
-            
+
 
         $this->crud->addColumn([
             'name' => 'send_name',
@@ -77,7 +80,7 @@ class ConsolidatedCrudController extends CrudController
             'name' => 'rec_name',
             'label' => 'Получатель'
         ]);
-      
+
 
         $this->crud->addColumn([
             'name' => 'rec_inn',
@@ -91,10 +94,10 @@ class ConsolidatedCrudController extends CrudController
 
 
         $this->crud->addColumn([
-            'name'  =>  'result',
-            'label' =>  'Итого',
-            'type'  =>  'model_function',
-            'function_name' =>  'result_all'
+            'name' => 'result',
+            'label' => 'Итого',
+            'type' => 'model_function',
+            'function_name' => 'result_all'
         ]);
 
         $this->crud->addColumn([
@@ -109,12 +112,12 @@ class ConsolidatedCrudController extends CrudController
     protected function setupShowOperation()
     {
         $this->crud->set('show.setFromDb', false);
-        
+
         $this->crud->addColumn([
             'name' => 'id',
             'label' => '#',
         ]);
-        
+
 
         $this->crud->addColumn([
             'name' => 'rec_id',
@@ -209,225 +212,245 @@ class ConsolidatedCrudController extends CrudController
             'name' => 'result',
             'label' => 'Итого'
         ]);
-        
+
     }
 
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(ConsolidatedRequest::class);
 
+        $organization = Organization::where('user_id', backpack_user()->id)->first();
+        $year = ConsolYear::where('status', false)->first();
+
         $this->crud->addField(
             [
                 'label' => 'Ползователь',
-                'type' => 'text',
+                'type' => 'hidden',
                 'name' => 'send_id',
-                'value' => backpack_user()->name,
+                'value' => backpack_user()->id,
+            ]
+        );
+
+        $this->crud->addField(
+            [
+                'label' => 'Отправитель',
+                'type' => 'text',
+                'name' => 'send_name',
+                'value' => $organization->name,
                 'attributes' => [
-                    'readonly'    => 'readonly',
-                    'disabled'    => 'disabled',
-                  ],
+                    'readonly' => 'readonly'
+                ],
                 'wrapper' => [
                     'class' => 'form-group col-lg-6'
                 ]
-            ]);
+            ]
+        );
 
-            $this->crud->addField(
-                [
-                    'label' => 'Отправитель',
-                    'type' => 'text',
-                    'name' => 'send_name',
-                    'attributes' => [
-                        'readonly'    => 'readonly',
-                        'disabled'    => 'disabled',
-                      ],
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-6'
-                    ]
-                ]);
+        $this->crud->addField(
+            [
+                'label' => 'Отправитель ИНН',
+                'type' => 'hidden',
+                'name' => 'send_inn',
+                'value' => $organization->inn
+            ]
+        );
 
-                $this->crud->addField(
-                    [
-                        'label' => 'Отправитель ИНН',
-                        'type' => 'text',
-                        'name' => 'send_inn',
-                        'attributes' => [
-                            'readonly'    => 'readonly',
-                            'disabled'    => 'disabled',
-                          ],
-                        'wrapper' => [
-                            'class' => 'form-group col-lg-6'
-                        ]
-                    ]);
+        $this->crud->addField(
+            [
+                'label' => 'Получатель',
+                'type' => 'select2',
+                'name' => 'rec_id',
+                'entity' => 'rec',
+                'model' => User::class,
+                'options' => (function ($query) {
+                    return $query->where('id', '!=', 1)->get();
+                }),
+                'attribute' => 'name',
+                'default' => 1,
+                'wrapper' => [
+                    'class' => 'form-group col-lg-6'
+                ]
+            ]
+        );
 
-                    $this->crud->addField(
-                        [
-                            'label' => 'Ползователь (Получатель)',
-                            'type' => 'select2',
-                            'name' => 'rec_id',
-                            'entity' => 'rec',
-                            'model' => User::class,
-                            'attribute' => 'name',
-                            'default'   => 1,
-                            'wrapper' => [
-                                'class' => 'form-group col-lg-6'
-                            ]
-                        ]);
+        $this->crud->addField(
+            [
+                'label' => 'Имя Получателя',
+                'type' => 'hidden',
+                'name' => 'rec_name'
+            ]
+        );
 
-                    $this->crud->addField(
-                        [
-                            'label' => 'Имя Получателя',
-                            'type' => 'text',
-                            'name' => 'rec_name',
-                            'wrapper' => [
-                                'class' => 'form-group col-lg-6'
-                            ]
-                        ]);
+        $this->crud->addField(
+            [
+                'label' => 'ИНН Получателя',
+                'type' => 'hidden',
+                'name' => 'rec_inn'
+            ]
+        );
 
-                        $this->crud->addField(
-                            [
-                                'label' => 'ИНН Получателя',
-                                'type' => 'text',
-                                'name' => 'rec_inn',
-                                'wrapper' => [
-                                    'class' => 'form-group col-lg-6'
-                                ]
-                            ]);
-       
-        
-                $this->crud->addField([
-                    'name' => 'ex_06',
-                    'label' => '06**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_09',
-                    'label' => '09**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_40',
-                    'label' => '40**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_41',
-                    'label' => '41**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_43',
-                    'label' => '43**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_46',
-                    'label' => '46**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_48',
-                    'label' => '48**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_58',
-                    'label' => '58**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_60',
-                    'label' => '60**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_61',
-                    'label' => '61**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_63',
-                    'label' => '63**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_66',
-                    'label' => '66**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_68',
-                    'label' => '68**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_69',
-                    'label' => '69**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
-                $this->crud->addField([
-                    'name' => 'ex_78',
-                    'label' => '78**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
 
-                $this->crud->addField([
-                    'name' => 'ex_79',
-                    'label' => '79**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
+        $this->crud->addField([
+            'name' => 'ex_06',
+            'label' => '06**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_09',
+            'label' => '09**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_40',
+            'label' => '40**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_41',
+            'label' => '41**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_43',
+            'label' => '43**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_46',
+            'label' => '46**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_48',
+            'label' => '48**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_58',
+            'label' => '58**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_60',
+            'label' => '60**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_61',
+            'label' => '61**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_63',
+            'label' => '63**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_66',
+            'label' => '66**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_68',
+            'label' => '68**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_69',
+            'label' => '69**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        $this->crud->addField([
+            'name' => 'ex_78',
+            'label' => '78**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
 
-                $this->crud->addField([
-                    'name' => 'ex_83',
-                    'label' => '83**',
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);
+        $this->crud->addField([
+            'name' => 'ex_79',
+            'label' => '79**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
 
-                $this->crud->addField([
-                    'name' => 'ex_year',
-                    'label' => 'Год',
-                    'attributes' => [
-                        'readonly'    => 'readonly',
-                        'disabled'    => 'disabled',
-                      ],
-                    'wrapper' => [
-                        'class' => 'form-group col-lg-2'
-                    ]
-                ]);              
-        
+        $this->crud->addField([
+            'name' => 'ex_83',
+            'label' => '83**',
+            'type' => 'number',
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+
+        $this->crud->addField([
+            'name' => 'ex_year',
+            'label' => 'Год',
+            'value' => $year->year_consol,
+            'attributes' => [
+                'readonly' => 'readonly'
+            ],
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
+        // dd($this->crud->getRequest()->request);
+
+        $summ = request('ex_06') + request('ex_09') + request('ex_40') + request('ex_41') +
+            request('ex_43') + request('ex_46') + request('ex_48') + request('ex_58') +
+            request('ex_60') + request('ex_61') + request('ex_63') + request('ex_66') + request('ex_68') + request('ex_69') + request('ex_78') + request('ex_79') + request('ex_83');
+
+        $rec = Organization::where('user_id', request('rec_id'))->first();
+        $this->crud->getRequest()->request->add(['rec_name' => $rec->name ?? '']);
+        $this->crud->getRequest()->request->add(['rec_inn' => $rec->inn ?? '']);
+        $this->crud->getRequest()->request->add(['result' => $summ ?? 0]);
+        $this->crud->setOperationSetting('saveAllInputsExcept', ['_token', '_method', 'http_referrer', 'current_tab', 'save_action']);
 
     }
 

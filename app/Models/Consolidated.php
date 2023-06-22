@@ -82,27 +82,132 @@ class Consolidated extends Model
         return $summ;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONS
-    |--------------------------------------------------------------------------
-    */
 
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
+    public function setEx06Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_06'] = 0;
+        else
+            $this->attributes['ex_06'] = $value;
+    }
 
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
-    |--------------------------------------------------------------------------
-    */
+    public function setEx09Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_09'] = 0;
+        else
+            $this->attributes['ex_09'] = $value;
+    }
 
-    /*
-    |--------------------------------------------------------------------------
-    | MUTATORS
-    |--------------------------------------------------------------------------
-    */
+    public function setEx40Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_40'] = 0;
+        else
+            $this->attributes['ex_40'] = $value;
+    }
+
+    public function setEx41Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_41'] = 0;
+        else
+            $this->attributes['ex_41'] = $value;
+    }
+    public function setEx43Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_43'] = 0;
+        else
+            $this->attributes['ex_43'] = $value;
+    }
+    public function setEx46Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_46'] = 0;
+        else
+            $this->attributes['ex_46'] = $value;
+    }
+    public function setEx48Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_48'] = 0;
+        else
+            $this->attributes['ex_48'] = $value;
+    }
+    public function setEx58Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_58'] = 0;
+        else
+            $this->attributes['ex_58'] = $value;
+    }
+    public function setEx60Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_60'] = 0;
+        else
+            $this->attributes['ex_60'] = $value;
+    }
+    public function setEx61Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_61'] = 0;
+        else
+            $this->attributes['ex_61'] = $value;
+    }
+    public function setEx63Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_63'] = 0;
+        else
+            $this->attributes['ex_63'] = $value;
+    }
+    public function setEx66Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_66'] = 0;
+        else
+            $this->attributes['ex_66'] = $value;
+    }
+
+    public function setEx68Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_68'] = 0;
+        else
+            $this->attributes['ex_68'] = $value;
+    }
+
+    public function setEx69Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_69'] = 0;
+        else
+            $this->attributes['ex_69'] = $value;
+    }
+
+    public function setEx78Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_78'] = 0;
+        else
+            $this->attributes['ex_78'] = $value;
+    }
+
+    public function setEx79Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_79'] = 0;
+        else
+            $this->attributes['ex_79'] = $value;
+    }
+
+    public function setEx83Attribute($value)
+    {
+        if ($value == null)
+            $this->attributes['ex_83'] = 0;
+        else
+            $this->attributes['ex_83'] = $value;
+    }
 }
