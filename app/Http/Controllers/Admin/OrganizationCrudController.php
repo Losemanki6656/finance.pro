@@ -8,20 +8,20 @@ use App\Models\User;
 
 use App\Http\Requests\OrganizationRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
-/**
- * Class OrganizationCrudController
- * @package App\Http\Controllers\Admin
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
- */
 class OrganizationCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use ListOperation;
+    use CreateOperation;
+    use UpdateOperation;
+    use DeleteOperation;
+    use ShowOperation;
+
 
     public function setup()
     {
@@ -29,31 +29,33 @@ class OrganizationCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/organization');
         $this->crud->setEntityNameStrings('организация', 'Организацие');
 
-          $this->crud->addFilter([
-            'name'  => 'railway_id',
-            'type'  => 'select2',
-            'label' => 'Railway'
-          ], function() {
-              return Railway::all()->pluck('name', 'id')->toArray();
-          }, function($value) { // if the filter is active
-              $this->crud->addClause('where', 'railway_id', $value);
-          });
+        $this->crud->enableExportButtons();
 
-          $this->crud->addFilter([
-            'name'  => 'user_id',
-            'type'  => 'select2',
+        $this->crud->addFilter([
+            'name' => 'railway_id',
+            'type' => 'select2',
+            'label' => 'Railway'
+        ], function () {
+            return Railway::all()->pluck('name', 'id')->toArray();
+        }, function ($value) { // if the filter is active
+            $this->crud->addClause('where', 'railway_id', $value);
+        });
+
+        $this->crud->addFilter([
+            'name' => 'user_id',
+            'type' => 'select2',
             'label' => 'User'
-          ], function() {
-              return User::all()->pluck('name', 'id')->toArray();
-          }, function($value) { // if the filter is active
-              $this->crud->addClause('where', 'user_id', $value);
-          });
+        ], function () {
+            return User::all()->pluck('name', 'id')->toArray();
+        }, function ($value) { // if the filter is active
+            $this->crud->addClause('where', 'user_id', $value);
+        });
 
     }
 
     protected function setupListOperation()
     {
-        
+
         $this->crud->addColumn([
             'name' => 'id',
             'label' => '№'
@@ -76,15 +78,15 @@ class OrganizationCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name' => 'user_id',
-            'label' => 'User'
+            'label' => 'User',
+            'name' => 'user.email'
         ]);
     }
 
     protected function setupShowOperation()
     {
         $this->crud->set('show.setFromDb', false);
-        
+
         $this->crud->addColumn([
             'name' => 'name',
             'label' => 'Name',
@@ -102,7 +104,7 @@ class OrganizationCrudController extends CrudController
             'label' => 'User',
             'type' => 'text'
         ]);
-        
+
     }
 
     protected function setupCreateOperation()
@@ -117,29 +119,29 @@ class OrganizationCrudController extends CrudController
                 'entity' => 'management',
                 'model' => Management::class,
                 'attribute' => 'name',
-                'default'   => 1
+                'default' => 1
             ]);
 
-            $this->crud->addField(
-                [
-                    'label' => 'Railway',
-                    'type' => 'select2',
-                    'name' => 'railway_id',
-                    'entity' => 'railway',
-                    'model' => Railway::class,
-                    'attribute' => 'name',
-                    'default'   => 1
-                ]);
-                $this->crud->addField(
-                    [
-                        'label' => 'User',
-                        'type' => 'select2',
-                        'name' => 'user_id',
-                        'entity' => 'user',
-                        'model' => User::class,
-                        'attribute' => 'name',
-                        'default'   => 1
-                    ]);
+        $this->crud->addField(
+            [
+                'label' => 'Railway',
+                'type' => 'select2',
+                'name' => 'railway_id',
+                'entity' => 'railway',
+                'model' => Railway::class,
+                'attribute' => 'name',
+                'default' => 1
+            ]);
+        $this->crud->addField(
+            [
+                'label' => 'User',
+                'type' => 'select2',
+                'name' => 'user_id',
+                'entity' => 'user',
+                'model' => User::class,
+                'attribute' => 'name',
+                'default' => 1
+            ]);
 
         $this->crud->addField(
             [
@@ -148,12 +150,12 @@ class OrganizationCrudController extends CrudController
                 'name' => 'name'
             ]);
 
-            $this->crud->addField(
-                [
-                    'label' => 'INN',
-                    'type' => 'text',
-                    'name' => 'inn'
-                ]);
+        $this->crud->addField(
+            [
+                'label' => 'INN',
+                'type' => 'text',
+                'name' => 'inn'
+            ]);
     }
 
     protected function setupUpdateOperation()

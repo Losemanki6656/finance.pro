@@ -9,8 +9,6 @@ use App\Models\ConsolidateOboroti;
 use App\Models\ConsolYear;
 use App\Models\ConsolOborotYear;
 
-use App\Jobs\ImportVgo;
-
 use App\Http\Controllers\Controller;
 use App\Imports\OrganizationImport;
 use App\Imports\VgoImport;
@@ -19,8 +17,7 @@ use App\Imports\OborotImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
-use Auth;
-use Alert;
+use Prologue\Alerts\Facades\Alert;
 
 
 class ImportController extends Controller

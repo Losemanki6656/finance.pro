@@ -4,25 +4,43 @@ namespace App\Imports;
 
 use App\Models\Organization;
 
+use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
 class OrganizationImport implements ToCollection
 {
-    /**
-    * @param Collection $collection
-    */
 
     public function collection(Collection $collection)
     {
+
         foreach($collection as $item)
         {
-            $newItem = new Organization();
-            $newItem->management_id = 1;
-            $newItem->railway_id = 1;
-            $newItem->name = $item[0];
-            $newItem->inn = $item[1];
-            $newItem->save();
+
+            $org = Organization::query()->where('inn', $item[1])->first();
+
+            if (!$org) {
+                $newItem = new Organization();
+                $newItem->management_id = 1;
+                $newItem->railway_id = 1;
+                $newItem->name = $item[0];
+                $newItem->inn = $item[1];
+                $newItem->save();
+
+                $user =  User::create([
+                    'email' => 'user'.$item[1].'@gmail.com',
+                    'password' => Hash::make('123'),
+                    'name' =>  $item[0],
+                ]);
+
+                $newItem->user_id = $user->id;
+                $newItem->save();
+            } else {
+                $org->name  = $item[0];
+                $org->save();
+            }
+
         }
 
     }

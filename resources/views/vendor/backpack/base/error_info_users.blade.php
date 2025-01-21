@@ -5,7 +5,7 @@
         trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
         __('Import') => url(config('backpack.base.route_prefix'), 'import'),
     ];
-    
+
     // if breadcrumbs aren't defined in the CrudController, use the default breadcrumbs
     $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
 @endphp
@@ -47,7 +47,7 @@
                     <td style="font-weight: bold">{{ number_format($item->result_a, '0',' ', ' ') }}</td>
                     <td style="font-weight: bold">
                         @if (!$item->result_b)
-                            <span class="badge badge-primary">not found</span>
+                            <span class="badge badge-primary">Не найден</span>
                         @else
                             {{  number_format($item->result_b,'0',' ',' ') }}
                         @endif

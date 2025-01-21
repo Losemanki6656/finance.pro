@@ -3,27 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ConsolidatedRequest;
-use App\Models\ConsolOborotYear;
 use App\Models\Organization;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 use App\Models\User;
-use App\Models\Consolidated;
 use App\Models\ConsolYear;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
-/**
- * Class ConsolidatedCrudController
- * @package App\Http\Controllers\Admin
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
- */
+
 class ConsolidatedCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use ListOperation;
+    use CreateOperation;
+    use UpdateOperation;
+    use DeleteOperation;
+    use ShowOperation;
 
     public function setup()
     {
@@ -46,14 +44,27 @@ class ConsolidatedCrudController extends CrudController
                 4 => "102",
             ],
             function ($value) {
-                if ($value == 3)
-                    $this->crud->query = Consolidated::where('status', 3);
-                if ($value == 2)
-                    $this->crud->query = Consolidated::where('status', 2);
-                if ($value == 5)
-                    $this->crud->query = Consolidated::where('status', 5);
-                if ($value == 4)
-                    $this->crud->query = Consolidated::where('status', 4);
+                $this->crud->addClause('where', 'status', $value);
+            }
+        );
+
+        $this->crud->addFilter(
+            [
+                'type' => 'dropdown',
+                'name' => 'year',
+                'label' => 'Фильтр по годам'
+            ],
+            [
+                2019 => 2019,
+                2020 => 2020,
+                2021 => 2021,
+                2022 => 2022,
+                2023 => 2023,
+                2024 => 2024,
+                2025 => 2025,
+            ],
+            function ($value) {
+                $this->crud->addClause('where', 'ex_year', $value);
             }
         );
     }
@@ -61,10 +72,8 @@ class ConsolidatedCrudController extends CrudController
     protected function setupListOperation()
     {
         if (backpack_auth()->check()) {
-            $year = ConsolYear::where('status', false)->first();
-            $this->crud->query = $this->crud->query->where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol);
+            $this->crud->query->where('send_id', backpack_user()->id);
         }
-
 
         $this->crud->addColumn([
             'name' => 'send_name',
@@ -219,8 +228,8 @@ class ConsolidatedCrudController extends CrudController
     {
         $this->crud->setValidation(ConsolidatedRequest::class);
 
-        $organization = Organization::where('user_id', backpack_user()->id)->first();
-        $year = ConsolYear::where('status', false)->first();
+        $organization = Organization::query()->where('user_id', backpack_user()->id)->first();
+        $year = ConsolYear::query()->where('status', false)->first();
 
         $this->crud->addField(
             [

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Organization extends Model
 {
@@ -56,6 +57,18 @@ class Organization extends Model
     public function recs()
     {
         return $this->hasMany(Consolidated::class, 'rec_id', 'user_id');
+    }
+
+    public function send_organizations(): HasMany
+    {
+        return $this->hasMany(Consolidated::class, 'send_id', 'user_id')
+            ->where('ex_year', request('year_consolidate', ConsolYear::query()->where('status', false)->first()->year_consol));
+    }
+
+    public function send_rev_organizations(): HasMany
+    {
+        return $this->hasMany(ConsolidateOboroti::class, 'send_id', 'user_id')
+            ->where('ex_year', request('year_rev', ConsolOborotYear::query()->where('status', false)->first()->year_consol));
     }
 
     public function rec_orgs()

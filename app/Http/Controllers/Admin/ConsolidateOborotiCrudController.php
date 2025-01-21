@@ -44,24 +44,36 @@ class ConsolidateOborotiCrudController extends CrudController
                 4 => "102",
             ],
             function ($value) {
-                if ($value == 3)
-                    $this->crud->query = ConsolidateOboroti::where('status', 3);
-                if ($value == 2)
-                    $this->crud->query = ConsolidateOboroti::where('status', 2);
-                if ($value == 5)
-                    $this->crud->query = ConsolidateOboroti::where('status', 5);
-                if ($value == 4)
-                    $this->crud->query = ConsolidateOboroti::where('status', 4);
+                $this->crud->addClause('where', 'status', $value);
             });
+
+        $this->crud->addFilter(
+            [
+                'type' => 'dropdown',
+                'name' => 'year',
+                'label' => 'Фильтр по годам'
+            ],
+            [
+                2019 => 2019,
+                2020 => 2020,
+                2021 => 2021,
+                2022 => 2022,
+                2023 => 2023,
+                2024 => 2024,
+                2025 => 2025,
+            ],
+            function ($value) {
+                $this->crud->addClause('where', 'ex_year', $value);
+            }
+        );
     }
 
     protected function setupListOperation()
     {
         if (backpack_auth()->check()) {
-            $year = ConsolOborotYear::where('status', false)->first();
-            $this->crud->query = $this->crud->query->where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol);
+            $this->crud->query->where('send_id', backpack_user()->id);
         }
-            
+
 
         $this->crud->addColumn([
             'name' => 'send_name',
@@ -80,7 +92,7 @@ class ConsolidateOborotiCrudController extends CrudController
             'name' => 'rec_name',
             'label' => 'Получатель'
         ]);
-      
+
 
         $this->crud->addColumn([
             'name' => 'rec_inn',
@@ -133,8 +145,8 @@ class ConsolidateOborotiCrudController extends CrudController
     protected function setupShowOperation()
     {
         $this->crud->set('show.setFromDb', false);
-       
-        
+
+
                 $this->crud->addColumn([
                     'name' => 'postup_os',
                     'label' => 'Поступление ОС',
@@ -454,8 +466,8 @@ class ConsolidateOborotiCrudController extends CrudController
                     'wrapper' => [
                         'class' => 'form-group col-lg-3'
                     ]
-                ]);              
-        
+                ]);
+
 
     }
 
@@ -540,8 +552,8 @@ class ConsolidateOborotiCrudController extends CrudController
                                     'class' => 'form-group col-lg-6'
                                 ]
                             ]);
-       
-        
+
+
                 $this->crud->addField([
                     'name' => 'postup_os',
                     'label' => 'Поступление ОС',
@@ -861,8 +873,8 @@ class ConsolidateOborotiCrudController extends CrudController
                     'wrapper' => [
                         'class' => 'form-group col-lg-3'
                     ]
-                ]);              
-        
+                ]);
+
 
     }
 

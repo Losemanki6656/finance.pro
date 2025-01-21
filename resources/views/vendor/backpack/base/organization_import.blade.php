@@ -14,7 +14,6 @@
     <div class="container-fluid">
         <h2>
             <span class="text-capitalize"> {{ __('Import file from excel') }} </span>
-{{--            <small id="datatable_info_stack"> {{ __('select your excel file') }} </small>--}}
         </h2>
     </div>
 @endsection
@@ -124,7 +123,7 @@
                     $("#loader").fadeOut(300);
                 }, 5000)
             });
-            
+
         })
     </script>
 @endsection
