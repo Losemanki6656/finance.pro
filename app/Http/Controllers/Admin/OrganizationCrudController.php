@@ -172,14 +172,13 @@ class OrganizationCrudController extends CrudController
 
         if ($search_term) {
             $results = Organization::query()
-                ->where('id', '!=', 1)
                 ->where(function ($query) use ($search_term) {
                     $query->where('inn', 'LIKE', '%' . $search_term . '%')
                         ->orWhere('name', 'LIKE', '%' . $search_term . '%');
                 })
                 ->paginate(300);
         } else {
-            $results = Organization::query()->where('id', '!=', 1)->paginate(300);
+            $results = Organization::query()->paginate(300);
         }
 
         return $results;
