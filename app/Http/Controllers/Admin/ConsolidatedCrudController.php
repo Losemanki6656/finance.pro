@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ConsolidatedRequest;
+use App\Models\Consolidated;
 use App\Models\Organization;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -267,20 +268,32 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->addField(
             [
                 'label' => 'Получатель',
-                'type' => 'select2',
+                'type' => 'select2_from_ajax',
                 'name' => 'rec_id',
                 'entity' => 'rec',
-                'model' => User::class,
-                'options' => (function ($query) {
-                    return $query->where('id', '!=', 1)->get();
-                }),
-                'attribute' => 'name',
-                'default' => 1,
+                'attribute' => "name",
+                'data_source' => route('organizations'),
+                'delay' => 500,
+                'placeholder' => "Выберите организацию",
+                'minimum_input_length' => 2,
+                'model' => Consolidated::class,
+                'dependencies' => ['rec'],
+                'method' => 'GET',
+                'include_all_form_fields' => false,
                 'wrapper' => [
                     'class' => 'form-group col-lg-6'
                 ]
             ]
         );
+
+        $this->crud->addField([
+            'name' => 'ex_year',
+            'label' => 'Год',
+            'value' => $year->year_consol,
+            'wrapper' => [
+                'class' => 'form-group col-lg-2'
+            ]
+        ]);
 
         $this->crud->addField(
             [
@@ -438,22 +451,10 @@ class ConsolidatedCrudController extends CrudController
             ]
         ]);
 
-        $this->crud->addField([
-            'name' => 'ex_year',
-            'label' => 'Год',
-            'value' => $year->year_consol,
-            'attributes' => [
-                'readonly' => 'readonly'
-            ],
-            'wrapper' => [
-                'class' => 'form-group col-lg-2'
-            ]
-        ]);
-        // dd($this->crud->getRequest()->request);
-
         $summ = request('ex_06') + request('ex_09') + request('ex_40') + request('ex_41') +
             request('ex_43') + request('ex_46') + request('ex_48') + request('ex_58') +
-            request('ex_60') + request('ex_61') + request('ex_63') + request('ex_66') + request('ex_68') + request('ex_69') + request('ex_78') + request('ex_79') + request('ex_83');
+            request('ex_60') + request('ex_61') + request('ex_63') + request('ex_66') +
+            request('ex_68') + request('ex_69') + request('ex_78') + request('ex_79') + request('ex_83');
 
         $rec = Organization::where('user_id', request('rec_id'))->first();
         $this->crud->getRequest()->request->add(['rec_name' => $rec->name ?? '']);

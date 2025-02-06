@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Management;
+use App\Models\Organization;
 use App\Models\Railway;
 use App\Models\User;
 
@@ -13,6 +14,7 @@ use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+use Illuminate\Http\Request;
 
 class OrganizationCrudController extends CrudController
 {
@@ -161,5 +163,25 @@ class OrganizationCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+
+    public function organizations(Request $request)
+    {
+        $search_term = $request->input('q');
+
+        if ($search_term) {
+            $results = Organization::query()
+                ->where('id', '!=', 1)
+                ->where(function ($query) use ($search_term) {
+                    $query->where('inn', 'LIKE', '%' . $search_term . '%')
+                        ->orWhere('name', 'LIKE', '%' . $search_term . '%');
+                })
+                ->paginate(300);
+        } else {
+            $results = Organization::query()->where('id', '!=', 1)->paginate(300);
+        }
+
+        return $results;
     }
 }

@@ -33,6 +33,7 @@ Route::group([
     Route::get('oborot-import', 'ImportController@getOborotImport')->name('oborot_import');
     Route::post('oborot-import', 'ImportController@oborot_import')->name('oborot_import.post');
 
+    Route::get('organizations', 'OrganizationCrudController@organizations')->name('organizations');
 
     Route::get('tasks', 'ImportController@tasks')->name('tasks');
     Route::get('delete-task/{id}', 'ImportController@delete_task')->name('delete_task');

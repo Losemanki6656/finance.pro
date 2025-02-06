@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class Consolidated extends Model
 {
