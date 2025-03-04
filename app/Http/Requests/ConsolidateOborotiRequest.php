@@ -26,7 +26,8 @@ class ConsolidateOborotiRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'send_id' => ['exists:users,id', 'required'],
+            'rec_id' => ['exists:users,id', 'required']
         ];
     }
 

@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateConsolOborotYearsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('consol_oborot_years', function (Blueprint $table) {
@@ -21,11 +17,7 @@ class CreateConsolOborotYearsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('consol_oborot_years');

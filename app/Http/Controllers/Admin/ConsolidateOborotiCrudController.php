@@ -482,25 +482,26 @@ class ConsolidateOborotiCrudController extends CrudController
         $this->crud->addField(
             [
                 'label' => 'Ползователь',
-                'type' => 'text',
-                'name' => 'send_id',
-                'value' => backpack_user()->name,
-                'attributes' => [
-                    'readonly' => 'readonly',
-                    'disabled' => 'disabled',
-                ],
-                'wrapper' => [
-                    'class' => 'form-group col-lg-6'
-                ]
-            ]);
+                'type'  => 'hidden',
+                'name'  => 'send_id',
+                'value' => backpack_user()->id,
+            ]
+        );
 
         $this->crud->addField(
             [
-                'label' => 'Отправитель',
-                'type' => 'hidden',
-                'name' => 'send_name',
-                'value' => $organization->name,
-            ]);
+                'label'      => 'Отправитель',
+                'type'       => 'text',
+                'name'       => 'send_name',
+                'value'      => $organization->name,
+                'attributes' => [
+                    'readonly' => 'readonly'
+                ],
+                'wrapper'    => [
+                    'class' => 'form-group col-lg-6'
+                ]
+            ]
+        );
 
         $this->crud->addField(
             [
@@ -511,26 +512,24 @@ class ConsolidateOborotiCrudController extends CrudController
             ]
         );
 
-        $this->crud->addField(
-            [
-                'label' => 'Получатель',
-                'type' => 'select2_from_ajax',
-                'name' => 'rec_id',
-                'entity' => 'rec',
-                'attribute' => "name",
-                'data_source' => route('organizations'),
-                'delay' => 500,
-                'placeholder' => "Выберите организацию",
-                'minimum_input_length' => 2,
-                'model' => Consolidated::class,
-                'dependencies' => ['rec'],
-                'method' => 'GET',
-                'include_all_form_fields' => false,
-                'wrapper' => [
-                    'class' => 'form-group col-lg-6'
-                ]
+        $this->crud->addField([
+            'label' => 'Получатель',
+            'type' => 'select2',
+            'name' => 'rec_id',
+            'entity' => 'rec',
+            'model' => User::class,
+            'options' => function ($query) {
+                return $query->where('users.id', '!=', 1)
+                    ->leftJoin('organizations', 'organizations.user_id', '=', 'users.id') // <-- Teskari bog‘lanish
+                    ->selectRaw("users.id, CONCAT(users.name, ' (', COALESCE(organizations.inn, 'N/A'), ')') as name")
+                    ->get();
+            },
+            'attribute' => 'name',
+            'default' => 1,
+            'wrapper' => [
+                'class' => 'form-group col-lg-6'
             ]
-        );
+        ]);
 
         $this->crud->addField([
             'name' => 'ex_year',
