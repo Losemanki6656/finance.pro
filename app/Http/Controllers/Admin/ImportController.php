@@ -29,12 +29,14 @@ class ImportController extends Controller
 
     public function getVgoImport()
     {
-        return view('backpack::vgo_import');
+        $year = ConsolYear::where('status', false)->first()->year_consol;
+        return view('backpack::vgo_import', compact('year'));
     }
 
     public function getOborotImport()
     {
-        return view('backpack::oborot_import');
+        $year = ConsolOborotYear::where('status', false)->first()->year_consol;
+        return view('backpack::oborot_import', compact('year'));
     }
 
     public function tasks()
@@ -102,13 +104,13 @@ class ImportController extends Controller
         }
 
         $fileName = $request->file->getClientOriginalName();
-        $year = ConsolYear::where('status', false)->first();
+        $year = $request->year;
 
-        Consolidated::where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol)->delete();
+        Consolidated::where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
 
         try {
 
-            Excel::Import(new VgoImport(backpack_user()->id, $year->year_consol), $request->file('file'));
+            Excel::Import(new VgoImport(backpack_user()->id, $year), $request->file('file'));
         } catch (\Exception $e) {
 
             Alert::error($e->getMessage())->flash();
@@ -148,13 +150,13 @@ class ImportController extends Controller
         }
 
         $fileName = $request->file->getClientOriginalName();
-        $year = ConsolOborotYear::where('status', false)->first();
+        $year = $request->year;
 
-        ConsolidateOboroti::where('send_id', backpack_user()->id)->where('ex_year', $year->year_consol)->delete();
+        ConsolidateOboroti::where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
 
         try {
 
-            Excel::Import(new OborotImport(backpack_user()->id, $year->year_consol), $request->file('file'));
+            Excel::Import(new OborotImport(backpack_user()->id, $year), $request->file('file'));
         } catch (\Exception $e) {
 
             Alert::error($e->getMessage())->flash();

@@ -5,7 +5,7 @@
         trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
         __('Import') => url(config('backpack.base.route_prefix'), 'import'),
     ];
-    
+
     // if breadcrumbs aren't defined in the CrudController, use the default breadcrumbs
     $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
 @endphp
@@ -14,7 +14,6 @@
     <div class="container-fluid">
         <h2>
             <span class="text-capitalize"> Импорт файл Балансы   </span>
-            {{--            <small id="datatable_info_stack"> {{ __('select your excel file') }} </small> --}}
         </h2>
     </div>
 @endsection
@@ -73,23 +72,32 @@
                 <div class="card-header"><strong>Excel</strong> Form</div>
 
                 <form id="excel-form" class="form-horizontal" action="{{ route('vgo_import.post') }}" method="post"
-                    enctype="multipart/form-data">
+                      enctype="multipart/form-data">
                     <div class="card-body">
                         @csrf
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="file">Файл</label>
                             <div class="col-md-9">
                                 <input class="form-control" id="hf-email" type="file" name="file"
-                                    placeholder="select  file ..." required>
+                                       placeholder="select  file ..." required>
                                 <span class="help-block">Please select your file</span>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="file">{{ __('Год') }}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" name="year"
+                                       value="{{$year ?? now()->format('Y')}}" placeholder="Год ..." required>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="card-footer">
                         <button class="btn btn-danger" type="reset"><i class="la la-ban"></i> Отмена</button>
                         <button class="btn btn-success" type="submit"><i class="la la-check-circle"></i>
-                            Старт </button>
+                            Старт
+                        </button>
                     </div>
                 </form>
 
@@ -101,7 +109,7 @@
 
 @section('after_scripts')
     <script>
-        $(document).ready(function(e) {
+        $(document).ready(function (e) {
 
             let status = '{{ isset($status) ? $status : '' }}';
             let message = '{{ isset($message) ? $message : '' }}';
@@ -122,10 +130,10 @@
                 });
             }
 
-            $('#excel-form').submit(function(e) {
+            $('#excel-form').submit(function (e) {
 
                 $("#loader").fadeIn(300);
-                setTimeout(function() {
+                setTimeout(function () {
                     $("#loader").fadeOut(300);
                 }, 5000)
             });

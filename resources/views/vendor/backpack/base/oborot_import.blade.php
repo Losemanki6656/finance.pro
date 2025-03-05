@@ -5,7 +5,7 @@
         trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
         __('Import') => url(config('backpack.base.route_prefix'), 'import'),
     ];
-    
+
     // if breadcrumbs aren't defined in the CrudController, use the default breadcrumbs
     $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
 @endphp
@@ -14,7 +14,6 @@
     <div class="container-fluid">
         <h2>
             <span class="text-capitalize"> Импорт файл Обороты   </span>
-            {{--            <small id="datatable_info_stack"> {{ __('select your excel file') }} </small> --}}
         </h2>
     </div>
 @endsection
@@ -82,6 +81,13 @@
                                 <input class="form-control" id="hf-email" type="file" name="file"
                                     placeholder="select  file ..." required>
                                 <span class="help-block">Please select your file</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="file">{{ __('Год') }}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" name="year"
+                                       value="{{$year ?? now()->format('Y')}}" placeholder="Год ..." required>
                             </div>
                         </div>
                     </div>
