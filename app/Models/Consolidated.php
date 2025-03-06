@@ -89,7 +89,7 @@ class Consolidated extends Model
             abs((int)$this->ex_83);
     }
 
-    public function resultFormatted(): string
+    public function resultFormatted()
     {
         return number_format($this->result(), 0, ' ', ' ');
     }

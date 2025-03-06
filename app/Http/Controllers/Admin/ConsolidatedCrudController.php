@@ -104,7 +104,7 @@ class ConsolidatedCrudController extends CrudController
 
 
         $this->crud->addColumn([
-            'name'          => 'result',
+            'name'          => 'resultFormat',
             'label'         => 'Итого',
             'type'          => 'model_function',
             'function_name' => 'resultFormatted'
