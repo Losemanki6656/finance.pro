@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
 class Consolidated extends Model
@@ -55,12 +56,12 @@ class Consolidated extends Model
     ];
 
 
-    public function rec()
+    public function rec(): BelongsTo
     {
         return $this->belongsTo(User::class, 'rec_id');
     }
 
-    public function send()
+    public function send(): BelongsTo
     {
         return $this->belongsTo(User::class, 'send_id');
     }
@@ -74,179 +75,113 @@ class Consolidated extends Model
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
 
-    public function getFilePathAttribute($value)
+    public function getFilePathAttribute($value): ?string
     {
         return $value ? Storage::disk('public')->url($value) : null;
     }
 
-    public function result_all()
+    public function result()
     {
-        $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 +
-            (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 +
-            (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_78 + (int)$this->ex_79 + (int)$this->ex_83;
+        return abs((int)$this->ex_06) + abs((int)$this->ex_09) + abs((int)$this->ex_40) + abs((int)$this->ex_41) +
+            abs((int)$this->ex_43) + abs((int)$this->ex_46) + abs((int)$this->ex_48) + abs((int)$this->ex_58) -
+            abs((int)$this->ex_60) - abs((int)$this->ex_61) - abs((int)$this->ex_63) - abs((int)$this->ex_66) -
+            abs((int)$this->ex_68) - abs((int)$this->ex_69) - abs((int)$this->ex_78) - abs((int)$this->ex_79) -
+            abs((int)$this->ex_83);
+    }
 
-        return number_format($summ, 0, ' ', ' ');
+    public function resultFormatted(): string
+    {
+        return number_format($this->result(), 0, ' ', ' ');
     }
 
     public function allResult()
     {
-        $summ = (int)$this->ex_06 + (int)$this->ex_09 + (int)$this->ex_40 + (int)$this->ex_41 +
-            (int)$this->ex_43 + (int)$this->ex_46 + (int)$this->ex_48 + (int)$this->ex_58 +
-            (int)$this->ex_60 + (int)$this->ex_61 + (int)$this->ex_63 + (int)$this->ex_66 + (int)$this->ex_68 + (int)$this->ex_69 + (int)$this->ex_78 + (int)$this->ex_79 + (int)$this->ex_83;
-        return $summ;
+        return $this->result();
     }
 
 
     public function setEx06Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_06'] = 0;
-        } else {
-            $this->attributes['ex_06'] = $value;
-        }
+        $this->attributes['ex_06'] = $value ?? 0;
     }
 
     public function setEx09Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_09'] = 0;
-        } else {
-            $this->attributes['ex_09'] = $value;
-        }
+        $this->attributes['ex_09'] = $value ?? 0;
     }
 
     public function setEx40Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_40'] = 0;
-        } else {
-            $this->attributes['ex_40'] = $value;
-        }
+        $this->attributes['ex_40'] = $value ?? 0;
     }
 
     public function setEx41Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_41'] = 0;
-        } else {
-            $this->attributes['ex_41'] = $value;
-        }
+        $this->attributes['ex_41'] = $value ?? 0;
     }
 
     public function setEx43Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_43'] = 0;
-        } else {
-            $this->attributes['ex_43'] = $value;
-        }
+        $this->attributes['ex_43'] = $value ?? 0;
     }
 
     public function setEx46Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_46'] = 0;
-        } else {
-            $this->attributes['ex_46'] = $value;
-        }
+        $this->attributes['ex_46'] = $value ?? 0;
     }
 
     public function setEx48Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_48'] = 0;
-        } else {
-            $this->attributes['ex_48'] = $value;
-        }
+        $this->attributes['ex_48'] = $value ?? 0;
     }
 
     public function setEx58Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_58'] = 0;
-        } else {
-            $this->attributes['ex_58'] = $value;
-        }
+        $this->attributes['ex_58'] = $value ?? 0;
     }
 
     public function setEx60Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_60'] = 0;
-        } else {
-            $this->attributes['ex_60'] = $value;
-        }
+        $this->attributes['ex_60'] = $value ?? 0;
     }
 
     public function setEx61Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_61'] = 0;
-        } else {
-            $this->attributes['ex_61'] = $value;
-        }
+        $this->attributes['ex_61'] = $value ?? 0;
     }
 
     public function setEx63Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_63'] = 0;
-        } else {
-            $this->attributes['ex_63'] = $value;
-        }
+        $this->attributes['ex_63'] = $value ?? 0;
     }
 
     public function setEx66Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_66'] = 0;
-        } else {
-            $this->attributes['ex_66'] = $value;
-        }
+        $this->attributes['ex_66'] = $value ?? 0;
     }
 
     public function setEx68Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_68'] = 0;
-        } else {
-            $this->attributes['ex_68'] = $value;
-        }
+        $this->attributes['ex_68'] = $value ?? 0;
     }
 
     public function setEx69Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_69'] = 0;
-        } else {
-            $this->attributes['ex_69'] = $value;
-        }
+        $this->attributes['ex_69'] = $value ?? 0;
     }
 
     public function setEx78Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_78'] = 0;
-        } else {
-            $this->attributes['ex_78'] = $value;
-        }
+        $this->attributes['ex_78'] = $value ?? 0;
     }
 
     public function setEx79Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_79'] = 0;
-        } else {
-            $this->attributes['ex_79'] = $value;
-        }
+        $this->attributes['ex_79'] = $value ?? 0;
     }
 
     public function setEx83Attribute($value)
     {
-        if ($value == null) {
-            $this->attributes['ex_83'] = 0;
-        } else {
-            $this->attributes['ex_83'] = $value;
-        }
+        $this->attributes['ex_83'] = $value ?? 0;
     }
 }

@@ -107,7 +107,7 @@ class ConsolidatedCrudController extends CrudController
             'name'          => 'result',
             'label'         => 'Итого',
             'type'          => 'model_function',
-            'function_name' => 'result_all'
+            'function_name' => 'resultFormatted'
         ]);
 
         $this->crud->addColumn([
@@ -449,22 +449,23 @@ class ConsolidatedCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'      => 'file',
-            'label'     => 'АКТ сверка',
-            'type'      => 'upload',
-            'upload'    => true,
-            'disk'      => 'public'
+            'name'   => 'file',
+            'label'  => 'АКТ сверка',
+            'type'   => 'upload',
+            'upload' => true,
+            'disk'   => 'public'
         ]);
 
-        $sum = request('ex_06') + request('ex_09') + request('ex_40') + request('ex_41') +
-            request('ex_43') + request('ex_46') + request('ex_48') + request('ex_58') -
-            request('ex_60') - request('ex_61') - request('ex_63') - request('ex_66') -
-            request('ex_68') - request('ex_69') - request('ex_78') - request('ex_79') - request('ex_83');
+        $sum = abs(request('ex_06')) + abs(request('ex_09')) + abs(request('ex_40')) + abs(request('ex_41')) +
+            abs(request('ex_43')) + abs(request('ex_46')) + abs(request('ex_48')) + abs(request('ex_58')) -
+            abs(request('ex_60')) - abs(request('ex_61')) - abs(request('ex_63')) - abs(request('ex_66')) -
+            abs(request('ex_68')) - abs(request('ex_69')) - abs(request('ex_78')) -
+            abs(request('ex_79')) - abs(request('ex_83'));
 
         $rec = Organization::query()->where('user_id', request('rec_id'))->first();
         $this->crud->getRequest()->request->add(['rec_name' => $rec->name ?? '']);
         $this->crud->getRequest()->request->add(['rec_inn' => $rec->inn ?? '']);
-        $this->crud->getRequest()->request->add(['result' => $sum ?? 0]);
+        $this->crud->getRequest()->request->add(['result' => $sum]);
         $this->crud->setOperationSetting(
             'saveAllInputsExcept',
             ['_token', '_method', 'http_referrer', 'current_tab', 'save_action']
