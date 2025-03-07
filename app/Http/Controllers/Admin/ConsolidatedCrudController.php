@@ -238,7 +238,6 @@ class ConsolidatedCrudController extends CrudController
                 'value' => backpack_user()->id,
             ]
         );
-
         $this->crud->addField(
             [
                 'label'      => 'Отправитель',
@@ -253,7 +252,6 @@ class ConsolidatedCrudController extends CrudController
                 ]
             ]
         );
-
         $this->crud->addField(
             [
                 'label' => 'Отправитель ИНН',
@@ -262,7 +260,6 @@ class ConsolidatedCrudController extends CrudController
                 'value' => $organization->inn
             ]
         );
-
         $this->crud->addField([
             'label'     => 'Получатель',
             'type'      => 'select2',
@@ -281,8 +278,6 @@ class ConsolidatedCrudController extends CrudController
                 'class' => 'form-group col-lg-6'
             ]
         ]);
-
-
         $this->crud->addField([
             'name'    => 'ex_year',
             'label'   => 'Год',
@@ -291,7 +286,6 @@ class ConsolidatedCrudController extends CrudController
                 'class' => 'form-group col-lg-2'
             ]
         ]);
-
         $this->crud->addField(
             [
                 'label' => 'Имя Получателя',
@@ -299,7 +293,6 @@ class ConsolidatedCrudController extends CrudController
                 'name'  => 'rec_name'
             ]
         );
-
         $this->crud->addField(
             [
                 'label' => 'ИНН Получателя',
@@ -307,8 +300,6 @@ class ConsolidatedCrudController extends CrudController
                 'name'  => 'rec_inn'
             ]
         );
-
-
         $this->crud->addField([
             'name'    => 'ex_06',
             'label'   => '06**',
@@ -429,7 +420,6 @@ class ConsolidatedCrudController extends CrudController
                 'class' => 'form-group col-lg-2'
             ]
         ]);
-
         $this->crud->addField([
             'name'    => 'ex_79',
             'label'   => '79**',
@@ -438,7 +428,6 @@ class ConsolidatedCrudController extends CrudController
                 'class' => 'form-group col-lg-2'
             ]
         ]);
-
         $this->crud->addField([
             'name'    => 'ex_83',
             'label'   => '83**',
@@ -447,7 +436,6 @@ class ConsolidatedCrudController extends CrudController
                 'class' => 'form-group col-lg-2'
             ]
         ]);
-
         $this->crud->addField([
             'name'   => 'file',
             'label'  => 'АКТ сверка',

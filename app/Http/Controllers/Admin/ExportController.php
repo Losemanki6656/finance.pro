@@ -46,31 +46,33 @@ class ExportController
 
                 if ($con->count() >= 1) {
                     $con = $con->first();
-                    $x = (int) $con->ex_06 + (int) $con->ex_09 + (int) $con->ex_40 + (int) $con->ex_41 +
-                        (int) $con->ex_43 + (int) $con->ex_46 + (int) $con->ex_48 + (int) $con->ex_58 +
-                        (int) $con->ex_60 + (int) $con->ex_61 + (int) $con->ex_63 + (int) $con->ex_66 + (int) $con->ex_68 + (int) $con->ex_69 + (int) $con->ex_78 + (int) $con->ex_79 + (int) $con->ex_83;
-                } else
+                    $x = (int)$con->ex_06 + (int)$con->ex_09 + (int)$con->ex_40 + (int)$con->ex_41 +
+                        (int)$con->ex_43 + (int)$con->ex_46 + (int)$con->ex_48 + (int)$con->ex_58 +
+                        (int)$con->ex_60 + (int)$con->ex_61 + (int)$con->ex_63 + (int)$con->ex_66 + (int)$con->ex_68 + (int)$con->ex_69 + (int)$con->ex_78 + (int)$con->ex_79 + (int)$con->ex_83;
+                } else {
                     $t = false;
+                }
 
                 if ($conback->count() >= 1) {
                     $conback = $conback->first();
-                    $y = (int) $conback->ex_06 + (int) $conback->ex_09 + (int) $conback->ex_40 + (int) $conback->ex_41 +
-                        (int) $conback->ex_43 + (int) $conback->ex_46 + (int) $conback->ex_48 + (int) $conback->ex_58 +
-                        (int) $conback->ex_60 + (int) $conback->ex_61 + (int) $conback->ex_63 + (int) $conback->ex_66 + (int) $conback->ex_68 + (int) $conback->ex_69 + (int) $conback->ex_78 + (int) $conback->ex_79 + (int) $conback->ex_83;
-                } else
+                    $y = (int)$conback->ex_06 + (int)$conback->ex_09 + (int)$conback->ex_40 + (int)$conback->ex_41 +
+                        (int)$conback->ex_43 + (int)$conback->ex_46 + (int)$conback->ex_48 + (int)$conback->ex_58 +
+                        (int)$conback->ex_60 + (int)$conback->ex_61 + (int)$conback->ex_63 + (int)$conback->ex_66 + (int)$conback->ex_68 + (int)$conback->ex_69 + (int)$conback->ex_78 + (int)$conback->ex_79 + (int)$conback->ex_83;
+                } else {
                     $z = false;
+                }
 
                 if ($t == false && $z == false) {
                     $a[$item->id][$org->id] = '-';
-                } else
+                } else {
                     $a[$item->id][$org->id] = $x + $y;
-
+                }
             }
         }
 
         return view('backpack::shaxmatka', [
             'organizations' => $organizations,
-            'a' => $a
+            'a'             => $a
         ]);
     }
 
@@ -92,41 +94,42 @@ class ExportController
                 if ($con->count() >= 1) {
                     $con = $con->first();
 
-                    $x = (int) $con->postup_os + (int) $con->postup_os_ot_lizing + (int) $con->postup_tms + (int) $con->postup_zatrat + (int) $con->pered_os_v_lizing + (int) $con->pered_os_cher_shet
-                        + (int) $con->poluch_os_cher_shet + (int) $con->pered_tms + (int) $con->poluch_tms + (int) $con->pered_saldo_nalog + (int) $con->pol_saldo_nalog
-                        + (int) $con->pered_prochix + (int) $con->postup_prochix + (int) $con->viruchka_ot_real + (int) $con->doxod_ot_vib_os + (int) $con->doxod_ot_vib_prochix + (int) $con->proch_oper_doxod
-                        + (int) $con->rasxodi_perioda + (int) $con->doxodi_vide_divid + (int) $con->divid_obyav + (int) $con->doxodi_vide_prosent + (int) $con->rasxodi_vide_prosent
-                        + (int) $con->doxodi_ot_finar + (int) $con->rasxodi_vide_prosent_po_finar + (int) $con->doxodi_po_kurs + (int) $con->rasxodi_po_kurs + (int) $con->prochi_daxodi_ot_fin + (int) $con->prochi_rasxodi_ot_fin
-                        + (int) $con->nds_oplate + (int) $con->nds_zashet + (int) $con->aksiz_uplate + (int) $con->poluch_deneg + (int) $con->uplach_deneg + (int) $con->vzaimozashet
-                        + (int) $con->rashet_tret_litsam + (int) $con->prochie;
-
-                } else
+                    $x = (int)$con->postup_os + (int)$con->postup_os_ot_lizing + (int)$con->postup_tms + (int)$con->postup_zatrat + (int)$con->pered_os_v_lizing + (int)$con->pered_os_cher_shet
+                        + (int)$con->poluch_os_cher_shet + (int)$con->pered_tms + (int)$con->poluch_tms + (int)$con->pered_saldo_nalog + (int)$con->pol_saldo_nalog
+                        + (int)$con->pered_prochix + (int)$con->postup_prochix + (int)$con->viruchka_ot_real + (int)$con->doxod_ot_vib_os + (int)$con->doxod_ot_vib_prochix + (int)$con->proch_oper_doxod
+                        + (int)$con->rasxodi_perioda + (int)$con->doxodi_vide_divid + (int)$con->divid_obyav + (int)$con->doxodi_vide_prosent + (int)$con->rasxodi_vide_prosent
+                        + (int)$con->doxodi_ot_finar + (int)$con->rasxodi_vide_prosent_po_finar + (int)$con->doxodi_po_kurs + (int)$con->rasxodi_po_kurs + (int)$con->prochi_daxodi_ot_fin + (int)$con->prochi_rasxodi_ot_fin
+                        + (int)$con->nds_oplate + (int)$con->nds_zashet + (int)$con->aksiz_uplate + (int)$con->poluch_deneg + (int)$con->uplach_deneg + (int)$con->vzaimozashet
+                        + (int)$con->rashet_tret_litsam + (int)$con->prochie;
+                } else {
                     $t = false;
+                }
 
                 if ($conback->count() >= 1) {
                     $conback = $conback->first();
 
-                    $y = (int) $conback->postup_os + (int) $conback->postup_os_ot_lizing + (int) $conback->postup_tms + (int) $conback->postup_zatrat + (int) $conback->pered_os_v_lizing + (int) $conback->pered_os_cher_shet
-                        + (int) $conback->poluch_os_cher_shet + (int) $conback->pered_tms + (int) $conback->poluch_tms + (int) $conback->pered_saldo_nalog + (int) $conback->pol_saldo_nalog
-                        + (int) $conback->pered_prochix + (int) $conback->postup_prochix + (int) $conback->viruchka_ot_real + (int) $conback->doxod_ot_vib_os + (int) $conback->doxod_ot_vib_prochix + (int) $conback->proch_oper_doxod
-                        + (int) $conback->rasxodi_perioda + (int) $conback->doxodi_vide_divid + (int) $conback->divid_obyav + (int) $conback->doxodi_vide_prosent + (int) $conback->rasxodi_vide_prosent
-                        + (int) $conback->doxodi_ot_finar + (int) $conback->rasxodi_vide_prosent_po_finar + (int) $conback->doxodi_po_kurs + (int) $conback->rasxodi_po_kurs + (int) $conback->prochi_daxodi_ot_fin + (int) $conback->prochi_rasxodi_ot_fin
-                        + (int) $conback->nds_oplate + (int) $conback->nds_zashet + (int) $conback->aksiz_uplate + (int) $conback->poluch_deneg + (int) $conback->uplach_deneg + (int) $conback->vzaimozashet
-                        + (int) $conback->rashet_tret_litsam + (int) $conback->prochie;
-                } else
+                    $y = (int)$conback->postup_os + (int)$conback->postup_os_ot_lizing + (int)$conback->postup_tms + (int)$conback->postup_zatrat + (int)$conback->pered_os_v_lizing + (int)$conback->pered_os_cher_shet
+                        + (int)$conback->poluch_os_cher_shet + (int)$conback->pered_tms + (int)$conback->poluch_tms + (int)$conback->pered_saldo_nalog + (int)$conback->pol_saldo_nalog
+                        + (int)$conback->pered_prochix + (int)$conback->postup_prochix + (int)$conback->viruchka_ot_real + (int)$conback->doxod_ot_vib_os + (int)$conback->doxod_ot_vib_prochix + (int)$conback->proch_oper_doxod
+                        + (int)$conback->rasxodi_perioda + (int)$conback->doxodi_vide_divid + (int)$conback->divid_obyav + (int)$conback->doxodi_vide_prosent + (int)$conback->rasxodi_vide_prosent
+                        + (int)$conback->doxodi_ot_finar + (int)$conback->rasxodi_vide_prosent_po_finar + (int)$conback->doxodi_po_kurs + (int)$conback->rasxodi_po_kurs + (int)$conback->prochi_daxodi_ot_fin + (int)$conback->prochi_rasxodi_ot_fin
+                        + (int)$conback->nds_oplate + (int)$conback->nds_zashet + (int)$conback->aksiz_uplate + (int)$conback->poluch_deneg + (int)$conback->uplach_deneg + (int)$conback->vzaimozashet
+                        + (int)$conback->rashet_tret_litsam + (int)$conback->prochie;
+                } else {
                     $z = false;
+                }
 
                 if ($t == true && $z == true) {
                     $a[$item->id][$org->id] = '-';
-                } else
+                } else {
                     $a[$item->id][$org->id] = $x + $y;
-
+                }
             }
         }
 
         return view('backpack::shaxmatka', [
             'organizations' => $organizations,
-            'a' => $a
+            'a'             => $a
         ]);
     }
 
@@ -138,10 +141,9 @@ class ExportController
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
-                $org = Organization::query()->where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
+                $org = Organization::query()->where('inn', $item->rec_inn)->first();
 
                 if ($org && $org->user_id) {
-
                     $item->rec_id = $org->user_id;
                     $item->save();
 
@@ -169,11 +171,9 @@ class ExportController
             if (!$item->rec_id) {
                 $org = Organization::query()
                     ->where('inn', $item->rec_inn)
-                    ->where('name', $item->rec_name)
                     ->first();
 
                 if ($org && $org->user_id) {
-
                     $item->rec_id = $org->user_id;
                     $item->save();
 
@@ -211,48 +211,58 @@ class ExportController
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
-                $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
+                $org = Organization::where('inn', $item->rec_inn)->first();
                 if ($org) {
-
                     if ($org->user_id) {
                         $item->rec_id = $org->user_id;
                         $item->save();
 
-                        $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
+                        $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where(
+                            'rec_id',
+                            $item->rec_id
+                        )->first();
                         if ($saldo) {
                             $sal = $saldo->allResult();
-                        }
-                        else {
+                        } else {
                             $sal = 0;
                         }
 
-                        if ((int) $sal == (int) $item->saldo_start) {
-                            $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
+                        if ((int)$sal == (int)$item->saldo_start) {
+                            $rec_con = ConsolidateOboroti::where('ex_year', $year)->where(
+                                'send_id',
+                                $item->rec_id
+                            )->where('rec_id', backpack_user()->id)->first();
 
                             $this->extracted($rec_con, $item);
-
-                        } else
+                        } else {
                             $item->status = 6;
-                    } else
+                        }
+                    } else {
                         $item->status = 2;
-
-                } else
+                    }
+                } else {
                     $item->status = 2;
+                }
             } else {
-                $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
-                if ($saldo)
+                $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where(
+                    'rec_id',
+                    $item->rec_id
+                )->first();
+                if ($saldo) {
                     $sal = $saldo->allResult();
-                else
+                } else {
                     $sal = 0;
+                }
 
-                if ((int) $sal == (int) $item->saldo_start) {
-
-                    $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where('rec_id', backpack_user()->id)->first();
+                if ((int)$sal == (int)$item->saldo_start) {
+                    $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where(
+                        'rec_id',
+                        backpack_user()->id
+                    )->first();
                     $this->extracted($rec_con, $item);
-
-                } else
+                } else {
                     $item->status = 6;
-
+                }
             }
 
             $item->save();
@@ -270,25 +280,31 @@ class ExportController
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
-                $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
+                $org = Organization::where('inn', $item->rec_inn)->first();
                 if ($org) {
-
                     if ($org->user_id) {
                         $item->rec_id = $org->user_id;
 
-                        $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
-                        if ($saldo)
+                        $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where(
+                            'rec_id',
+                            $item->rec_id
+                        )->first();
+                        if ($saldo) {
                             $sal = $saldo->allResult();
-                        else
+                        } else {
                             $sal = 0;
+                        }
 
-                        if ((int) $sal == (int) $item->saldo_start) {
-                            $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where('rec_id', $item->send_id)->first();
+                        if ((int)$sal == (int)$item->saldo_start) {
+                            $rec_con = ConsolidateOboroti::where('ex_year', $year)->where(
+                                'send_id',
+                                $item->rec_id
+                            )->where('rec_id', $item->send_id)->first();
 
                             if ($rec_con) {
-                                if ($item->allResult() == (-1) * $rec_con->allResult())
+                                if ($item->allResult() == (-1) * $rec_con->allResult()) {
                                     $item->status = 3;
-                                else {
+                                } else {
                                     $item->status = 4;
                                     $item->result_a = $item->allResult();
                                     $item->result_b = $rec_con->allResult();
@@ -298,30 +314,36 @@ class ExportController
                                 $item->result_a = $item->allResult();
                                 $item->result_b = null;
                             }
-
-                        } else
+                        } else {
                             $item->status = 6;
-                    } else
+                        }
+                    } else {
                         $item->status = 2;
-
-                } else
+                    }
+                } else {
                     $item->status = 2;
+                }
             } else {
-                $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where('rec_id', $item->rec_id)->first();
-                if ($saldo)
+                $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where(
+                    'rec_id',
+                    $item->rec_id
+                )->first();
+                if ($saldo) {
                     $sal = $saldo->allResult();
-                else
+                } else {
                     $sal = 0;
+                }
 
-                if ((int) $sal == (int) $item->saldo_start) {
-
-                    $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where('rec_id', $item->send_id)->first();
+                if ((int)$sal == (int)$item->saldo_start) {
+                    $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where(
+                        'rec_id',
+                        $item->send_id
+                    )->first();
 
                     $this->extracted($rec_con, $item);
-
-                } else
+                } else {
                     $item->status = 6;
-
+                }
             }
 
             $item->save();
@@ -377,9 +399,9 @@ class ExportController
     public function extracted($rec_con, $item): void
     {
         if ($rec_con) {
-            if ($item->allResult() == (-1) * $rec_con->allResult())
+            if ($item->allResult() == (-1) * $rec_con->allResult()) {
                 $item->status = 3;
-            else {
+            } else {
                 $item->status = 4;
                 $item->result_a = $item->allResult();
                 $item->result_b = $rec_con->allResult();

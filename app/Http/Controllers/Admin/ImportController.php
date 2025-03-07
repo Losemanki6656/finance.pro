@@ -148,11 +148,11 @@ class ImportController extends Controller
                 'message' => $error
             ]);
         }
-
-        $fileName = $request->file->getClientOriginalName();
         $year = $request->year;
 
-        ConsolidateOboroti::where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
+        ConsolidateOboroti::query()
+            ->where('send_id', backpack_user()->id)
+            ->where('ex_year', $year)->delete();
 
         try {
 
