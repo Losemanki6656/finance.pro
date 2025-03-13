@@ -29,7 +29,7 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->setModel('App\Models\Consolidated');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/consolidated');
         $this->crud->setEntityNameStrings('баланс', 'Балансы');
-         $this->crud->enableDetailsRow();
+        $this->crud->enableDetailsRow();
         // $this->crud->enableExportButtons();
 
         $this->crud->addFilter(
@@ -88,9 +88,7 @@ class ConsolidatedCrudController extends CrudController
 
         $this->crud->addColumn([
             'name'  => 'rec_name',
-            'label' => 'Получатель',
-            'data-bs-toggle' => 'tooltip',
-            'title' => 'your tooltip text'
+            'label' => 'Получатель'
         ]);
 
 
@@ -122,8 +120,11 @@ class ConsolidatedCrudController extends CrudController
 
     public function showDetailsRow($id)
     {
-        return Consolidated::query()->find($id)->rec_name;
+        $item = Consolidated::query()->find($id);
+        return '<span style="font-weight: bold">Отправитель - </span>' . $item->send_name . '<br>' .
+            '<span style="font-weight: bold">Получатель - </span>' . $item->rec_name;
     }
+
     protected function setupShowOperation()
     {
         $this->crud->set('show.setFromDb', false);
