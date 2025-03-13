@@ -102,7 +102,9 @@
                             </div>
 
                             <div> Выбирайте год и нажмите Скачать</div>
-                            <a type="button" href="{{ route('all_update_balance') }}" class="btn btn-sm btn-danger"><i
+                            <a type="button"
+                               href="{{ route('all_update_balance', ['year_consolidate' => request('year_consolidate')]) }}"
+                               class="btn btn-sm btn-danger"><i
                                     class="la la-clone"></i>
                                 Сформировать</a>
                             <button type="submit" class="btn btn-sm btn-success"><i class="la la-download"></i>
@@ -181,7 +183,9 @@
 
                             <div> Выбирайте год и нажмите Скачать</div>
 
-                            <a type="button" href="{{ route('all_update_oboroti') }}" class="btn btn-sm btn-danger"><i
+                            <a type="button"
+                               href="{{ route('all_update_oboroti', ['year_rev' => request('year_rev')]) }}"
+                               class="btn btn-sm btn-danger"><i
                                     class="la la-clone"></i>
                                 Сформировать</a>
                             <button type="submit" class="btn btn-sm btn-success"><i class="la la-download"></i>

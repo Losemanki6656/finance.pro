@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class ConsolYear extends Model
 {
@@ -22,6 +23,16 @@ class ConsolYear extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(static function () {
+            ConsolYear::query()->update(['status' => true]);
+        });
+
+    }
 
     /*
     |--------------------------------------------------------------------------

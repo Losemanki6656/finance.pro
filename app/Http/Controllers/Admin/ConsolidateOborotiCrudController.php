@@ -477,7 +477,6 @@ class ConsolidateOborotiCrudController extends CrudController
         $this->crud->setValidation(ConsolidateOborotiRequest::class);
 
         $organization = Organization::query()->where('user_id', backpack_user()->id)->first();
-        $year = ConsolOborotYear::query()->where('status', false)->first();
 
         $this->crud->addField(
             [
@@ -534,7 +533,7 @@ class ConsolidateOborotiCrudController extends CrudController
         $this->crud->addField([
             'name' => 'ex_year',
             'label' => 'Год',
-            'value' =>  $year->year_consol ?? null,
+            'value' =>  now()->year,
             'wrapper' => [
                 'class' => 'form-group col-lg-3'
             ]

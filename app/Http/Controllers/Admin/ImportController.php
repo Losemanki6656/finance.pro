@@ -29,13 +29,13 @@ class ImportController extends Controller
 
     public function getVgoImport()
     {
-        $year = ConsolYear::where('status', false)->first()->year_consol;
+        $year = now()->year;
         return view('backpack::vgo_import', compact('year'));
     }
 
     public function getOborotImport()
     {
-        $year = ConsolOborotYear::where('status', false)->first()->year_consol;
+        $year = now()->year;
         return view('backpack::oborot_import', compact('year'));
     }
 

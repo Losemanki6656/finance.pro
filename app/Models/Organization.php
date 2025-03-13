@@ -43,10 +43,8 @@ class Organization extends Model
 
     public function send_orgs()
     {
-
-        $year = ConsolYear::where('status', false)->first()->year_consol;
-
-        return $this->hasMany(Consolidated::class, 'send_id', 'user_id')->where('ex_year', $year)->whereNotNull('rec_id');
+        return $this->hasMany(Consolidated::class, 'send_id', 'user_id')
+            ->where('ex_year', request('year', now()->year))->whereNotNull('rec_id');
     }
 
     public function send_oborot_orgs()
@@ -63,13 +61,13 @@ class Organization extends Model
     public function send_organizations(): HasMany
     {
         return $this->hasMany(Consolidated::class, 'send_id', 'user_id')
-            ->where('ex_year', request('year_consolidate', ConsolYear::query()->where('status', false)->first()?->year_consol));
+            ->where('ex_year', request('year_consolidate', now()->year));
     }
 
     public function send_rev_organizations(): HasMany
     {
         return $this->hasMany(ConsolidateOboroti::class, 'send_id', 'user_id')
-            ->where('ex_year', request('year_rev', ConsolOborotYear::query()->where('status', false)->first()->year_consol));
+            ->where('ex_year', request('year_rev', now()->year));
     }
 
     public function rec_orgs()

@@ -12,14 +12,14 @@
 
 <li class="nav-title"> Админ</li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-chart-pie nav-icon"></i> Статистика</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consolyear') }}'><i class='nav-icon la la-calendar-check'></i> Год Баланс ВГО</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consoloborotyear') }}'><i class='nav-icon la la-calendar-check'></i> Год Оборот ВГО</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('') }}'><i class='nav-icon la la-archive'></i> Архив</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consolyear') }}'><i class='nav-icon la la-calendar-check'></i> Год Баланс ВГО</a></li>--}}
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('consoloborotyear') }}'><i class='nav-icon la la-calendar-check'></i> Год Оборот ВГО</a></li>--}}
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('') }}'><i class='nav-icon la la-archive'></i> Архив</a></li>--}}
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('organization') }}'><i class='nav-icon la la-sitemap'></i> Организацие</a></li>
 
 <li class="nav-title">Супер - Админ</li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('railway') }}'><i class='nav-icon la la-sitemap'></i> Предприятие</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('management') }}'><i class='nav-icon la la-sitemap'></i> АЖ</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('railway') }}'><i class='nav-icon la la-sitemap'></i> Предприятие</a></li>--}}
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('management') }}'><i class='nav-icon la la-sitemap'></i> АЖ</a></li>--}}
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Authentication</a>
     <ul class="nav-dropdown-items">

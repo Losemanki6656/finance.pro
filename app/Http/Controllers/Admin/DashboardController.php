@@ -12,8 +12,8 @@ class DashboardController
     public function dashboard()
     {
 
-        $year_rev = request('year_rev', ConsolOborotYear::query()->where('status', false)->first()?->year_consol);
-        $year_balance = request('year_consolidate', ConsolYear::query()->where('status', false)->first()?->year_consol);
+        $year_rev = request('year_rev', now()->year);
+        $year_balance = request('year_consolidate', now()->year);
 
         $organizations = Organization::query()
             ->has('send_organizations', '=', 0)->count();

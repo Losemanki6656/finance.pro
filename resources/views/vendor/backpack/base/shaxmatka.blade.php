@@ -5,49 +5,49 @@
     <table class="custom-table">
 
         <thead class="fixed-header">
-            <tr>
+        <tr>
+            <th
+                style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
+
+            </th>
+            <th
+                style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
+
+            </th>
+            @foreach ($organizations as $org)
                 <th
                     style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
-                    
-                </th>
-                <th
-                    style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
-                    
-                </th>
-                @foreach ($organizations as $org)
-                    <th
-                        style="background-color: #1490e2;align-items: center;text-align: center;font-weight: bold; min-width: 200px;">
-                        {{ $org->name }}</th>
-                @endforeach
-            </tr>
+                    {{ $org->name }}</th>
+            @endforeach
+        </tr>
         </thead>
         <tbody class="custom-table-body">
-            @foreach ($organizations as $item)
-                <tr onclick="selectRow({{ $item->id }})" id="{{ $item->id }}">
-                    <td class="custom-table-body-item-first "
-                        style="background-color: #1490e2; align-items: center; text-align: center;font-weight: bold;">
-                        {{ $item->name }}</td>
-                    <td style="background-color: #1490e2; align-items: center; text-align: center;font-weight: bold;"
-                        class="custom-table-body-item-second">
-                        {{ $item->inn }}</td>
-                    @foreach ($a[$item->id] as $key => $value)
-                        <td
-                            @if ($value && $value != '-') style="background-color: yellow; align-items: center; text-align: center;font-weight: bold;" 
+        @foreach ($organizations as $item)
+            <tr onclick="selectRow({{ $item->id }})" id="{{ $item->id }}">
+                <td class="custom-table-body-item-first "
+                    style="background-color: #1490e2; align-items: center; text-align: center;font-weight: bold;">
+                    {{ $item->name }}</td>
+                <td style="background-color: #1490e2; align-items: center; text-align: center;font-weight: bold;"
+                    class="custom-table-body-item-second">
+                    {{ $item->inn }}</td>
+                @foreach ($a[$item->id] as $key => $value)
+                    <td
+                        @if ($value && $value != '-') style="background-color: yellow; align-items: center; text-align: center;font-weight: bold;"
                         @elseif($value == '0')
-                            style="background-color: limegreen; align-items: center; text-align: center;font-weight: bold;" 
+                            style="background-color: limegreen; align-items: center; text-align: center;font-weight: bold;"
                         @else
                             style="align-items: center; text-align: center;font-weight: bold;" @endif>
-                            {{ $value }}
-                        </td>
-                    @endforeach
-                </tr>
-            @endforeach
+                        {{ $value }}
+                    </td>
+                @endforeach
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
 
 <script>
-    setTimeout(function() {
+    setTimeout(function () {
         const selectElement = document.getElementById('loader_content');
         selectElement.style.display = "none";
         const tableelement = document.getElementById('content_table');

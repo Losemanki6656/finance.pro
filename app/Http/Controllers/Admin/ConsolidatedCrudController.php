@@ -228,7 +228,6 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->setValidation(ConsolidatedRequest::class);
 
         $organization = Organization::query()->where('user_id', backpack_user()->id)->first();
-        $year = ConsolYear::query()->where('status', false)->first();
 
         $this->crud->addField(
             [
@@ -281,7 +280,7 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->addField([
             'name'    => 'ex_year',
             'label'   => 'Год',
-            'value'   => $year->year_consol,
+            'value'   => now()->year,
             'wrapper' => [
                 'class' => 'form-group col-lg-2'
             ]

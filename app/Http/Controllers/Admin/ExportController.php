@@ -133,9 +133,9 @@ class ExportController
         ]);
     }
 
-    public function update_balance()
+    public function update_balance(Request $request)
     {
-        $year = ConsolYear::query()->where('status', false)->first()->year_consol;
+        $year = $request->year ?? date('Y');
 
         $cons = Consolidated::query()->where('ex_year', $year)->where('send_id', backpack_user()->id)->get();
 
@@ -174,9 +174,9 @@ class ExportController
         return back();
     }
 
-    public function all_update_balance()
+    public function all_update_balance(Request $request)
     {
-        $year = ConsolYear::query()->where('status', false)->first()->year_consol;
+        $year = $request->year_consolidate ?? date('Y');
         $cons = Consolidated::query()->where('ex_year', $year)->get();
 
         foreach ($cons as $item) {
@@ -215,10 +215,11 @@ class ExportController
         return back();
     }
 
-    public function update_oboroti()
+    public function update_oboroti(Request $request)
     {
-        $year_balance = ConsolYear::query()->where('status', false)->first()->year_consol;
-        $year = ConsolOborotYear::query()->where('status', false)->first()->year_consol;
+        $year = $request->year ?? date('Y');
+        $year_balance = (int)$year - 1;
+
         $cons = ConsolidateOboroti::query()
             ->where('ex_year', $year)
             ->where('send_id', backpack_user()->id)
@@ -285,11 +286,12 @@ class ExportController
         return back();
     }
 
-    public function all_update_oboroti()
+    public function all_update_oboroti(Request $request)
     {
-        $year_balance = ConsolYear::where('status', false)->first()->year_consol;
-        $year = ConsolOborotYear::where('status', false)->first()->year_consol;
-        $cons = ConsolidateOboroti::where('ex_year', $year)->get();
+        $year = $request->year_rev ?? date('Y');
+        $year_balance = (int)$year - 1;
+
+        $cons = ConsolidateOboroti::query()->where('ex_year', $year)->get();
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
@@ -366,9 +368,6 @@ class ExportController
         return back();
     }
 
-    public function control()
-    {
-    }
 
     public function control_org()
     {
