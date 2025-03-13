@@ -29,7 +29,7 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->setModel('App\Models\Consolidated');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/consolidated');
         $this->crud->setEntityNameStrings('баланс', 'Балансы');
-        // $this->crud->enableDetailsRow();
+         $this->crud->enableDetailsRow();
         // $this->crud->enableExportButtons();
 
         $this->crud->addFilter(
@@ -88,7 +88,9 @@ class ConsolidatedCrudController extends CrudController
 
         $this->crud->addColumn([
             'name'  => 'rec_name',
-            'label' => 'Получатель'
+            'label' => 'Получатель',
+            'data-bs-toggle' => 'tooltip',
+            'title' => 'your tooltip text'
         ]);
 
 
@@ -118,6 +120,10 @@ class ConsolidatedCrudController extends CrudController
         ]);
     }
 
+    public function showDetailsRow($id)
+    {
+        return Consolidated::query()->find($id)->rec_name;
+    }
     protected function setupShowOperation()
     {
         $this->crud->set('show.setFromDb', false);
@@ -267,7 +273,7 @@ class ConsolidatedCrudController extends CrudController
             'model'     => User::class,
             'options'   => function ($query) {
                 return $query->where('users.id', '!=', 1)
-                    ->leftJoin('organizations', 'organizations.user_id', '=', 'users.id') // <-- Teskari bog‘lanish
+                    ->leftJoin('organizations', 'organizations.user_id', '=', 'users.id')
                     ->selectRaw("users.id, CONCAT(users.name, ' (', COALESCE(organizations.inn, 'N/A'), ')') as name")
                     ->get();
             },
@@ -280,7 +286,6 @@ class ConsolidatedCrudController extends CrudController
         $this->crud->addField([
             'name'    => 'ex_year',
             'label'   => 'Год',
-            'value'   => now()->year,
             'wrapper' => [
                 'class' => 'form-group col-lg-2'
             ]

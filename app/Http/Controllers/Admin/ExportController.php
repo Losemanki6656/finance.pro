@@ -387,11 +387,15 @@ class ExportController
         if ($rec_con) {
             if ($item->allResult() === (-1) * $rec_con->allResult()) {
                 $item->status = 3;
+                $rec_con->status = 3;
             } else {
                 $item->status = 4;
                 $item->result_a = $item->allResult();
                 $item->result_b = $rec_con->allResult();
+                $rec_con->result_a = $rec_con->allResult();
+                $rec_con->result_b = $item->allResult();
             }
+            $rec_con->save();
         } else {
             $item->status = 5;
             $item->result_a = $item->allResult();

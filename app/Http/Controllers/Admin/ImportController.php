@@ -6,8 +6,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Task;
 use App\Models\Consolidated;
 use App\Models\ConsolidateOboroti;
-use App\Models\ConsolYear;
-use App\Models\ConsolOborotYear;
 
 use App\Http\Controllers\Controller;
 use App\Imports\OrganizationImport;
@@ -106,7 +104,7 @@ class ImportController extends Controller
         $fileName = $request->file->getClientOriginalName();
         $year = $request->year;
 
-        Consolidated::where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
+        Consolidated::query()->where('send_id', backpack_user()->id)->where('ex_year', $year)->delete();
 
         try {
 

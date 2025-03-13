@@ -50,7 +50,8 @@ class VgoImport implements ToCollection
             if ($item[1] != '' && $itog != 0) {
                 $org = Organization::query()
                     ->where('inn', $item[4])
-                    ->where('name', $item[3])->first();
+                    ->where('name', $item[3])
+                    ->first();
 
                 $con = new Consolidated();
                 $con->send_id = $this->user_id;
