@@ -91,7 +91,7 @@
                                 <div><span class="text-warning" style="font-size: 17pt">{{ $falseCount }} - </span>
                                     <span>пользователи ввели неправильные информации.</span>
                                     <span>
-                                        <a href="{{ route('error_info_users') }}"
+                                        <a href="{{ route('error_info_users', ['year_consolidate' => request('year_consolidate')]) }}"
                                            class="btn btn-outline-warning btn-sm"> <i
                                                 class="la la-eye"></i> Просмотр </a>
                                     </span>

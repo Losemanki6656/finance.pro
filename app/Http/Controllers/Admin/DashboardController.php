@@ -78,6 +78,7 @@ class DashboardController
     {
         $users = DB::table('consolidated as con1')
             ->whereNotNull('con1.rec_id')
+            ->where('ex_year', request('year_consolidate', now()->year))
             ->whereIn('con1.status', [4, 5])->get();
 
         return view('backpack::error_info_users', [
@@ -143,6 +144,7 @@ class DashboardController
             // ->where('con3.result_a','!=', 0)
             // ->whereNotNull('con3.result_b')
             ->whereNotNull('con3.rec_id')
+            ->where('ex_year', request('year_rev', now()->year))
             ->whereIn('con3.status', [4, 5])->get();
 
 

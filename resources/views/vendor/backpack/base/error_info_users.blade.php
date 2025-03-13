@@ -33,6 +33,7 @@
                 <th>#</th>
                 <th>1-Организация</th>
                 <th>2-Организация</th>
+                <th>Год</th>
                 <th>1-итог</th>
                 <th>2-итог</th>
                 <th class="text-center">Ошибка</th>
@@ -44,6 +45,7 @@
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->send_name }}</td>
                     <td>{{ $item->rec_name }}</td>
+                    <td>{{ $item->ex_year }}</td>
                     <td style="font-weight: bold">{{ number_format($item->result_a, '0',' ', ' ') }}</td>
                     <td style="font-weight: bold">
                         @if (!$item->result_b)
@@ -63,6 +65,7 @@
                 <th>#</th>
                 <th>1-Организация</th>
                 <th>2-Организация</th>
+                <th>Год</th>
                 <th>1-итог</th>
                 <th>2-итог</th>
                 <th>Ошибка</th>
