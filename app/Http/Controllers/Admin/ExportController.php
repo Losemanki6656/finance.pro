@@ -141,18 +141,30 @@ class ExportController
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
-                $org = Organization::query()->where('inn', $item->rec_inn)->first();
+                $org = Organization::query()->where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
 
                 if ($org && $org->user_id) {
                     $item->rec_id = $org->user_id;
                     $item->save();
 
-                    $this->getRec_con($year, $item);
+                    $rec_con = Consolidated::query()
+                        ->where('ex_year', $year)
+                        ->where('send_id', $item->rec_id)
+                        ->where('rec_id', backpack_user()->id)
+                        ->first();
+
+                    $this->extracted($rec_con, $item);
                 } else {
                     $item->status = 2;
                 }
             } else {
-                $this->getRec_con($year, $item);
+                $rec_con = Consolidated::query()
+                    ->where('ex_year', $year)
+                    ->where('send_id', $item->rec_id)
+                    ->where('rec_id', backpack_user()->id)
+                    ->first();
+
+                $this->extracted($rec_con, $item);
             }
 
             $item->save();
@@ -171,6 +183,7 @@ class ExportController
             if (!$item->rec_id) {
                 $org = Organization::query()
                     ->where('inn', $item->rec_inn)
+                    ->where('name', $item->rec_name)
                     ->first();
 
                 if ($org && $org->user_id) {
@@ -204,61 +217,61 @@ class ExportController
 
     public function update_oboroti()
     {
-        $year_balance = ConsolYear::where('status', false)->first()->year_consol;
-        $year = ConsolOborotYear::where('status', false)->first()->year_consol;
-
-        $cons = ConsolidateOboroti::where('ex_year', $year)->where('send_id', backpack_user()->id)->get();
+        $year_balance = ConsolYear::query()->where('status', false)->first()->year_consol;
+        $year = ConsolOborotYear::query()->where('status', false)->first()->year_consol;
+        $cons = ConsolidateOboroti::query()
+            ->where('ex_year', $year)
+            ->where('send_id', backpack_user()->id)
+            ->get();
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
-                $org = Organization::where('inn', $item->rec_inn)->first();
-                if ($org) {
-                    if ($org->user_id) {
-                        $item->rec_id = $org->user_id;
-                        $item->save();
+                $org = Organization::query()->where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
+                if ($org && $org->user_id) {
+                    $item->rec_id = $org->user_id;
+                    $item->save();
 
-                        $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where(
-                            'rec_id',
-                            $item->rec_id
-                        )->first();
-                        if ($saldo) {
-                            $sal = $saldo->allResult();
-                        } else {
-                            $sal = 0;
-                        }
+                    $result = Consolidated::query()
+                        ->where('ex_year', $year_balance)
+                        ->where('send_id', $item->send_id)
+                        ->where('rec_id', $item->rec_id)->first();
 
-                        if ((int)$sal == (int)$item->saldo_start) {
-                            $rec_con = ConsolidateOboroti::where('ex_year', $year)->where(
-                                'send_id',
-                                $item->rec_id
-                            )->where('rec_id', backpack_user()->id)->first();
-
-                            $this->extracted($rec_con, $item);
-                        } else {
-                            $item->status = 6;
-                        }
+                    if ($result) {
+                        $sal = $result->allResult();
                     } else {
-                        $item->status = 2;
+                        $sal = 0;
+                    }
+
+                    if ($sal === (int)$item->saldo_start) {
+                        $rec_con = ConsolidateOboroti::query()
+                            ->where('ex_year', $year)
+                            ->where('send_id', $item->rec_id)
+                            ->where('rec_id', backpack_user()->id)
+                            ->first();
+
+                        $this->extracted($rec_con, $item);
+                    } else {
+                        $item->status = 6;
                     }
                 } else {
                     $item->status = 2;
                 }
             } else {
-                $saldo = Consolidated::where('ex_year', $year_balance)->where('send_id', $item->send_id)->where(
-                    'rec_id',
-                    $item->rec_id
-                )->first();
-                if ($saldo) {
-                    $sal = $saldo->allResult();
+                $result = Consolidated::query()
+                    ->where('ex_year', $year_balance)
+                    ->where('send_id', $item->send_id)
+                    ->where('rec_id', $item->rec_id)->first();
+                if ($result) {
+                    $sal = $result->allResult();
                 } else {
                     $sal = 0;
                 }
 
-                if ((int)$sal == (int)$item->saldo_start) {
-                    $rec_con = ConsolidateOboroti::where('ex_year', $year)->where('send_id', $item->rec_id)->where(
-                        'rec_id',
-                        backpack_user()->id
-                    )->first();
+                if ($sal === (int)$item->saldo_start) {
+                    $rec_con = ConsolidateOboroti::query()
+                        ->where('ex_year', $year)
+                        ->where('send_id', $item->rec_id)
+                        ->where('rec_id', backpack_user()->id)->first();
                     $this->extracted($rec_con, $item);
                 } else {
                     $item->status = 6;
@@ -280,7 +293,7 @@ class ExportController
 
         foreach ($cons as $item) {
             if (!$item->rec_id) {
-                $org = Organization::where('inn', $item->rec_inn)->first();
+                $org = Organization::where('inn', $item->rec_inn)->where('name', $item->rec_name)->first();
                 if ($org) {
                     if ($org->user_id) {
                         $item->rec_id = $org->user_id;
@@ -355,21 +368,6 @@ class ExportController
 
     public function control()
     {
-        //    $organizations = Organization::get();
-
-        //    foreach($organizations as $item)
-        //    {
-        //         $user = new User();
-        //         $user->name = $item->name;
-        //         $user->email = 'user'.$item->id.'@gmail.com';
-        //         $user->password = bcrypt('123');
-        //         $user->save();
-
-        //         $item->user_id = $user->id;
-        //         $item->save();
-        //    }
-
-        //     return back();
     }
 
     public function control_org()
@@ -385,21 +383,10 @@ class ExportController
     }
 
 
-    public function getRec_con($year, $item)
-    {
-        $rec_con = Consolidated::where('ex_year', $year)
-            ->where('send_id', $item->rec_id)
-            ->where('rec_id', backpack_user()->id)
-            ->first();
-
-        $this->extracted($rec_con, $item);
-        return $rec_con;
-    }
-
     public function extracted($rec_con, $item): void
     {
         if ($rec_con) {
-            if ($item->allResult() == (-1) * $rec_con->allResult()) {
+            if ($item->allResult() === (-1) * $rec_con->allResult()) {
                 $item->status = 3;
             } else {
                 $item->status = 4;

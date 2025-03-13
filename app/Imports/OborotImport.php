@@ -74,6 +74,7 @@ class OborotImport implements ToCollection
 
                 $org = Organization::query()
                     ->where('inn', $item[4])
+                    ->where('name', $item[3])
                     ->first();
 
                 $con = new ConsolidateOboroti();
